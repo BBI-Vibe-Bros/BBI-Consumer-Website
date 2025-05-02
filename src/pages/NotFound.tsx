@@ -4,6 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Helmet } from 'react-helmet-async';
+import SEO from "@/utils/seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -17,11 +18,11 @@ const NotFound = () => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Page Not Found - Bobby Brock Insurance</title>
-        <meta name="description" content="The page you are looking for cannot be found. Return to Bobby Brock Insurance homepage." />
-        <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      <SEO 
+        title="Page Not Found"
+        description="The page you are looking for cannot be found. Return to Bobby Brock Insurance homepage."
+        noIndex={true}
+      />
       
       <div className="min-h-[60vh] flex flex-col items-center justify-center px-6 py-16">
         <div className="text-center max-w-lg">

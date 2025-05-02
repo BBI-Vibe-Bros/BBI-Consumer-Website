@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+
 const HeroSection = () => {
   return <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
       <div className="container mx-auto px-6">
@@ -12,8 +14,14 @@ const HeroSection = () => {
             </h1>
             <p className="text-gray-700 mb-8 leading-relaxed text-lg">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-[30px] text-lg font-semibold py-[25px] rounded text-center">Schedule an Appointment</Button>
-              
+              <Link to="/contact">
+                <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-[30px] text-lg font-semibold py-[25px] rounded text-center">Schedule an Appointment</Button>
+              </Link>
+              <Link to="/resources">
+                <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 px-[30px] text-lg font-semibold py-[25px] rounded text-center">
+                  Medicare Resources
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="hidden lg:block">
@@ -23,4 +31,5 @@ const HeroSection = () => {
       </div>
     </section>;
 };
+
 export default HeroSection;

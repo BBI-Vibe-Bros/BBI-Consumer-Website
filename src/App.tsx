@@ -17,6 +17,9 @@ import ResourceGuide from "./pages/ResourceGuide";
 import BlogListing from "./pages/BlogListing";
 import VideoListing from "./pages/VideoListing";
 import ResourceListing from "./pages/ResourceListing";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -34,9 +37,9 @@ const App = () => (
             
             {/* Medicare basics and information routes */}
             <Route path="/medicare">
-              <Route path="basics" element={<NotFound />} />
-              <Route path="eligibility" element={<NotFound />} />
-              <Route path="parts/*" element={<NotFound />} />
+              <Route path="basics" element={<AboutPage />} />
+              <Route path="eligibility" element={<AboutPage />} />
+              <Route path="parts/*" element={<AboutPage />} />
             </Route>
             
             {/* Plan routes */}
@@ -48,24 +51,26 @@ const App = () => (
             </Route>
             
             {/* Resources routes */}
-            <Route path="/resources">
-              <Route path="guides" element={<ResourceListing />} />
-              <Route path="guides/:slug" element={<ResourceGuide />} />
-              <Route path="calculators" element={<NotFound />} />
-              <Route path="glossary" element={<NotFound />} />
-            </Route>
+            <Route path="/resources" element={<ResourceListing />} />
+            <Route path="/resources/guides/:slug" element={<ResourceGuide />} />
+            <Route path="/resources/calculators" element={<AboutPage />} />
+            <Route path="/resources/glossary" element={<AboutPage />} />
             
-            {/* Blog and video content */}
+            {/* Blog and video content - Updated to match specified routes */}
             <Route path="/blog" element={<BlogListing />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/videos" element={<VideoListing />} />
             <Route path="/videos/watch/:slug" element={<VideoPage />} />
             
+            {/* Static routes as specified in the rebuild guide */}
+            <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
+            <Route path="/medicaresupplement" element={<MedicareSupplement />} />
+            
             {/* Company information */}
-            <Route path="/about" element={<NotFound />} />
-            <Route path="/about/team" element={<NotFound />} />
-            <Route path="/contact" element={<NotFound />} />
-            <Route path="/privacy-policy" element={<NotFound />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/about/team" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             
             {/* Catch all for 404 */}
             <Route path="*" element={<NotFound />} />
