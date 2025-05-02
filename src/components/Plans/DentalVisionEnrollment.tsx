@@ -7,9 +7,9 @@ const DentalVisionEnrollment = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">How to Enroll in Dental & Vision Coverage</h2>
+          <h2 className="text-3xl font-bold mb-4">How We Help With Dental & Vision Coverage</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Getting the dental and vision coverage you need is simple. Here's how to get started.
+            As an independent Medicare brokerage, we guide you through the process of finding the right dental and vision coverage from multiple carriers.
           </p>
         </div>
 
@@ -17,9 +17,9 @@ const DentalVisionEnrollment = () => {
           <Card className="border border-gray-200 shadow-sm">
             <CardContent className="pt-6 text-center">
               <div className="w-12 h-12 bg-bb-blue rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">1</div>
-              <h3 className="text-lg font-semibold mb-3">Review Your Options</h3>
+              <h3 className="text-lg font-semibold mb-3">Understand Your Options</h3>
               <p className="text-gray-600">
-                Explore standalone dental and vision plans or consider Medicare Advantage plans that include these benefits.
+                We educate you on standalone dental and vision plans and Medicare Advantage plans that include these benefits.
               </p>
             </CardContent>
           </Card>
@@ -29,7 +29,7 @@ const DentalVisionEnrollment = () => {
               <div className="w-12 h-12 bg-bb-blue rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">2</div>
               <h3 className="text-lg font-semibold mb-3">Check Network Providers</h3>
               <p className="text-gray-600">
-                Verify that your preferred dentists and optometrists are in-network to maximize your benefits.
+                We help verify that your preferred dentists and optometrists are in-network across various carrier options.
               </p>
             </CardContent>
           </Card>
@@ -39,7 +39,7 @@ const DentalVisionEnrollment = () => {
               <div className="w-12 h-12 bg-bb-blue rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">3</div>
               <h3 className="text-lg font-semibold mb-3">Compare Coverage</h3>
               <p className="text-gray-600">
-                Consider what services are most important to you and compare plans based on those priorities.
+                We provide side-by-side comparisons of plans from multiple carriers based on your specific priorities.
               </p>
             </CardContent>
           </Card>
@@ -47,9 +47,9 @@ const DentalVisionEnrollment = () => {
           <Card className="border border-gray-200 shadow-sm">
             <CardContent className="pt-6 text-center">
               <div className="w-12 h-12 bg-bb-blue rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">4</div>
-              <h3 className="text-lg font-semibold mb-3">Enroll with Our Help</h3>
+              <h3 className="text-lg font-semibold mb-3">Guide Your Enrollment</h3>
               <p className="text-gray-600">
-                Our Medicare specialists will guide you through the enrollment process at no cost to you.
+                Our Medicare specialists assist with the enrollment process for your chosen carrier's plan at no cost to you.
               </p>
             </CardContent>
           </Card>

@@ -10,7 +10,7 @@ const AdvantageCompliance = () => {
           
           <div className="text-sm text-gray-700 space-y-3">
             <p>
-              The benefits information provided is a brief summary, not a complete description of benefits. For more information, contact the plan directly or consult your chosen insurance carrier.
+              The benefits information provided is a brief summary, not a complete description of benefits. For more information about specific plans, contact the insurance carrier directly or consult with our licensed Medicare specialists.
             </p>
             <p>
               Limitations, copayments, and restrictions may apply. Benefits, premiums, and/or co-payments/co-insurance may change on January 1 of each year.

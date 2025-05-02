@@ -8,28 +8,28 @@ const DentalVisionComparison = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Compare Plan Options</h2>
+          <h2 className="text-3xl font-bold mb-4">Understanding Plan Options</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Choose the dental and vision coverage that best fits your needs and budget.
+            As an independent Medicare brokerage, we help you compare dental and vision coverage options from multiple insurance carriers. Here's an educational overview of typical plan features to help you understand your options.
           </p>
         </div>
 
         <Tabs defaultValue="dental" className="max-w-4xl mx-auto">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="dental">Dental Plans</TabsTrigger>
-            <TabsTrigger value="vision">Vision Plans</TabsTrigger>
+            <TabsTrigger value="dental">Dental Coverage</TabsTrigger>
+            <TabsTrigger value="vision">Vision Coverage</TabsTrigger>
           </TabsList>
           
           <TabsContent value="dental" className="mt-6">
             <div className="overflow-x-auto">
               <Table className="w-full bg-white rounded-lg shadow-sm">
-                <TableCaption>Actual dental plan features and costs may vary. Contact us for personalized plan information.</TableCaption>
+                <TableCaption>This is a general educational comparison. Actual plan features and costs vary by carrier and location. We can help you compare specific plans available in your area.</TableCaption>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[200px]">Features</TableHead>
-                    <TableHead>Basic Plan</TableHead>
-                    <TableHead>Standard Plan</TableHead>
-                    <TableHead>Premium Plan</TableHead>
+                    <TableHead>Basic Coverage Example</TableHead>
+                    <TableHead>Standard Coverage Example</TableHead>
+                    <TableHead>Premium Coverage Example</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -83,13 +83,13 @@ const DentalVisionComparison = () => {
           <TabsContent value="vision" className="mt-6">
             <div className="overflow-x-auto">
               <Table className="w-full bg-white rounded-lg shadow-sm">
-                <TableCaption>Actual vision plan features and costs may vary. Contact us for personalized plan information.</TableCaption>
+                <TableCaption>This is a general educational comparison. Actual vision plan features and costs vary by insurance carrier. As your Medicare broker, we can help you compare specific plans.</TableCaption>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[200px]">Features</TableHead>
-                    <TableHead>Basic Vision</TableHead>
-                    <TableHead>Enhanced Vision</TableHead>
-                    <TableHead>Premium Vision</TableHead>
+                    <TableHead>Basic Vision Example</TableHead>
+                    <TableHead>Enhanced Vision Example</TableHead>
+                    <TableHead>Premium Vision Example</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -142,34 +142,34 @@ const DentalVisionComparison = () => {
         </Tabs>
 
         <div className="mt-10 p-6 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
-          <h3 className="text-xl font-semibold mb-4">Bundled Dental & Vision Savings</h3>
+          <h3 className="text-xl font-semibold mb-4">Expert Guidance on Dental & Vision Coverage</h3>
           <p className="text-gray-700 mb-4">
-            Many insurance carriers offer discounted rates when you bundle dental and vision coverage together. These plans often provide:
+            As a nationally recognized Medicare brokerage serving over 50,000 beneficiaries, Bobby Brock Insurance helps you navigate the many dental and vision coverage options available from multiple insurance carriers. Our independent agents compare plans side by side to find options that meet your specific needs.
           </p>
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
             <li className="flex items-center">
               <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              Simplified enrollment process
+              Personalized plan comparisons
             </li>
             <li className="flex items-center">
               <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              Single ID card for both benefits
+              Unbiased guidance on carrier options
             </li>
             <li className="flex items-center">
               <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              Premium discounts up to 15%
+              Expertise on plan benefits and limitations
             </li>
             <li className="flex items-center">
               <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              Coordinated customer service
+              No-cost consultation services
             </li>
           </ul>
           <div className="text-center">

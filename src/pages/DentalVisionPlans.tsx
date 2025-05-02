@@ -14,24 +14,24 @@ const DentalVisionPlans = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Medicare Dental & Vision Plans | Bobby Brock Insurance</title>
+        <title>Medicare Dental & Vision Coverage Guide | Bobby Brock Insurance</title>
         <meta 
           name="description" 
-          content="Explore Medicare Dental & Vision plans in Tupelo, MS. Get coverage for routine dental care, eye exams, glasses and more with our expert guidance." 
+          content="Compare Medicare Dental & Vision plans in Tupelo, MS. Get expert guidance on coverage options for routine dental care, eye exams, glasses and more." 
         />
         <meta 
           name="keywords" 
-          content="Medicare Dental, Medicare Vision, dental insurance, vision insurance, Medicare insurance, Tupelo MS" 
+          content="Medicare Dental, Medicare Vision, dental coverage, vision coverage, Medicare insurance, Tupelo MS" 
         />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
-              "@type": "InsurancePlan",
-              "name": "Medicare Dental & Vision Plans",
+              "@type": "Service",
+              "name": "Medicare Dental & Vision Plan Comparison",
               "url": "https://bobbybrock.com/plans/dental",
-              "description": "Medicare Dental & Vision plans provide coverage for routine dental care, eye exams, glasses, and more that Original Medicare doesn't cover.",
-              "insurancePlanProvider": {
+              "description": "Expert guidance on Medicare dental and vision coverage options from multiple insurance carriers, helping beneficiaries find the right plans to complement their Medicare coverage.",
+              "provider": {
                 "@type": "InsuranceAgency",
                 "name": "Bobby Brock Insurance",
                 "address": {

@@ -14,26 +14,26 @@ const DentalVisionHero = () => {
                 <Stethoscope className="h-5 w-5 mr-1" />
                 <Eye className="h-5 w-5" />
               </div>
-              <span className="font-medium">Dental & Vision Plans</span>
+              <span className="font-medium">Dental & Vision Coverage Guide</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-bb-dark mb-6">
-              Complete Your Medicare Coverage
+              Understanding Medicare Dental & Vision Coverage
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
-              Original Medicare doesn't cover routine dental care, eye exams, or glasses. Our Medicare dental and vision plans help fill these important gaps in your healthcare coverage.
+              Original Medicare doesn't cover routine dental care, eye exams, or glasses. As an independent Medicare brokerage, we help you compare plans from multiple carriers to fill these important gaps in your healthcare coverage.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-bb-blue hover:bg-bb-light-blue text-white px-8">
-                Compare Plans
+                Compare Coverage Options
               </Button>
               <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10">
-                Check Coverage Options
+                Get Plan Education
               </Button>
             </div>
           </div>
           <div className="relative">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4">Coverage Benefits</h3>
+              <h3 className="text-2xl font-semibold mb-4">Common Coverage Benefits</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <div className="bg-green-100 p-1 rounded-full mt-1">
@@ -73,7 +73,7 @@ const DentalVisionHero = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-gray-700">Affordable monthly premiums and predictable costs</span>
+                  <span className="text-gray-700">Options from multiple insurance carriers</span>
                 </li>
               </ul>
             </div>
