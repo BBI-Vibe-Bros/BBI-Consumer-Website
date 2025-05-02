@@ -12,9 +12,7 @@ const HeroSection = () => {
             </h1>
             <p className="text-gray-700 mb-8 leading-relaxed text-lg">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-6 py-3 text-base font-medium">
-                Schedule an Appointment
-              </Button>
+              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-[30px] text-lg font-semibold py-[25px] rounded text-center">Schedule an Appointment</Button>
               
             </div>
           </div>
