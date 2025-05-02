@@ -19,8 +19,8 @@ const CTASection = () => {
             </div>
             <div className="md:w-1/2 relative">
               <img 
-                src="public/lovable-uploads/4c7af074-f2a3-4f8e-9fa4-0c7d75eb630b.png"
-                alt="Medicare Guide Book with Senior Man" 
+                src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png"
+                alt="Medicare Breakdown Guide Book with Senior Man" 
                 className="w-full h-full object-cover"
               />
             </div>
