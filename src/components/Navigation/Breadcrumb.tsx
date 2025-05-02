@@ -2,6 +2,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import {
+  Breadcrumb as ShadcnBreadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
 
 interface BreadcrumbItem {
   label: string;
@@ -29,32 +37,26 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
 
   return (
     <>
-      <nav 
-        className={`flex items-center text-sm text-gray-500 ${className}`}
-        aria-label="Breadcrumb"
+      <ShadcnBreadcrumb 
+        className={`mx-auto px-4 sm:px-6 py-4 ${className}`}
       >
-        <ol className="flex items-center space-x-1 md:space-x-2 flex-wrap">
+        <BreadcrumbList>
           {items.map((item, index) => (
-            <li key={index} className="flex items-center">
-              {index > 0 && (
-                <ChevronRight className="h-4 w-4 mx-1 text-gray-400" />
-              )}
-              {item.isLast ? (
-                <span className="font-medium text-gray-800" aria-current="page">
-                  {item.label}
-                </span>
-              ) : (
-                <Link
-                  to={item.path}
-                  className="hover:text-bb-blue transition-colors"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
+            <React.Fragment key={index}>
+              {index > 0 && <BreadcrumbSeparator />}
+              <BreadcrumbItem>
+                {item.isLast ? (
+                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                ) : (
+                  <BreadcrumbLink asChild>
+                    <Link to={item.path}>{item.label}</Link>
+                  </BreadcrumbLink>
+                )}
+              </BreadcrumbItem>
+            </React.Fragment>
           ))}
-        </ol>
-      </nav>
+        </BreadcrumbList>
+      </ShadcnBreadcrumb>
       
       {/* Inject breadcrumb schema */}
       <script

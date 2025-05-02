@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import * as SchemaGenerator from './schemaGenerator';
 
 // Default meta configuration as specified in the build guide
 const defaultMetaConfig = {
@@ -27,6 +28,8 @@ interface SEOProps {
   ogType?: string;
   noIndex?: boolean;
   schema?: Record<string, any>;
+  schemaType?: 'webpage' | 'blogpost' | 'video' | 'insurance';
+  schemaData?: Record<string, any>;
 }
 
 const SEO: React.FC<SEOProps> = ({
@@ -36,7 +39,9 @@ const SEO: React.FC<SEOProps> = ({
   ogImage,
   ogType = defaultMetaConfig.openGraph.type,
   noIndex = false,
-  schema
+  schema,
+  schemaType,
+  schemaData
 }) => {
   const metaTitle = title 
     ? title + ' | Bobby Brock Insurance' 
@@ -44,6 +49,56 @@ const SEO: React.FC<SEOProps> = ({
   
   const metaDescription = description || defaultMetaConfig.description.default;
   const url = canonical || window.location.href;
+
+  // Generate schema if schemaType is provided but no custom schema
+  let finalSchema = schema;
+  if (!schema && schemaType) {
+    switch (schemaType) {
+      case 'webpage':
+        finalSchema = SchemaGenerator.generateWebPageSchema(
+          metaTitle,
+          metaDescription,
+          url,
+          schemaData?.datePublished,
+          schemaData?.dateModified,
+          ogImage
+        );
+        break;
+      case 'blogpost':
+        finalSchema = SchemaGenerator.generateBlogPostSchema(
+          metaTitle,
+          metaDescription,
+          url,
+          ogImage,
+          schemaData?.author,
+          schemaData?.datePublished,
+          schemaData?.dateModified
+        );
+        break;
+      case 'video':
+        if (schemaData) {
+          finalSchema = SchemaGenerator.generateVideoSchema(
+            metaTitle,
+            metaDescription,
+            schemaData.thumbnailUrl || ogImage || '',
+            schemaData.uploadDate || new Date().toISOString(),
+            schemaData.duration,
+            schemaData.contentUrl,
+            schemaData.embedUrl
+          );
+        }
+        break;
+      case 'insurance':
+        finalSchema = SchemaGenerator.generateInsurancePlanSchema(
+          metaTitle,
+          metaDescription,
+          schemaData?.providerName
+        );
+        break;
+      default:
+        break;
+    }
+  }
 
   return (
     <Helmet>
@@ -70,9 +125,9 @@ const SEO: React.FC<SEOProps> = ({
       {noIndex && <meta name="robots" content="noindex,nofollow" />}
       
       {/* JSON-LD Schema */}
-      {schema && (
+      {finalSchema && SchemaGenerator.validateSchema(finalSchema) && (
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify(finalSchema)}
         </script>
       )}
     </Helmet>

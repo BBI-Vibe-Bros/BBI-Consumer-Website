@@ -11,6 +11,12 @@ import MedicareAdvantage from "./pages/MedicareAdvantage";
 import MedicareSupplement from "./pages/MedicareSupplement";
 import PrescriptionDrugPlans from "./pages/PrescriptionDrugPlans";
 import DentalVisionPlans from "./pages/DentalVisionPlans";
+import BlogPost from "./pages/BlogPost";
+import VideoPage from "./pages/VideoPage";
+import ResourceGuide from "./pages/ResourceGuide";
+import BlogListing from "./pages/BlogListing";
+import VideoListing from "./pages/VideoListing";
+import ResourceListing from "./pages/ResourceListing";
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -43,14 +49,17 @@ const App = () => (
             
             {/* Resources routes */}
             <Route path="/resources">
-              <Route path="guides/*" element={<NotFound />} />
+              <Route path="guides" element={<ResourceListing />} />
+              <Route path="guides/:slug" element={<ResourceGuide />} />
               <Route path="calculators" element={<NotFound />} />
               <Route path="glossary" element={<NotFound />} />
             </Route>
             
             {/* Blog and video content */}
-            <Route path="/blog/*" element={<NotFound />} />
-            <Route path="/videos/watch/*" element={<NotFound />} />
+            <Route path="/blog" element={<BlogListing />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/videos" element={<VideoListing />} />
+            <Route path="/videos/watch/:slug" element={<VideoPage />} />
             
             {/* Company information */}
             <Route path="/about" element={<NotFound />} />
