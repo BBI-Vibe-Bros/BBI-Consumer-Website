@@ -70,7 +70,7 @@ const UnderstandMedicare = () => {
       case 'basics': 
         return 'Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance.';
       case 'eligibility': 
-        return 'Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.';
+        return "Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.";
       case 'parts': 
         return 'Understand the different parts of Medicare (A, B, C, D) and how they work together to provide your healthcare coverage with expert guidance from Bobby Brock Insurance.';
       default:
