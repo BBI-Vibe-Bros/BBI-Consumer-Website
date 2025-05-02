@@ -10,21 +10,21 @@ const ResourceSection = () => {
       id: 1,
       title: 'What To Do If Your Medicare Card Expires, Is Lost, or Damaged!',
       date: 'January 21, 2024',
-      image: 'public/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
+      image: '/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
       slug: '/blog/medicare-card-lost-expired-damaged'
     },
     {
       id: 2,
       title: '3 Reasons Why Medicare Supplements Make Sense',
       date: 'February 15, 2024',
-      image: 'public/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png',
+      image: '/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png',
       slug: '/blog/medicare-supplements-make-sense'
     },
     {
       id: 3,
       title: 'Is Original Medicare Parts A & B Enough Coverage?',
       date: 'March 10, 2024',
-      image: 'public/lovable-uploads/9de67b07-07ab-47e8-af0a-c57d775e1416.png',
+      image: '/lovable-uploads/9de67b07-07ab-47e8-af0a-c57d775e1416.png',
       slug: '/blog/is-original-medicare-enough-coverage'
     }
   ];

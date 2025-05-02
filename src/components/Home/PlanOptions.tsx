@@ -9,21 +9,21 @@ const PlanOptions = () => {
       id: 'advantage',
       title: 'Medicare Advantage Plans',
       description: 'Medicare Advantage (Part C) offers all-in-one alternatives to Original Medicare with additional benefits.',
-      image: 'public/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
+      image: '/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
       link: '/plans/advantage',
     },
     {
       id: 'supplement',
       title: 'Medicare Supplements',
       description: 'Medicare Supplements (Medigap) help fill the "gaps" in Original Medicare coverage and provide more flexibility.',
-      image: 'public/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png',
+      image: '/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png',
       link: '/plans/supplement',
     },
     {
       id: 'prescription',
       title: 'Prescription Drug Plans',
       description: 'Medicare Part D helps cover the cost of prescription drugs, including many recommended shots or vaccines.',
-      image: 'public/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
+      image: '/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
       link: '/plans/prescription',
     }
   ];
