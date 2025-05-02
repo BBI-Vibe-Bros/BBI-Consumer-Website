@@ -10,13 +10,13 @@ const AdvantageCompliance = () => {
           
           <div className="text-sm text-gray-700 space-y-3">
             <p>
-              The benefits information provided is a brief summary, not a complete description of benefits. For more information, contact the plan.
+              The benefits information provided is a brief summary, not a complete description of benefits. For more information, contact the plan directly or consult your chosen insurance carrier.
             </p>
             <p>
               Limitations, copayments, and restrictions may apply. Benefits, premiums, and/or co-payments/co-insurance may change on January 1 of each year.
             </p>
             <p>
-              Medicare Advantage plans are offered by private companies approved by Medicare. Bobby Brock Insurance is not connected with or endorsed by the United States government or the federal Medicare program.
+              Bobby Brock Insurance is an independent insurance brokerage that represents multiple Medicare Advantage carriers. We are not connected with or endorsed by the United States government or the federal Medicare program.
             </p>
             <p>
               This content was reviewed for Medicare compliance on May 1, 2025. Medicare has neither reviewed nor endorsed this information.

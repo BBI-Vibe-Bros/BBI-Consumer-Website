@@ -14,10 +14,10 @@ const AdvantageHero = () => {
               <span className="font-medium">Medicare Advantage (Part C)</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-bb-dark mb-6">
-              All-In-One Medicare Coverage That Works For You
+              Find The Right Medicare Advantage Plan For You
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
-              Medicare Advantage plans combine hospital, medical, and often prescription drug coverage in one convenient plan with additional benefits not covered by Original Medicare.
+              As independent Medicare brokers, we help you compare Medicare Advantage plans from multiple carriers to find coverage that combines hospital, medical, and often prescription benefits in one convenient plan.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-bb-blue hover:bg-bb-light-blue text-white px-8">
