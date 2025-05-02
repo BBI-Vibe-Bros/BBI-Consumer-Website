@@ -50,38 +50,38 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sf tracking-wide; /* Added tracking-wide */
+    @apply bg-background text-foreground font-sf tracking-normal; /* Changed to tracking-normal */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Updated heading hierarchy with increased letter spacing */
+  /* Updated heading hierarchy with standard letter spacing */
   h1 {
-    @apply text-3xl md:text-4xl font-extrabold leading-tight tracking-wide;
+    @apply text-3xl md:text-4xl font-extrabold leading-tight tracking-tight;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl font-semibold leading-tight tracking-wide;
+    @apply text-2xl md:text-3xl font-semibold leading-tight tracking-tight;
   }
 
   h3 {
-    @apply text-xl md:text-2xl font-semibold leading-snug tracking-wide;
+    @apply text-xl md:text-2xl font-semibold leading-snug tracking-tight;
   }
 
   h4 {
-    @apply text-lg md:text-xl font-semibold leading-snug tracking-wide;
+    @apply text-lg md:text-xl font-semibold leading-snug tracking-normal;
   }
 
   h5 {
-    @apply text-base md:text-lg font-semibold tracking-wide;
+    @apply text-base md:text-lg font-semibold tracking-normal;
   }
 
   h6 {
-    @apply text-sm md:text-base font-semibold tracking-wide;
+    @apply text-sm md:text-base font-semibold tracking-normal;
   }
 
   /* Updated paragraph styles */
   p {
-    @apply text-base leading-7 tracking-wide;
+    @apply text-base leading-7 tracking-normal;
   }
 
   /* Code snippets */
@@ -101,50 +101,50 @@
     @apply p-3 text-sm mt-4 bg-bb-light-gray border border-bb-gray/20 rounded-md text-bb-dark;
   }
 
-  /* Updated custom typography classes with increased letter spacing */
+  /* Updated custom typography classes with industry-standard letter spacing */
   .text-title {
-    @apply text-4xl font-extrabold leading-tight tracking-wide text-bb-dark;
+    @apply text-4xl font-extrabold leading-tight tracking-tight text-bb-dark;
   }
   
   .text-subtitle {
-    @apply text-3xl font-semibold leading-tight tracking-wide text-bb-blue;
+    @apply text-3xl font-semibold leading-tight tracking-tight text-bb-blue;
   }
   
   .text-heading {
-    @apply text-2xl font-semibold tracking-wide text-bb-dark;
+    @apply text-2xl font-semibold tracking-normal text-bb-dark;
   }
   
   .text-subheading {
-    @apply text-xl font-semibold tracking-wide text-bb-dark;
+    @apply text-xl font-semibold tracking-normal text-bb-dark;
   }
   
   .text-body-large {
-    @apply text-lg leading-7 tracking-wide text-gray-700;
+    @apply text-lg leading-7 tracking-normal text-gray-700;
   }
   
   .text-body {
-    @apply text-base leading-7 tracking-wide text-gray-700;
+    @apply text-base leading-7 tracking-normal text-gray-700;
   }
   
   .text-caption {
-    @apply text-sm font-medium tracking-wide text-gray-600;
+    @apply text-sm font-medium tracking-normal text-gray-600;
   }
 
-  /* Rich text content classes with increased letter spacing */
+  /* Rich text content classes with industry-standard letter spacing */
   .rich-content h1 {
-    @apply text-4xl font-extrabold tracking-wide;
+    @apply text-4xl font-extrabold tracking-tight;
   }
   
   .rich-content h2 {
-    @apply text-3xl font-semibold tracking-wide;
+    @apply text-3xl font-semibold tracking-tight;
   }
   
   .rich-content h3 {
-    @apply text-2xl font-semibold tracking-wide;
+    @apply text-2xl font-semibold tracking-normal;
   }
   
   .rich-content h4 {
-    @apply text-xl font-semibold tracking-wide;
+    @apply text-xl font-semibold tracking-normal;
   }
   
   .rich-content code {
@@ -152,16 +152,16 @@
   }
 }
 
-/* Senior friendly styles with accessibility requirements */
+/* System font styles with industry-standard letter spacing */
 html {
   font-size: 16px; /* Minimum for accessibility */
   font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
-  letter-spacing: 0.03em; /* Increased from 0.01em for better readability */
+  letter-spacing: 0.01em; /* Industry standard value, reduced from 0.03em */
 }
 
 body {
   line-height: 1.6;
-  letter-spacing: 0.03em; /* Increased from 0.01em */
+  letter-spacing: 0.01em; /* Industry standard value, reduced from 0.03em */
 }
 
 /* Medicare badge */
@@ -202,5 +202,5 @@ ul:not(.unstyled) li::before {
 
 /* High contrast links */
 a:not(.btn):not(.no-underline):not([class*="bg-"]) {
-  @apply text-bb-blue underline-offset-2 hover:underline focus:underline tracking-wide;
+  @apply text-bb-blue underline-offset-2 hover:underline focus:underline tracking-normal;
 }

@@ -110,9 +110,9 @@ export default {
 				'tighter': '-0.05em',
 				'tight': '-0.025em',
 				'normal': '0',
-				'wide': '0.03em',     // Increased from 0.025em
-				'wider': '0.06em',    // Increased from 0.05em
-				'widest': '0.12em',   // Increased from 0.1em
+				'wide': '0.015em',     // Standard value, reduced from 0.03em
+				'wider': '0.03em',     // Standard value, reduced from 0.06em
+				'widest': '0.05em',    // Standard value, reduced from 0.12em
 			},
 			keyframes: {
 				'accordion-down': {
