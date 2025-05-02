@@ -1,10 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
-
 const CTASection = () => {
-  return (
-    <section className="py-16">
+  return <section className="py-16">
       <div className="container mx-auto px-6">
         <div className="rounded-xl overflow-hidden bg-bb-blue">
           <div className="flex flex-col md:flex-row">
@@ -18,17 +15,11 @@ const CTASection = () => {
               </Button>
             </div>
             <div className="md:w-1/2 relative">
-              <img 
-                src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png"
-                alt="Medicare Breakdown Guide Book with Senior Man" 
-                className="w-full h-full object-cover"
-              />
+              <img src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" alt="Medicare Breakdown Guide Book with Senior Man" className="w-full h-full object-cover object-center" />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default CTASection;
