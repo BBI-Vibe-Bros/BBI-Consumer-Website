@@ -20,6 +20,9 @@ import ResourceListing from "./pages/ResourceListing";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import MedicareBasics from "./pages/MedicareBasics";
+import MedicareEligibility from "./pages/MedicareEligibility";
+import MedicareParts from "./pages/MedicareParts";
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -37,9 +40,9 @@ const App = () => (
             
             {/* Medicare basics and information routes */}
             <Route path="/medicare">
-              <Route path="basics" element={<AboutPage />} />
-              <Route path="eligibility" element={<AboutPage />} />
-              <Route path="parts/*" element={<AboutPage />} />
+              <Route path="basics" element={<MedicareBasics />} />
+              <Route path="eligibility" element={<MedicareEligibility />} />
+              <Route path="parts" element={<MedicareParts />} />
             </Route>
             
             {/* Plan routes */}
