@@ -21,12 +21,15 @@ const MedicareAdvantage = () => {
         
         if (response && response.fields) {
           setPageData({
-            title: response.fields.title || 'Medicare Advantage Plans',
-            subtitle: response.fields.subtitle,
-            heroImage: response.fields.heroImage?.fields?.file?.url 
-              ? `https:${response.fields.heroImage.fields.file.url}` 
+            title: response.fields.pageName || 'Medicare Advantage Plans',
+            subtitle: response.fields.metadata?.subtitle,
+            heroImage: response.fields.metadata?.heroImage?.fields?.file?.url 
+              ? `https:${response.fields.metadata.heroImage.fields.file.url}` 
               : undefined,
-            content: response.fields.content || {},
+            content: response.fields.fBodyContent || {},
+            callToAction: response.fields.callToAction,
+            author: response.fields.author,
+            youTubeVideo: response.fields.youTubeVideo,
             sections: response.fields.sections?.map((section: any) => ({
               title: section.fields.title,
               content: section.fields.content,
