@@ -85,14 +85,32 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontSize: {
-				// Larger font sizes for senior readability
-				'base': '1rem', // 16px
-				'lg': '1.125rem', // 18px 
-				'xl': '1.25rem', // 20px
-				'2xl': '1.5rem', // 24px
-				'3xl': '1.75rem', // 28px  
-				'4xl': '2rem', // 32px
-				'5xl': '2.5rem', // 40px
+				// Senior-friendly font sizes with improved hierarchy
+				'xs': '0.875rem',     // 14px 
+				'sm': '1rem',         // 16px
+				'base': '1.125rem',   // 18px
+				'lg': '1.25rem',      // 20px 
+				'xl': '1.375rem',     // 22px
+				'2xl': '1.5rem',      // 24px
+				'3xl': '1.75rem',     // 28px  
+				'4xl': '2rem',        // 32px
+				'5xl': '2.5rem',      // 40px
+				'6xl': '3rem',        // 48px
+			},
+			lineHeight: {
+				'tight': '1.1',
+				'snug': '1.3', 
+				'normal': '1.5',
+				'relaxed': '1.625',
+				'loose': '1.75',
+			},
+			letterSpacing: {
+				'tighter': '-0.05em',
+				'tight': '-0.025em',
+				'normal': '0',
+				'wide': '0.025em',
+				'wider': '0.05em',
+				'widest': '0.1em',
 			},
 			keyframes: {
 				'accordion-down': {
