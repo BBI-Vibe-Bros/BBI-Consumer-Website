@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Tooth, Eye } from 'lucide-react';
+import { Stethoscope, Eye } from 'lucide-react';
 
 const DentalVisionFeatures = () => {
   return (
@@ -18,7 +17,7 @@ const DentalVisionFeatures = () => {
           {/* Dental Coverage Section */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <Tooth className="h-8 w-8 text-bb-blue" />
+              <Stethoscope className="h-8 w-8 text-bb-blue" />
               <h3 className="text-2xl font-bold">Dental Coverage</h3>
             </div>
 
