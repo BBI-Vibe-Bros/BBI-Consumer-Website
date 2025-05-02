@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const AboutSection = () => {
   const features = [{
     id: 1,
@@ -45,15 +43,7 @@ const AboutSection = () => {
             </p>
 
             <div className="space-y-4 mb-8">
-              {features.map(feature => <div key={feature.id} className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 text-bb-blue">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-bb-dark">{feature.title}</h4>
-                    <p className="text-gray-700">{feature.description}</p>
-                  </div>
-                </div>)}
+              {features.map(feature => {})}
             </div>
 
             <Link to="/about">
