@@ -2,7 +2,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
-import HeroSection from '@/components/Plans/AdvantageHero';
+import AdvantageHero from '@/components/Plans/AdvantageHero';
 import PlanComparison from '@/components/Plans/PlanComparison';
 import AdvantageFeatures from '@/components/Plans/AdvantageFeatures';
 import AdvantageEnrollment from '@/components/Plans/AdvantageEnrollment';
@@ -48,7 +48,7 @@ const MedicareAdvantage = () => {
         </script>
       </Helmet>
       
-      <HeroSection />
+      <AdvantageHero />
       <AdvantageFeatures />
       <PlanComparison />
       <AdvantageEnrollment />
