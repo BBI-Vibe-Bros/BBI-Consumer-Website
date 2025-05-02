@@ -12,9 +12,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Explicitly set JSX runtime
-      jsxRuntime: 'automatic',
-      // Ensure proper React imports
+      // Use the correct options for React SWC plugin
+      jsxImportSource: "react",
       babel: {
         plugins: [
           ['@babel/plugin-transform-react-jsx', {
