@@ -21,8 +21,8 @@ const CTASection = () => {
               </div>
               <div className="flex items-center justify-center bg-white p-8">
                 <img 
-                  src="public/lovable-uploads/4ce419cc-6dee-49b7-878a-081c2995c946.png"
-                  alt="Medicare Insurance Team" 
+                  src="public/lovable-uploads/9c5770bc-a599-4a73-8a2d-e4237a73d219.png"
+                  alt="Medicare Breakdown Guide Book" 
                   className="max-w-xs md:max-w-sm rounded-lg shadow-sm"
                 />
               </div>
