@@ -28,7 +28,7 @@ const Index = () => {
               "description": "Medicare insurance specialists providing personalized guidance on Medicare Advantage, Medicare Supplements, and Part D plans.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "409 Air Park Rd",
+                "streetAddress": "499 Air Park Rd",
                 "addressLocality": "Tupelo",
                 "addressRegion": "MS",
                 "postalCode": "38801",
