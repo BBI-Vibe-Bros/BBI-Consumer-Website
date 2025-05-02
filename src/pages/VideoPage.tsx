@@ -7,6 +7,7 @@ import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
 import CTASection from '@/components/Home/CTASection';
+import VideoTemplate from '@/components/Templates/VideoTemplate';
 
 const VideoPage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -62,6 +63,22 @@ const VideoPage = () => {
     { label: videoData.title, path: `/videos/watch/${slug}`, isLast: true }
   ];
 
+  // Transform data for VideoTemplate
+  const templateData = {
+    title: videoData.title,
+    description: videoData.description || '',
+    videoUrl: videoData.videoUrl || '',
+    thumbnailUrl: videoData.thumbnail?.fields?.file?.url ? `https:${videoData.thumbnail.fields.file.url}` : '',
+    transcript: videoData.transcript || '',
+    relatedVideos: videoData.relatedVideos?.map((relatedVideo: any) => ({
+      title: relatedVideo.fields.title,
+      slug: relatedVideo.fields.slug,
+      thumbnailUrl: relatedVideo.fields.thumbnail?.fields?.file?.url 
+        ? `https:${relatedVideo.fields.thumbnail.fields.file.url}`
+        : ''
+    })) || []
+  };
+
   return (
     <Layout>
       <SEO 
@@ -84,50 +101,8 @@ const VideoPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-bb-dark mb-4">{videoData.title}</h1>
-          
-          <div className="flex items-center text-gray-600 mb-6">
-            <span>{publishDate}</span>
-            {videoData.duration && (
-              <>
-                <span className="mx-2">•</span>
-                <span>{videoData.duration} mins</span>
-              </>
-            )}
-          </div>
-
-          {videoData.videoUrl && (
-            <div className="mb-8 aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-              <iframe
-                src={videoData.videoUrl}
-                title={videoData.title}
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          )}
-
-          <div className="prose prose-lg max-w-none">
-            <p className="text-gray-700">{videoData.description}</p>
-          </div>
-
-          {videoData.tags && videoData.tags.length > 0 && (
-            <div className="mt-8 pt-6 border-t border-gray-200">
-              <h3 className="text-lg font-semibold mb-3">Related Topics:</h3>
-              <div className="flex flex-wrap gap-2">
-                {videoData.tags.map((tag: string, idx: number) => (
-                  <span key={idx} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
+      <VideoTemplate video={templateData} />
+      
       <CTASection />
     </Layout>
   );
