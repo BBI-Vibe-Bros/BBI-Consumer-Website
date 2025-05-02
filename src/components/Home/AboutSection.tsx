@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const AboutSection = () => {
   const features = [{
     id: 1,
@@ -46,7 +44,7 @@ const AboutSection = () => {
             </div>
 
             <Link to="/about">
-              <Button className="bg-bb-blue hover:bg-bb-light-blue text-lg font-semibold">
+              <Button className="bg-bb-blue hover:bg-bb-light-blue my-[5px] px-[30px] py-[20px] font-medium text-[inheri] text-white">
                 Learn More About Us
               </Button>
             </Link>
@@ -55,5 +53,4 @@ const AboutSection = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;
