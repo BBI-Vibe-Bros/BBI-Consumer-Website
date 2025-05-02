@@ -9,17 +9,17 @@ const AdvantageHero = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-bb-dark mb-6 leading-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-bb-dark mb-6 leading-tight">
               Medicare Advantage Plans <span className="text-bb-blue">with Expert Guidance</span>
             </h1>
-            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
               Get comprehensive coverage with Medicare Advantage (Part C) plans that combine hospital, medical, and often prescription drug coverage in one convenient plan.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-xl font-bold px-8 py-6">
+              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-base font-medium px-6 py-3">
                 Compare Plans
               </Button>
-              <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 text-xl font-bold px-8 py-6">
+              <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 text-base font-medium px-6 py-3">
                 Schedule Consultation
               </Button>
             </div>
