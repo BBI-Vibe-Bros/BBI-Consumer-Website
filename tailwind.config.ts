@@ -26,6 +26,7 @@ export default {
 			fontFamily: {
 				sans: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
 				sf: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
+				mono: ['monospace', 'SFMono-Regular'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -85,17 +86,17 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontSize: {
-				// Balanced font sizes - still accessible but not too large
-				'xs': '0.75rem',      // 12px 
-				'sm': '0.875rem',      // 14px
-				'base': '1rem',        // 16px
-				'lg': '1.125rem',      // 18px 
-				'xl': '1.25rem',       // 20px
-				'2xl': '1.375rem',     // 22px
-				'3xl': '1.5rem',       // 24px  
-				'4xl': '1.75rem',      // 28px
-				'5xl': '2.25rem',      // 36px
-				'6xl': '2.75rem',      // 44px
+				// Updated font size scale based on requirements
+				'xs': '0.75rem',     // 12px 
+				'sm': '0.875rem',     // 14px
+				'base': '1rem',       // 16px (minimum for accessibility)
+				'lg': '1.125rem',     // 18px 
+				'xl': '1.25rem',      // 20px - H4
+				'2xl': '1.5rem',      // 24px - H3
+				'3xl': '1.875rem',    // 30px - H2
+				'4xl': '2.25rem',     // 36px - H1
+				'5xl': '3rem',        // 48px
+				'6xl': '3.75rem',     // 60px
 			},
 			lineHeight: {
 				'tight': '1.1',
@@ -103,6 +104,7 @@ export default {
 				'normal': '1.5',
 				'relaxed': '1.625',
 				'loose': '1.75',
+				'7': '1.75rem',       // 28px for paragraphs
 			},
 			letterSpacing: {
 				'tighter': '-0.05em',
