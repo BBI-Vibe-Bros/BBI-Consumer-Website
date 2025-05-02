@@ -17,9 +17,9 @@ const CTASection = () => {
             </div>
             <div className="md:w-1/2 relative flex justify-end overflow-hidden">
               <img 
-                src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" 
-                alt="Medicare Breakdown Guide Book with Senior Man" 
-                className="w-auto h-full object-cover object-right scale-125"
+                src="/lovable-uploads/4ce419cc-6dee-49b7-878a-081c2995c946.png" 
+                alt="Medicare Guide Book" 
+                className="w-auto h-full object-cover object-right"
               />
             </div>
           </div>

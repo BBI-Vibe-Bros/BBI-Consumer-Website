@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="hidden lg:block">
-            <img src="public/lovable-uploads/6767ab2a-b324-4d9b-a5b9-768d527eaa07.png" alt="Senior couple illustration" className="w-full h-auto rounded-lg" />
+            <img src="/lovable-uploads/3fcf1838-6d6d-4441-a795-6e4d4e7b6699.png" alt="Senior couple with Medicare advisor" className="w-full h-auto rounded-lg" />
           </div>
         </div>
       </div>

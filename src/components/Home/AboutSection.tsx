@@ -45,8 +45,8 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <img 
-              src="public/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png" 
-              alt="Bobby Brock Insurance Team" 
+              src="/lovable-uploads/4c7af074-f2a3-4f8e-9fa4-0c7d75eb630b.png" 
+              alt="Bobby Brock Insurance Advisors" 
               className="w-full h-auto rounded-lg shadow-lg" 
             />
           </div>
