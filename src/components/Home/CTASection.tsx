@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 const CTASection = () => {
@@ -14,8 +15,8 @@ const CTASection = () => {
                 Get Your Free Guide
               </Button>
             </div>
-            <div className="md:w-1/2 relative">
-              <img src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" alt="Medicare Breakdown Guide Book with Senior Man" className="w-full h-full object-cover object-center" />
+            <div className="md:w-1/2 relative flex justify-end">
+              <img src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" alt="Medicare Breakdown Guide Book with Senior Man" className="w-full h-full object-cover object-right" />
             </div>
           </div>
         </div>
