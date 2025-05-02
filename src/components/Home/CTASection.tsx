@@ -15,7 +15,7 @@ const CTASection = () => {
               </Button>
             </div>
             <div className="md:w-1/2 relative flex justify-end overflow-hidden">
-              <img alt="Medicare Guide Book" src="/lovable-uploads/3d2a165c-3730-40df-a856-a803bbec0424.png" className="h-full w-full object-cover object-right" />
+              <img alt="Medicare Guide Book" src="/lovable-uploads/3d2a165c-3730-40df-a856-a803bbec0424.png" className="h-full w-full object-cover object-right scale-125" />
             </div>
           </div>
         </div>
