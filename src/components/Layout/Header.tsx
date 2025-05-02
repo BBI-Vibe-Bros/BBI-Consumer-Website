@@ -76,7 +76,7 @@ const Header = () => {
       href: '/resources/glossary'
     }]
   }];
-  return <header className="border-b border-gray-200 bg-white">
+  return <header className="bg-white py-[15px]">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
