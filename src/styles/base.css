@@ -1,0 +1,67 @@
+
+@tailwind base;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 12%;
+
+    --primary: 195 85% 50%; /* Bobby Brock blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 196 76% 93%; /* Light blue */
+    --secondary-foreground: 222 47% 12%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 194 95% 58%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 195 85% 50%;
+
+    --radius: 0.75rem;
+
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sf tracking-normal;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Standard font styles */
+  html {
+    font-size: 16px;
+    font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  body {
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+}
