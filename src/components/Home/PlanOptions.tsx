@@ -24,10 +24,8 @@ const PlanOptions = () => {
   return <section className="py-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="font-bold mb-4 text-[#002a3a] text-4xl">Understand Your Medicare Choices</h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            We understand that Medicare is a complex program with different coverage options. That's why we're here to explain your choices in simple terms.
-          </p>
+          <h2 className="font-bold mb-4 text-[#002a3a] text-4xl">Not Sure Which Medicare Plan Is Right for You?</h2>
+          <p className="text-gray-700 max-w-3xl mx-auto text-lg">We make it easy to understand your Medicare coverage options available to you. Learn how to compare Medicare Advantage, Supplements, and Prescription Drug Plans in one place.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
