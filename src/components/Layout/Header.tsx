@@ -23,7 +23,7 @@ const Header = () => {
       href: '/medicare/eligibility'
     }]
   }, {
-    title: 'Compare Plans',
+    title: 'Medicare Plans',
     href: '/plans',
     submenu: [{
       title: 'Medicare Advantage',
