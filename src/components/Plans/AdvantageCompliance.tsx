@@ -16,7 +16,7 @@ const AdvantageCompliance = () => {
               Limitations, copayments, and restrictions may apply. Benefits, premiums, and/or co-payments/co-insurance may change on January 1 of each year.
             </p>
             <p>
-              Bobby Brock Insurance is an independent insurance brokerage that represents multiple Medicare Advantage carriers. We are not connected with or endorsed by the United States government or the federal Medicare program.
+              Bobby Brock Insurance is a nationally recognized independent Medicare brokerage serving over 50,000 beneficiaries. We represent multiple Medicare Advantage carriers and are not connected with or endorsed by the United States government or the federal Medicare program.
             </p>
             <p>
               This content was reviewed for Medicare compliance on May 1, 2025. Medicare has neither reviewed nor endorsed this information.

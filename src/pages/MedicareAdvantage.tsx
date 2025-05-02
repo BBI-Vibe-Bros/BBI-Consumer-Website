@@ -17,7 +17,7 @@ const MedicareAdvantage = () => {
         <title>Medicare Advantage Plans | Bobby Brock Insurance</title>
         <meta 
           name="description" 
-          content="Compare Medicare Advantage (Part C) plans in Tupelo, MS. Get expert guidance on Medicare Advantage options from independent brokers at Bobby Brock Insurance." 
+          content="Compare Medicare Advantage (Part C) plans in Tupelo, MS. Get expert guidance on Medicare Advantage options from our national brokerage serving over 50,000 beneficiaries." 
         />
         <meta 
           name="keywords" 
@@ -30,11 +30,12 @@ const MedicareAdvantage = () => {
               "@type": "Service",
               "name": "Medicare Advantage Plan Comparison",
               "url": "https://bobbybrock.com/plans/advantage",
-              "description": "Independent comparison and guidance for Medicare Advantage (Part C) plans from multiple insurance carriers.",
+              "description": "Independent comparison and guidance for Medicare Advantage (Part C) plans from multiple insurance carriers by a nationally recognized Medicare brokerage.",
               "provider": {
                 "@type": "InsuranceAgency",
                 "name": "Bobby Brock Insurance",
-                "description": "Independent Medicare insurance brokerage helping consumers compare plans from multiple carriers",
+                "description": "Nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries, helping consumers compare plans from multiple carriers",
+                "foundingDate": "1992",
                 "address": {
                   "@type": "PostalAddress",
                   "streetAddress": "499 Air Park Rd",

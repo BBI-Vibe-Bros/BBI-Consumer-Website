@@ -13,9 +13,9 @@ const Index = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Bobby Brock Insurance - Medicare Insurance Specialists</title>
-        <meta name="description" content="Bobby Brock Insurance helps seniors find the right Medicare coverage. Expert guidance on Medicare Advantage, Supplement, and Part D plans." />
-        <meta name="keywords" content="Medicare, insurance, Medicare Advantage, Medicare Supplement, Medigap, Part D, senior insurance" />
+        <title>Bobby Brock Insurance - National Medicare Insurance Brokerage</title>
+        <meta name="description" content="Bobby Brock Insurance is a nationally recognized Medicare brokerage serving over 50,000 beneficiaries. Expert guidance on Medicare Advantage, Supplement, and Part D plans." />
+        <meta name="keywords" content="Medicare, insurance brokerage, Medicare Advantage, Medicare Supplement, Medigap, Part D, senior insurance" />
         {/* Schema markup for insurance agency */}
         <script type="application/ld+json">
           {`
@@ -25,7 +25,8 @@ const Index = () => {
               "name": "Bobby Brock Insurance",
               "url": "https://bobbybrock.com",
               "logo": "https://bobbybrock.com/logo.png",
-              "description": "Medicare insurance specialists providing personalized guidance on Medicare Advantage, Medicare Supplements, and Part D plans.",
+              "description": "A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States. We provide personalized guidance on Medicare Advantage, Medicare Supplements, and Part D plans from multiple carriers.",
+              "foundingDate": "1992",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "499 Air Park Rd",

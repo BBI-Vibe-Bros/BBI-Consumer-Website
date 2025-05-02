@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-bb-dark text-white mt-20">
@@ -10,7 +12,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6">Bobby Brock Insurance</h3>
             <p className="text-lg mb-4">
-              Your trusted Medicare insurance agency in Tupelo, Mississippi. We're here to help you find the right coverage for your needs.
+              A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States since 1992.
             </p>
             <div className="flex space-x-4 mt-6">
               <a href="https://facebook.com" aria-label="Facebook" className="text-white hover:text-bb-blue transition-colors">
@@ -63,12 +65,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12  my-[30px] py-0">
+        <div className="mt-12 my-[30px] py-0">
           {/* Medicare Required Disclaimer */}
           
           
           <div className="mt-8 text-center text-sm text-gray-400">
-            <p className="text-sm">© 2025 Bobby Brock Insurance. All rights reserved. We work with every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options. This is not a complete listing of plans available in your service area. For a complete listing please contact 1-800-MEDICARE (TTY users should call 1-877-486-2048), 24 hours a day/7 days a week or consult www.medicare.gov.</p>
+            <p className="text-sm">© 2025 Bobby Brock Insurance. All rights reserved. As a national Medicare brokerage, we work with multiple carriers to provide comprehensive plan options. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options. This is not a complete listing of plans available in your service area. For a complete listing please contact 1-800-MEDICARE (TTY users should call 1-877-486-2048), 24 hours a day/7 days a week or consult www.medicare.gov.</p>
           </div>
 
           {/* Copyright & Links */}
@@ -84,4 +86,5 @@ const Footer = () => {
       </div>
     </footer>;
 };
+
 export default Footer;
