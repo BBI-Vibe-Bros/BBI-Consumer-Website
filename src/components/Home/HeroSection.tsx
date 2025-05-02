@@ -10,9 +10,7 @@ const HeroSection = () => {
               Making Medicare Easy,<br />
               <span className="text-bb-blue">One Choice at a Time</span>
             </h1>
-            <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-              Professional guidance from trusted experts makes finding the right Medicare coverage simple, so you can enjoy your benefits with confidence.
-            </p>
+            <p className="text-gray-700 mb-8 leading-relaxed text-lg">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-6 py-3 text-base font-medium">
                 Schedule an Appointment
