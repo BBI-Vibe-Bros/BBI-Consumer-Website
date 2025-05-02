@@ -36,9 +36,7 @@ const AboutSection = () => {
               <h3 className="text-3xl font-bold text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
             </div>
 
-            <p className="text-lg text-gray-700 mb-8">
-              Founded in 1992, Bobby Brock Insurance has grown into a nationally recognized Medicare brokerage serving over 50,000 beneficiaries across the United States. As independent brokers, we represent you—not the insurance companies—helping you compare plans from multiple carriers to find the best coverage for your needs.
-            </p>
+            <p className="mb-8 text-base text-[#002a3a]">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
 
             <div className="space-y-4 mb-8">
               {features.map(feature => {})}
