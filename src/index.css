@@ -55,34 +55,34 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Improved heading hierarchy */
+  /* Improved heading hierarchy with slightly smaller sizes */
   h1 {
-    @apply text-4xl md:text-5xl font-bold leading-tight tracking-tight;
-  }
-
-  h2 {
     @apply text-3xl md:text-4xl font-bold leading-tight tracking-tight;
   }
 
+  h2 {
+    @apply text-2xl md:text-3xl font-bold leading-tight tracking-tight;
+  }
+
   h3 {
-    @apply text-2xl md:text-3xl font-bold leading-snug tracking-tight;
+    @apply text-xl md:text-2xl font-bold leading-snug tracking-tight;
   }
 
   h4 {
-    @apply text-xl md:text-2xl font-semibold leading-snug;
+    @apply text-lg md:text-xl font-semibold leading-snug;
   }
 
   h5 {
-    @apply text-lg md:text-xl font-semibold;
+    @apply text-base md:text-lg font-semibold;
   }
 
   h6 {
-    @apply text-base md:text-lg font-semibold;
+    @apply text-sm md:text-base font-semibold;
   }
 
   /* Paragraph styles */
   p {
-    @apply text-base md:text-lg leading-relaxed;
+    @apply text-sm md:text-base leading-relaxed;
   }
 }
 
@@ -97,37 +97,37 @@
     @apply p-3 text-xs lg:text-sm mt-4 bg-bb-light-gray border border-bb-gray/20 rounded-md text-bb-dark;
   }
 
-  /* Custom typography classes */
+  /* Custom typography classes with reduced sizes */
   .text-title {
-    @apply text-4xl md:text-5xl font-bold leading-tight tracking-tight text-bb-dark;
+    @apply text-3xl md:text-4xl font-bold leading-tight tracking-tight text-bb-dark;
   }
   
   .text-subtitle {
-    @apply text-2xl md:text-3xl font-bold leading-tight text-bb-blue;
+    @apply text-xl md:text-2xl font-bold leading-tight text-bb-blue;
   }
   
   .text-heading {
-    @apply text-2xl md:text-3xl font-bold text-bb-dark;
+    @apply text-xl md:text-2xl font-bold text-bb-dark;
   }
   
   .text-subheading {
-    @apply text-xl md:text-2xl font-semibold text-bb-dark;
+    @apply text-lg md:text-xl font-semibold text-bb-dark;
   }
   
   .text-body-large {
-    @apply text-lg md:text-xl text-gray-700 leading-relaxed;
-  }
-  
-  .text-body {
     @apply text-base md:text-lg text-gray-700 leading-relaxed;
   }
   
+  .text-body {
+    @apply text-sm md:text-base text-gray-700 leading-relaxed;
+  }
+  
   .text-caption {
-    @apply text-sm md:text-base text-gray-600;
+    @apply text-xs md:text-sm text-gray-600;
   }
 }
 
-/* Senior friendly styles */
+/* Senior friendly styles with adjusted sizes */
 html {
   font-size: 16px;
   font-family: "SF Compact Display", system-ui, sans-serif;
@@ -145,24 +145,24 @@ body {
 
 /* Make buttons and interactive elements larger for easier tapping */
 .btn, button {
-  @apply min-h-[48px] px-6;
+  @apply min-h-[44px] px-5;
 }
 
 /* Increase tap target for navigation */
 nav a {
-  @apply py-3 px-4;
+  @apply py-2 px-3;
 }
 
 /* Enhanced readability */
 article p, 
 .readable-content p {
-  @apply mb-6 max-w-3xl;
+  @apply mb-5 max-w-3xl;
 }
 
 /* Improve list readability */
 ul:not(.unstyled), 
 ol:not(.unstyled) {
-  @apply pl-6 space-y-2;
+  @apply pl-5 space-y-1.5;
 }
 
 ul:not(.unstyled) li {
@@ -171,7 +171,7 @@ ul:not(.unstyled) li {
 
 ul:not(.unstyled) li::before {
   content: "";
-  @apply w-1.5 h-1.5 bg-bb-blue rounded-full absolute -left-4 top-2.5;
+  @apply w-1.5 h-1.5 bg-bb-blue rounded-full absolute -left-4 top-2;
 }
 
 /* High contrast links */
