@@ -74,7 +74,7 @@ const Header = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img src="public/lovable-uploads/3fcf1838-6d6d-4441-a795-6e4d4e7b6699.png" alt="Bobby Brock Insurance" className="h-12" />
+              <img alt="Bobby Brock Insurance" className="h-12" src="/lovable-uploads/61e96f8c-c4f8-44fe-af6a-dcbc445403d3.png" />
             </Link>
           </div>
 
