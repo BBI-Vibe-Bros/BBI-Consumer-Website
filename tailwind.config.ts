@@ -24,8 +24,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
-				sf: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
+				sans: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
+				sf: ['Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'],
 				mono: ['monospace', 'SFMono-Regular'],
 			},
 			colors: {
