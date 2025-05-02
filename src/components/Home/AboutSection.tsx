@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -6,22 +7,18 @@ const AboutSection = () => {
   const features = [{
     id: 1,
     title: "Trusted Medicare Experts in Tupelo",
-    description: "We've been serving Tupelo and surrounding Mississippi communities for over 20 years, helping thousands of local Medicare beneficiaries find the right coverage with confidence.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }, {
     id: 2,
     title: "Compare Medicare Plans from Top Carriers",
-    description: "We're an independent agency that compares Medicare Advantage, Supplement, and Part D plans from multiple carriers in Mississippi and beyond.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }, {
     id: 3,
     title: "Local Support You Can Count On",
-    description: "We work for you, not the insurance companies. Our Tupelo-based team guides you through every step of your Medicare journey.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }, {
     id: 4,
     title: "Free Medicare Help—No Hidden Costs",
-    description: "Our enrollment services and Medicare guidance are always free, with no obligation and no pressure.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }];
   return <section className="py-16 bg-bb-light-gray">
@@ -44,7 +41,6 @@ const AboutSection = () => {
                   <div className="text-bb-blue">{feature.icon}</div>
                   <div>
                     <h4 className="font-semibold text-bb-dark">{feature.title}</h4>
-                    <p className="text-gray-600">{feature.description}</p>
                   </div>
                 </div>)}
             </div>
