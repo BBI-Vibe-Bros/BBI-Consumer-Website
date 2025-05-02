@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
@@ -6,7 +5,6 @@ import DentalVisionHero from '@/components/Plans/DentalVisionHero';
 import DentalVisionFeatures from '@/components/Plans/DentalVisionFeatures';
 import DentalVisionComparison from '@/components/Plans/DentalVisionComparison';
 import DentalVisionEnrollment from '@/components/Plans/DentalVisionEnrollment';
-import DentalVisionCompliance from '@/components/Plans/DentalVisionCompliance';
 import DentalVisionResources from '@/components/Plans/DentalVisionResources';
 import CTASection from '@/components/Home/CTASection';
 
@@ -54,7 +52,6 @@ const DentalVisionPlans = () => {
       <DentalVisionEnrollment />
       <DentalVisionResources />
       <CTASection />
-      <DentalVisionCompliance />
     </Layout>
   );
 };

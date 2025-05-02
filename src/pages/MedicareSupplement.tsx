@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
@@ -6,7 +5,6 @@ import SupplementHero from '@/components/Plans/SupplementHero';
 import PlanComparison from '@/components/Plans/PlanComparison';
 import SupplementFeatures from '@/components/Plans/SupplementFeatures';
 import SupplementEnrollment from '@/components/Plans/SupplementEnrollment';
-import SupplementCompliance from '@/components/Plans/SupplementCompliance';
 import SupplementResources from '@/components/Plans/SupplementResources';
 import CTASection from '@/components/Home/CTASection';
 
@@ -54,7 +52,6 @@ const MedicareSupplement = () => {
       <SupplementEnrollment />
       <SupplementResources />
       <CTASection />
-      <SupplementCompliance />
     </Layout>
   );
 };

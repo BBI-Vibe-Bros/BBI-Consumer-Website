@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
@@ -6,7 +5,6 @@ import DrugPlanHero from '@/components/Plans/DrugPlanHero';
 import DrugPlanFeatures from '@/components/Plans/DrugPlanFeatures';
 import DrugPlanComparison from '@/components/Plans/DrugPlanComparison';
 import DrugPlanEnrollment from '@/components/Plans/DrugPlanEnrollment';
-import DrugPlanCompliance from '@/components/Plans/DrugPlanCompliance';
 import DrugPlanResources from '@/components/Plans/DrugPlanResources';
 import CTASection from '@/components/Home/CTASection';
 
@@ -54,7 +52,6 @@ const PrescriptionDrugPlans = () => {
       <DrugPlanEnrollment />
       <DrugPlanResources />
       <CTASection />
-      <DrugPlanCompliance />
     </Layout>
   );
 };

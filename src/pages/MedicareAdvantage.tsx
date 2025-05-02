@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
@@ -6,7 +5,6 @@ import AdvantageHero from '@/components/Plans/AdvantageHero';
 import PlanComparison from '@/components/Plans/PlanComparison';
 import AdvantageFeatures from '@/components/Plans/AdvantageFeatures';
 import AdvantageEnrollment from '@/components/Plans/AdvantageEnrollment';
-import AdvantageCompliance from '@/components/Plans/AdvantageCompliance';
 import AdvantageResources from '@/components/Plans/AdvantageResources';
 import CTASection from '@/components/Home/CTASection';
 
@@ -56,7 +54,6 @@ const MedicareAdvantage = () => {
       <AdvantageEnrollment />
       <AdvantageResources />
       <CTASection />
-      <AdvantageCompliance />
     </Layout>
   );
 };
