@@ -17,9 +17,7 @@ const HeroSection = () => {
               <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-8 py-6 text-base font-semibold">
                 Schedule an Appointment
               </Button>
-              <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 text-xl font-bold px-8 py-6">
-                Compare Plans
-              </Button>
+              <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 px-10 py-6 text-base font-semibold">Learn More</Button>
             </div>
           </div>
           <div className="hidden lg:block">
