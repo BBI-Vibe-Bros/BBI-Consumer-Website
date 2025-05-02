@@ -1,37 +1,37 @@
 
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Prescription, MedicalCross } from 'lucide-react';
+import { PillIcon, Heart } from 'lucide-react';
 
 const DrugPlanFeatures = () => {
   const features = [
     {
-      icon: <Prescription className="h-10 w-10 text-bb-blue" />,
+      icon: <PillIcon className="h-10 w-10 text-bb-blue" />,
       title: 'Formulary Coverage',
       description: 'Each Part D plan has a list of covered drugs (formulary) organized in tiers with different costs.'
     },
     {
-      icon: <MedicalCross className="h-10 w-10 text-bb-blue" />,
+      icon: <Heart className="h-10 w-10 text-bb-blue" />,
       title: 'Pharmacy Networks',
       description: 'Plans work with specific pharmacy networks where you can fill prescriptions at the lowest cost.'
     },
     {
-      icon: <Prescription className="h-10 w-10 text-bb-blue" />,
+      icon: <PillIcon className="h-10 w-10 text-bb-blue" />,
       title: 'Monthly Premium',
       description: 'You pay a monthly fee to the insurance company in addition to your Part B premium.'
     },
     {
-      icon: <MedicalCross className="h-10 w-10 text-bb-blue" />,
+      icon: <Heart className="h-10 w-10 text-bb-blue" />,
       title: 'Annual Deductible',
       description: 'The amount you pay for prescriptions before your plan begins to cover its share of costs.'
     },
     {
-      icon: <Prescription className="h-10 w-10 text-bb-blue" />,
+      icon: <PillIcon className="h-10 w-10 text-bb-blue" />,
       title: 'Copayments & Coinsurance',
       description: 'Your share of costs for each prescription after meeting the deductible.'
     },
     {
-      icon: <MedicalCross className="h-10 w-10 text-bb-blue" />,
+      icon: <Heart className="h-10 w-10 text-bb-blue" />,
       title: 'Coverage Stages',
       description: 'Part D has several coverage stages including the donut hole and catastrophic coverage.'
     }

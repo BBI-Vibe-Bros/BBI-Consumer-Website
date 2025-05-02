@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Prescription } from 'lucide-react';
+import { PillIcon } from 'lucide-react';
 
 const DrugPlanHero = () => {
   return (
@@ -10,7 +10,7 @@ const DrugPlanHero = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-blue-100 text-bb-blue px-4 py-2 rounded-full mb-4">
-              <Prescription className="h-5 w-5" />
+              <PillIcon className="h-5 w-5" />
               <span className="font-medium">Medicare Part D</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold text-bb-dark mb-6">

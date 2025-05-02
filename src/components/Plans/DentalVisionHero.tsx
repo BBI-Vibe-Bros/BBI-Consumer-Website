@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Tooth, Eye } from 'lucide-react';
+import { Stethoscope, Eye } from 'lucide-react';
 
 const DentalVisionHero = () => {
   return (
@@ -11,7 +11,7 @@ const DentalVisionHero = () => {
           <div>
             <div className="inline-flex items-center gap-2 bg-blue-100 text-bb-blue px-4 py-2 rounded-full mb-4">
               <div className="flex items-center">
-                <Tooth className="h-5 w-5 mr-1" />
+                <Stethoscope className="h-5 w-5 mr-1" />
                 <Eye className="h-5 w-5" />
               </div>
               <span className="font-medium">Dental & Vision Plans</span>
