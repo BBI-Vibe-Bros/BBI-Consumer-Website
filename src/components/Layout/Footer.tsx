@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return <footer className="bg-bb-dark text-white mt-20">
@@ -11,7 +9,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-xl font-bold mb-6">Bobby Brock Insurance</h3>
-            <p className="text-lg mb-4">
+            <p className="mb-4 text-base">
               A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States since 1992.
             </p>
             <div className="flex space-x-4 mt-6">
@@ -86,5 +84,4 @@ const Footer = () => {
       </div>
     </footer>;
 };
-
 export default Footer;
