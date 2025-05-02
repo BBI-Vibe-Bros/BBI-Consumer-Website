@@ -28,4 +28,30 @@
       animation: logo-spin infinite 20s linear;
     }
   }
+  
+  /* Mobile typography helpers */
+  .mobile-text-tight {
+    @apply leading-tight;
+  }
+  
+  .mobile-text-normal {
+    @apply leading-normal;
+  }
+  
+  .mobile-text-relaxed {
+    @apply leading-relaxed;
+  }
+  
+  /* Mobile spacing helpers */
+  .mobile-py-reduced {
+    @apply py-2 md:py-4;
+  }
+  
+  .mobile-px-reduced {
+    @apply px-3 md:px-6;
+  }
+  
+  .mobile-p-reduced {
+    @apply p-2 md:p-4;
+  }
 }
