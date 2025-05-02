@@ -7,7 +7,7 @@ import AboutSection from '@/components/Home/AboutSection';
 import ResourceSection from '@/components/Home/ResourceSection';
 import CTASection from '@/components/Home/CTASection';
 import MedicareCompliance from '@/components/Home/MedicareCompliance';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 const Index = () => {
   return (

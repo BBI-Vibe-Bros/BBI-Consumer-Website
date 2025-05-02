@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Layout from "@/components/Layout/Layout";
 import { Button } from "@/components/ui/button";
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet';
 
 const NotFound = () => {
   const location = useLocation();
