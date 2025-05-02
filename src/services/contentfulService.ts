@@ -10,12 +10,11 @@ class ContentfulService {
   private client;
 
   private constructor() {
-    // Initialize Contentful client with environment variables
-    // In a real environment, these would be proper environment variables
+    // Initialize Contentful client with environment variables using Vite's import.meta.env
     this.client = createClient({
-      space: process.env.CONTENTFUL_SPACE_ID || '',
-      accessToken: process.env.CONTENTFUL_ACCESS_TOKEN || '',
-      environment: process.env.CONTENTFUL_ENVIRONMENT || 'master'
+      space: import.meta.env.VITE_CONTENTFUL_SPACE_ID || '',
+      accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || '',
+      environment: import.meta.env.VITE_CONTENTFUL_ENVIRONMENT || 'master'
     });
   }
 
