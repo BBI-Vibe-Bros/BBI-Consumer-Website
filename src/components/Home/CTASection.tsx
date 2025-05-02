@@ -15,8 +15,12 @@ const CTASection = () => {
                 Get Your Free Guide
               </Button>
             </div>
-            <div className="md:w-1/2 relative flex justify-end">
-              <img src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" alt="Medicare Breakdown Guide Book with Senior Man" className="w-full h-full object-cover object-right" />
+            <div className="md:w-1/2 relative flex justify-end overflow-hidden">
+              <img 
+                src="public/lovable-uploads/90b4e455-da11-4715-a7ab-5d718e5a4e72.png" 
+                alt="Medicare Breakdown Guide Book with Senior Man" 
+                className="w-auto h-full object-cover object-right scale-125"
+              />
             </div>
           </div>
         </div>
