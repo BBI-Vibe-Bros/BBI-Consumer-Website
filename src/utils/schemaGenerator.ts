@@ -1,0 +1,155 @@
+
+/**
+ * Schema Generator utility for creating structured data (JSON-LD) as per the build guide
+ */
+
+// Base organization schema that can be reused
+const baseOrganizationSchema = {
+  "@type": "Organization",
+  "name": "Bobby Brock Insurance",
+  "url": "https://bobbybrock.com",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://bobbybrock.com/logo.png"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "499 Air Park Rd",
+    "addressLocality": "Tupelo",
+    "addressRegion": "MS",
+    "postalCode": "38801",
+    "addressCountry": "US"
+  },
+  "telephone": "+16626421512"
+};
+
+/**
+ * Generate schema for basic web pages (foundationalPage type)
+ */
+export const generateWebPageSchema = (
+  title: string, 
+  description: string,
+  url: string,
+  datePublished?: string,
+  dateModified?: string,
+  image?: string
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": title,
+    "description": description,
+    "url": url,
+    "mainEntity": {
+      "@type": "Article",
+      "headline": title,
+      "description": description,
+      "image": image,
+      "author": baseOrganizationSchema,
+      "publisher": baseOrganizationSchema,
+      "datePublished": datePublished || new Date().toISOString().split('T')[0],
+      "dateModified": dateModified || new Date().toISOString().split('T')[0]
+    }
+  };
+};
+
+/**
+ * Generate schema for blog posts (pageBlogPost type)
+ */
+export const generateBlogPostSchema = (
+  title: string,
+  description: string,
+  url: string,
+  image?: string,
+  author?: string,
+  datePublished?: string,
+  dateModified?: string
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": title,
+    "description": description,
+    "image": image,
+    "author": author 
+      ? { "@type": "Person", "name": author }
+      : baseOrganizationSchema,
+    "publisher": baseOrganizationSchema,
+    "datePublished": datePublished || new Date().toISOString().split('T')[0],
+    "dateModified": dateModified || new Date().toISOString().split('T')[0],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    }
+  };
+};
+
+/**
+ * Generate schema for video content (video type)
+ */
+export const generateVideoSchema = (
+  title: string,
+  description: string,
+  thumbnailUrl: string,
+  uploadDate: string,
+  duration?: string,
+  contentUrl?: string,
+  embedUrl?: string
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": title,
+    "description": description,
+    "thumbnailUrl": thumbnailUrl,
+    "uploadDate": uploadDate,
+    "duration": duration || "PT0M0S",
+    "contentUrl": contentUrl,
+    "embedUrl": embedUrl,
+    "publisher": baseOrganizationSchema
+  };
+};
+
+/**
+ * Generate schema for Medicare plans (InsuranceAgency + InsurancePlan)
+ */
+export const generateInsurancePlanSchema = (
+  planName: string,
+  planDescription: string,
+  providerName?: string
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "InsuranceAgency",
+    ...baseOrganizationSchema,
+    "offers": {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "InsurancePlan",
+        "name": planName,
+        "description": planDescription,
+        "provider": {
+          "@type": "Organization",
+          "name": providerName || "Insurance Provider"
+        }
+      }
+    }
+  };
+};
+
+/**
+ * Validate schema structure before injection
+ */
+export const validateSchema = (schema: Record<string, any>): boolean => {
+  // Basic validation to make sure required fields exist
+  const requiredFields = ['@context', '@type'];
+  return requiredFields.every(field => field in schema);
+};
+
+export default {
+  generateWebPageSchema,
+  generateBlogPostSchema,
+  generateVideoSchema,
+  generateInsurancePlanSchema,
+  validateSchema
+};

@@ -4,70 +4,106 @@ import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
+
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigation = [{
-    title: 'Understand Medicare',
-    href: '/medicare/basics',
-    submenu: [{
-      title: 'What is Medicare?',
-      href: '/medicare/basics/what-is-medicare'
-    }, {
-      title: 'Enrollment Periods',
-      href: '/medicare/basics/enrollment-periods'
-    }, {
-      title: 'Medicare Costs',
-      href: '/medicare/basics/costs'
-    }, {
-      title: 'Medicare Eligibility',
-      href: '/medicare/eligibility'
-    }]
-  }, {
-    title: 'Medicare Plans',
-    href: '/plans',
-    submenu: [{
-      title: 'Medicare Advantage',
-      href: '/plans/advantage'
-    }, {
-      title: 'Medicare Supplements',
-      href: '/plans/supplement'
-    }, {
-      title: 'Prescription Drug Plans',
-      href: '/plans/prescription'
-    }, {
-      title: 'Dental & Vision',
-      href: '/plans/dental'
-    }]
-  }, {
-    title: 'Why Choose Us',
-    href: '/about',
-    submenu: [{
-      title: 'Our Team',
-      href: '/about/team'
-    }, {
-      title: 'Our Services',
-      href: '/about/services'
-    }, {
-      title: 'Client Testimonials',
-      href: '/about/testimonials'
-    }]
-  }, {
-    title: 'Helpful Resources',
-    href: '/resources',
-    submenu: [{
-      title: 'Medicare Guides',
-      href: '/resources/guides'
-    }, {
-      title: 'Medicare Blog',
-      href: '/blog'
-    }, {
-      title: 'Medicare Videos',
-      href: '/videos'
-    }, {
-      title: 'Medicare FAQs',
-      href: '/resources/faqs'
-    }]
-  }];
+  
+  // Updated navigation structure to match the build guide
+  const navigation = [
+    {
+      title: 'Understand Medicare',
+      href: '/medicare/basics',
+      submenu: [
+        {
+          title: 'What is Medicare?',
+          href: '/medicare/basics/what-is-medicare'
+        }, 
+        {
+          title: 'Enrollment Periods',
+          href: '/medicare/basics/enrollment-periods'
+        }, 
+        {
+          title: 'Medicare Costs',
+          href: '/medicare/basics/costs'
+        }, 
+        {
+          title: 'Medicare Eligibility',
+          href: '/medicare/eligibility'
+        },
+        {
+          title: 'Medicare Parts',
+          href: '/medicare/parts'
+        }
+      ]
+    }, 
+    {
+      title: 'Medicare Plans',
+      href: '/plans',
+      submenu: [
+        {
+          title: 'Medicare Advantage',
+          href: '/plans/advantage'
+        }, 
+        {
+          title: 'Medicare Supplements',
+          href: '/plans/supplement'
+        }, 
+        {
+          title: 'Prescription Drug Plans',
+          href: '/plans/prescription'
+        }, 
+        {
+          title: 'Dental & Vision',
+          href: '/plans/dental'
+        }
+      ]
+    }, 
+    {
+      title: 'Why Choose Us',
+      href: '/about',
+      submenu: [
+        {
+          title: 'Our Team',
+          href: '/about/team'
+        }, 
+        {
+          title: 'Our Services',
+          href: '/about/services'
+        }, 
+        {
+          title: 'Client Testimonials',
+          href: '/about/testimonials'
+        }
+      ]
+    }, 
+    {
+      title: 'Resources',
+      href: '/resources',
+      submenu: [
+        {
+          title: 'Medicare Guides',
+          href: '/resources/guides'
+        }, 
+        {
+          title: 'Medicare Blog',
+          href: '/blog'
+        }, 
+        {
+          title: 'Medicare Videos',
+          href: '/videos'
+        }, 
+        {
+          title: 'Medicare FAQs',
+          href: '/resources/faqs'
+        },
+        {
+          title: 'Medicare Glossary',
+          href: '/resources/glossary'
+        }
+      ]
+    }
+  ];
+
   return <header className="border-b border-gray-200 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-4">
@@ -154,4 +190,5 @@ const Header = () => {
       </div>
     </header>;
 };
+
 export default Header;
