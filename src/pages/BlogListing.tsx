@@ -19,7 +19,7 @@ const BlogListing = () => {
       postsPerPage, 
       (currentPage - 1) * postsPerPage
     ),
-    keepPreviousData: true,
+    placeholderData: (previousData) => previousData,
   });
 
   const posts = data?.items || [];

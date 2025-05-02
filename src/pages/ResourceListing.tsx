@@ -19,7 +19,7 @@ const ResourceListing = () => {
       resourcesPerPage, 
       (currentPage - 1) * resourcesPerPage
     ),
-    keepPreviousData: true,
+    placeholderData: (previousData) => previousData,
   });
 
   const resources = data?.items || [];
