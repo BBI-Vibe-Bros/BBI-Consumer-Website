@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700 my-[30px] py-0">
+        <div className="mt-12  my-[30px] py-0">
           {/* Medicare Required Disclaimer */}
           
           
