@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-gray-700">
+        <div className="mt-12 pt-8 border-t border-gray-700 my-[30px] py-0">
           {/* Medicare Required Disclaimer */}
           <div className="medicare-disclaimer bg-gray-800 text-white/90 p-4 rounded">
             <p className="text-sm">
