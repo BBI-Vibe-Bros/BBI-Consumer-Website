@@ -32,7 +32,7 @@ const AboutSection = () => {
 
           <div>
             <div className="mb-6">
-              <h2 className="text-2xl font-bold text-bb-blue">ABOUT US</h2>
+              <h2 className="font-bold text-bb-blue text-base">ABOUT US</h2>
               <h3 className="text-3xl font-bold text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
             </div>
 
