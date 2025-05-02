@@ -65,11 +65,7 @@ const Footer = () => {
 
         <div className="mt-12 pt-8 border-t border-gray-700 my-[30px] py-0">
           {/* Medicare Required Disclaimer */}
-          <div className="medicare-disclaimer bg-gray-800 text-white/90 p-4 rounded">
-            <p className="text-sm">
-              © {currentYear} Bobby Brock Insurance. All rights reserved. We work with every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.
-            </p>
-          </div>
+          
           
           <div className="mt-8 text-center text-sm text-gray-400">
             <p className="text-sm">© 2025 Bobby Brock Insurance. All rights reserved. We work with every plan available in your area. Any information we provide is limited to those plans we do offer in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options. This is not a complete listing of plans available in your service area. For a complete listing please contact 1-800-MEDICARE (TTY users should call 1-877-486-2048), 24 hours a day/7 days a week or consult www.medicare.gov.</p>
