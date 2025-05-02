@@ -1,13 +1,9 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
-  return (
-    <footer className="bg-bb-dark text-white mt-20">
+  return <footer className="bg-bb-dark text-white mt-20">
       <div className="container mx-auto px-6 pt-12 pb-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
@@ -52,7 +48,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-6">Contact Us</h3>
             <address className="not-italic text-lg space-y-3">
-              <p>409 Air Park Rd</p>
+              <p>499 Air Park Rd</p>
               <p>Tupelo, MS 38801</p>
               <p className="mt-4">
                 <span className="font-bold">Phone:</span>{" "}
@@ -90,8 +86,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
