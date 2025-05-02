@@ -1,8 +1,6 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
 const AboutSection = () => {
   const features = [{
     id: 1,
@@ -25,7 +23,6 @@ const AboutSection = () => {
     description: "Our personalized guidance and enrollment assistance come at no cost to you.",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }];
-
   return <section className="py-16 bg-bb-light-gray">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -42,15 +39,13 @@ const AboutSection = () => {
             <p className="mb-8 text-base text-[#002a3a]">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
 
             <div className="space-y-4 mb-8">
-              {features.map(feature => (
-                <div key={feature.id} className="flex gap-3 items-start">
+              {features.map(feature => <div key={feature.id} className="flex gap-3 items-start py-0">
                   <div className="text-bb-blue">{feature.icon}</div>
                   <div>
                     <h4 className="font-semibold text-bb-dark">{feature.title}</h4>
                     <p className="text-gray-600">{feature.description}</p>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
 
             <Link to="/about">
@@ -63,5 +58,4 @@ const AboutSection = () => {
       </div>
     </section>;
 };
-
 export default AboutSection;
