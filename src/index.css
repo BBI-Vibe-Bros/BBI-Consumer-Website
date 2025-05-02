@@ -50,43 +50,43 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sf;
+    @apply bg-background text-foreground font-sf tracking-wide; /* Added tracking-wide */
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
-  /* Updated heading hierarchy based on requirements */
+  /* Updated heading hierarchy with increased letter spacing */
   h1 {
-    @apply text-3xl md:text-4xl font-extrabold leading-tight tracking-tight;
+    @apply text-3xl md:text-4xl font-extrabold leading-tight tracking-wide;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl font-semibold leading-tight tracking-tight;
+    @apply text-2xl md:text-3xl font-semibold leading-tight tracking-wide;
   }
 
   h3 {
-    @apply text-xl md:text-2xl font-semibold leading-snug tracking-tight;
+    @apply text-xl md:text-2xl font-semibold leading-snug tracking-wide;
   }
 
   h4 {
-    @apply text-lg md:text-xl font-semibold leading-snug;
+    @apply text-lg md:text-xl font-semibold leading-snug tracking-wide;
   }
 
   h5 {
-    @apply text-base md:text-lg font-semibold;
+    @apply text-base md:text-lg font-semibold tracking-wide;
   }
 
   h6 {
-    @apply text-sm md:text-base font-semibold;
+    @apply text-sm md:text-base font-semibold tracking-wide;
   }
 
   /* Updated paragraph styles */
   p {
-    @apply text-base leading-7;
+    @apply text-base leading-7 tracking-wide;
   }
 
   /* Code snippets */
   code, pre {
-    @apply text-sm font-mono;
+    @apply text-sm font-mono tracking-normal;
   }
 }
 
@@ -101,54 +101,54 @@
     @apply p-3 text-sm mt-4 bg-bb-light-gray border border-bb-gray/20 rounded-md text-bb-dark;
   }
 
-  /* Updated custom typography classes */
+  /* Updated custom typography classes with increased letter spacing */
   .text-title {
-    @apply text-4xl font-extrabold leading-tight tracking-tight text-bb-dark;
+    @apply text-4xl font-extrabold leading-tight tracking-wide text-bb-dark;
   }
   
   .text-subtitle {
-    @apply text-3xl font-semibold leading-tight text-bb-blue;
+    @apply text-3xl font-semibold leading-tight tracking-wide text-bb-blue;
   }
   
   .text-heading {
-    @apply text-2xl font-semibold text-bb-dark;
+    @apply text-2xl font-semibold tracking-wide text-bb-dark;
   }
   
   .text-subheading {
-    @apply text-xl font-semibold text-bb-dark;
+    @apply text-xl font-semibold tracking-wide text-bb-dark;
   }
   
   .text-body-large {
-    @apply text-lg leading-7 text-gray-700;
+    @apply text-lg leading-7 tracking-wide text-gray-700;
   }
   
   .text-body {
-    @apply text-base leading-7 text-gray-700;
+    @apply text-base leading-7 tracking-wide text-gray-700;
   }
   
   .text-caption {
-    @apply text-sm font-medium text-gray-600;
+    @apply text-sm font-medium tracking-wide text-gray-600;
   }
 
-  /* Rich text content classes */
+  /* Rich text content classes with increased letter spacing */
   .rich-content h1 {
-    @apply text-4xl font-extrabold;
+    @apply text-4xl font-extrabold tracking-wide;
   }
   
   .rich-content h2 {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-semibold tracking-wide;
   }
   
   .rich-content h3 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-semibold tracking-wide;
   }
   
   .rich-content h4 {
-    @apply text-xl font-semibold;
+    @apply text-xl font-semibold tracking-wide;
   }
   
   .rich-content code {
-    @apply text-sm font-mono bg-gray-100 px-1.5 py-0.5 rounded;
+    @apply text-sm font-mono bg-gray-100 px-1.5 py-0.5 rounded tracking-normal;
   }
 }
 
@@ -156,11 +156,12 @@
 html {
   font-size: 16px; /* Minimum for accessibility */
   font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  letter-spacing: 0.03em; /* Increased from 0.01em for better readability */
 }
 
 body {
   line-height: 1.6;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.03em; /* Increased from 0.01em */
 }
 
 /* Medicare badge */
@@ -201,5 +202,5 @@ ul:not(.unstyled) li::before {
 
 /* High contrast links */
 a:not(.btn):not(.no-underline):not([class*="bg-"]) {
-  @apply text-bb-blue underline-offset-2 hover:underline focus:underline;
+  @apply text-bb-blue underline-offset-2 hover:underline focus:underline tracking-wide;
 }
