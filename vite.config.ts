@@ -12,15 +12,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Use the correct options for React SWC plugin
-      jsxImportSource: "react",
-      babel: {
-        plugins: [
-          ['@babel/plugin-transform-react-jsx', {
-            runtime: 'automatic'
-          }]
-        ]
-      }
+      // Use only valid properties for the React SWC plugin
+      jsxImportSource: "react"
     }),
     mode === 'development' &&
     componentTagger(),
