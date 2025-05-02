@@ -51,7 +51,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sf;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
@@ -71,6 +71,7 @@
 /* Senior friendly styles */
 html {
   font-size: 16px;
+  font-family: "SF Compact Display", system-ui, sans-serif;
 }
 
 body {

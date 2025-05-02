@@ -23,6 +23,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
+				sf: ['"SF Compact Display"', 'system-ui', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
