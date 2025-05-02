@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 const CTASection = () => {
@@ -15,7 +16,7 @@ const CTASection = () => {
               </Button>
             </div>
             <div className="md:w-1/2 relative flex justify-end overflow-hidden">
-              <img alt="Medicare Guide Book" className="w-auto h-full object-cover object-right" src="/lovable-uploads/09fb238e-88bd-46d6-a5d2-05fc5fdbbf42.png" />
+              <img alt="Medicare Guide Book" className="w-auto h-full object-cover object-right scale-110 transform-gpu origin-right" src="/lovable-uploads/09fb238e-88bd-46d6-a5d2-05fc5fdbbf42.png" />
             </div>
           </div>
         </div>
