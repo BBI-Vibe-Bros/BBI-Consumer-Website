@@ -1,34 +1,31 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 
 const CTASection = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto px-6">
-        <Card className="border border-gray-200 shadow-md overflow-hidden">
-          <CardContent className="p-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="bg-bb-blue p-8 md:p-12 flex flex-col justify-center">
-                <h2 className="text-3xl font-bold mb-6 text-white">Get Your Free Medicare Guide</h2>
-                <p className="text-xl mb-8 leading-relaxed text-white/90">
-                  Download our comprehensive guide to understanding Medicare coverage options, enrollment periods, and how to make the most of your benefits.
-                </p>
-                <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-xl font-bold w-fit">
-                  Get Your Free Guide
-                </Button>
-              </div>
-              <div className="flex items-center justify-center bg-white p-8">
-                <img 
-                  src="public/lovable-uploads/9c5770bc-a599-4a73-8a2d-e4237a73d219.png"
-                  alt="Medicare Breakdown Guide Book" 
-                  className="max-w-xs md:max-w-sm rounded-lg shadow-sm"
-                />
-              </div>
+        <div className="rounded-xl overflow-hidden bg-bb-blue">
+          <div className="flex flex-col md:flex-row">
+            <div className="p-8 md:p-12 md:w-1/2 flex flex-col justify-center">
+              <h2 className="text-4xl font-bold mb-6 text-white">Get Your Free Medicare Guide</h2>
+              <p className="text-xl mb-8 leading-relaxed text-white/90">
+                Download our comprehensive guide to understanding Medicare coverage options. Learn about plans, costs, and how to make the right choice for your healthcare needs.
+              </p>
+              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-xl font-bold w-fit px-8 py-6">
+                Get Your Free Guide
+              </Button>
             </div>
-          </CardContent>
-        </Card>
+            <div className="md:w-1/2 relative">
+              <img 
+                src="public/lovable-uploads/4c7af074-f2a3-4f8e-9fa4-0c7d75eb630b.png"
+                alt="Medicare Guide Book with Senior Man" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
