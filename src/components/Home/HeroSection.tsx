@@ -14,7 +14,7 @@ const HeroSection = () => {
               Professional guidance from trusted experts makes finding the right Medicare coverage simple, so you can enjoy your benefits with confidence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-xl font-bold px-8 py-6">
+              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-8 py-6 text-base font-semibold">
                 Schedule an Appointment
               </Button>
               <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 text-xl font-bold px-8 py-6">
