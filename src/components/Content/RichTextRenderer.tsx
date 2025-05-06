@@ -45,7 +45,6 @@ const EmbeddedVideo = ({ entry }: { entry: any }) => {
     );
   }
 
-  // Assume YouTube or Vimeo if not self-hosted
   return (
     <div className="my-6">
       <iframe
@@ -58,6 +57,101 @@ const EmbeddedVideo = ({ entry }: { entry: any }) => {
     </div>
   );
 };
+
+const EmbeddedYouTube = ({ entry }: { entry: any }) => {
+  const link = entry.youTubeLink;
+  if (!link) return null;
+  
+  // Extract YouTube video ID from the link
+  const match = link.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+  const videoId = match ? match[1] : null;
+  if (!videoId) return null;
+  
+  return (
+    <div className="my-6 max-w-4xl mb-*">
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title={entry.title || 'YouTube Video'}
+        className="w-full aspect-video rounded-lg"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+};
+
+const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
+  console.log('Website CTA entry:', entry);
+  // Handle both direct fields and nested fields from Contentful
+  const title = entry.title || entry.fields?.title;
+  const description = entry.description || entry.fields?.description;
+  const buttonText = entry.buttonText || entry.fields?.buttonText;
+  const buttonLink = entry.buttonLink || entry.fields?.buttonLink;
+
+  const isNonEmpty = (val: any) =>
+    typeof val === 'string' ? val.trim().length > 0 : !!val;
+
+  if (
+    !isNonEmpty(title) &&
+    !isNonEmpty(description) &&
+    !isNonEmpty(buttonText) &&
+    !isNonEmpty(buttonLink)
+  ) {
+    console.warn('Website CTA missing required fields:', entry);
+    return null;
+  }
+
+  return (
+    <div className="my-6 p-6 bg-bbi-blue/5 rounded-lg border border-bbi-blue/20">
+      {isNonEmpty(title) && <h3 className="text-xl font-bold mb-2 text-bbi-blue">{title}</h3>}
+      {isNonEmpty(description) && <p className="mb-4 text-gray-700">{description}</p>}
+      {isNonEmpty(buttonText) && isNonEmpty(buttonLink) && (
+        <a
+          href={buttonLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block px-6 py-2 bg-bbi-blue text-white rounded-md hover:bg-bbi-red transition-colors"
+        >
+          {buttonText}
+        </a>
+      )}
+    </div>
+  );
+};
+
+const EmbeddedBlogPost = ({ entry }: { entry: any }) => (
+  <div className="my-6 p-4 border border-gray-200 rounded-lg bg-[#d5effc]">
+    {entry.featuredImage && (
+      <img
+        src={entry.featuredImage}
+        alt={entry.title}
+        className="w-full h-48 object-cover rounded-t-lg mb-4"
+      />
+    )}
+    <h3 className="text-xl font-bold mb-2">{entry.title}</h3>
+    <p className="text-gray-600 mb-4">{entry.excerpt}</p>
+    <Link
+      to={`/blog/${entry.slug}`}
+      className="text-bbi-blue hover:text-bbi-red"
+    >
+      Read More →
+    </Link>
+  </div>
+);
+
+const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => (
+  <div className="my-6 p-4 border border-gray-200 rounded-lg bg-[#d5effc]">
+    <h2 className="text-base font-medium mb-2">Learn More About</h2>
+    <h3 className="text-xl font-bold mb-2">{entry.pageName}</h3>
+    <p className="text-gray-600 mb-4">{entry.metadata?.description}</p>
+    <Link
+      to={`/medicare/${entry.pageSlug}`}
+      className="text-bbi-blue hover:text-bbi-red"
+    >
+      Learn More →
+    </Link>
+  </div>
+);
 
 const RichTextRenderer = ({ content, className, planType }: RichTextRendererProps) => {
   console.log('RichTextRenderer props:', { content, className, planType });
@@ -109,10 +203,10 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         <h6 className="text-base font-bold mb-2 text-bbi-blue">{children}</h6>
       ),
       [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
-        <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
+        <ul className="mb-4">{children}</ul>
       ),
       [BLOCKS.OL_LIST]: (_node: any, children: React.ReactNode) => (
-        <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
+        <ol className="mb-4">{children}</ol>
       ),
       [BLOCKS.LIST_ITEM]: (_node: any, children: React.ReactNode) => (
         <li className="mb-2 last:mb-0">{children}</li>
@@ -136,7 +230,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         <tr className="border-b border-gray-200">{children}</tr>
       ),
       [BLOCKS.TABLE_HEADER_CELL]: (_node: any, children: React.ReactNode) => (
-        <th className="px-4 py-2 text-left font-bold bg-gray-100">
+        <th className="px-4 py-2 text-left text-sm font-bold bg-gray-100">
           {children}
         </th>
       ),
@@ -203,31 +297,24 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         const contentType = entry.sys?.contentType?.sys?.id || entry.contentType;
         const fields = entry.fields || {};
 
+        console.log('Embedded entry type:', contentType);
+        console.log('Embedded entry fields:', fields);
+
         switch (contentType) {
           case 'resourceGuide':
             return <EmbeddedResource entry={fields} />;
           case 'video':
             return <EmbeddedVideo entry={fields} />;
-          case 'youTubeEmbed': {
-            const link = fields.youTubeLink;
-            if (!link) return null;
-            // Extract YouTube video ID from the link
-            const match = link.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
-            const videoId = match ? match[1] : null;
-            if (!videoId) return null;
-            return (
-              <div className="my-6">
-                <iframe
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  title={fields.title || 'YouTube Video'}
-                  className="w-full aspect-video rounded-lg"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            );
-          }
+          case 'youTubeEmbed':
+            return <EmbeddedYouTube entry={fields} />;
+          case 'websiteCta':
+            return <EmbeddedWebsiteCTA entry={entry} />;
+          case 'blogPost':
+            return <EmbeddedBlogPost entry={fields} />;
+          case 'foundationalPage':
+            return <EmbeddedFoundationalPage entry={fields} />;
           default:
+            console.warn(`Unhandled embedded entry type: ${contentType}`);
             return null;
         }
       },
@@ -276,7 +363,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         </p>
       ),
       [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
-        <h2 className="text-3xl font-bold mb-5 text-bbi-blue">
+        <h2 className="text-2xl font-bold mb-5 text-bbi-blue">
           {children}
         </h2>
       ),

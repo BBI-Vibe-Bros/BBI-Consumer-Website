@@ -7,11 +7,17 @@ import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTem
 import { Skeleton } from '@/components/ui/skeleton';
 import CTASection from '@/components/Home/CTASection';
 
-const UnderstandMedicare = () => {
-  const { slug } = useParams<{ slug: string }>();
+interface UnderstandMedicareProps {
+  slug?: string;
+}
+
+const UnderstandMedicare = ({ slug: propSlug }: UnderstandMedicareProps) => {
+  const { slug: paramSlug } = useParams<{ slug: string }>();
   const [loading, setLoading] = useState(true);
   const [pageData, setPageData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const slug = propSlug || paramSlug;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,19 +26,17 @@ const UnderstandMedicare = () => {
         const contentfulService = ContentfulService.getInstance();
         let contentfulSlug = slug || 'what-is-medicare';
         if (slug === 'eligibility') contentfulSlug = 'medicare-eligibility';
-        if (slug === 'enrollment-periods') contentfulSlug = 'enrollment-periods';
+        if (slug === 'enrollment-periods' || slug === 'basics/enrollment-periods') contentfulSlug = 'enrollment-periods';
         const response = await contentfulService.getFoundationalPageBySlug(contentfulSlug);
         
         if (response) {
           setPageData({
             title: response.pageName || 'Understand Medicare',
             subtitle: response.metadata?.title,
-            heroImage: response.metadata?.heroImage,
             fBodyContent: response.fBodyContent || {},
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
-            sections: response.sections || [],
             relatedBlogs: response.relatedBlogs || [],
           });
         } else {
@@ -55,6 +59,7 @@ const UnderstandMedicare = () => {
     switch(slug) {
       case 'basics': return 'Medicare Basics';
       case 'eligibility': return 'Medicare Eligibility';
+      case 'enrollment-periods': return 'Medicare Enrollment Periods';
       case 'parts': return 'Medicare Parts A, B, C, D';
       default: return 'Understand Medicare';
     }
@@ -66,6 +71,8 @@ const UnderstandMedicare = () => {
         return 'Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance.';
       case 'eligibility': 
         return "Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.";
+      case 'enrollment-periods':
+        return 'Learn about Medicare enrollment periods including Initial Enrollment, Annual Enrollment, and Special Enrollment Periods with expert guidance from Bobby Brock Insurance.';
       case 'parts': 
         return 'Understand the different parts of Medicare (A, B, C, D) and how they work together to provide your healthcare coverage with expert guidance from Bobby Brock Insurance.';
       default:

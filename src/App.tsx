@@ -23,7 +23,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import MedicareBasics from "./pages/MedicareBasics";
 import MedicareEligibility from "./pages/MedicareEligibility";
 import MedicareParts from "./pages/MedicareParts";
+import EnrollmentPeriods from "./pages/EnrollmentPeriods";
 import TeamPage from "./pages/TeamPage";
+import MedicareCosts from './pages/MedicareCosts';
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -44,8 +46,10 @@ const App = () => (
               <Route path="/medicare">
                 <Route path="basics" element={<MedicareBasics />} />
                 <Route path="basics/what-is-medicare" element={<MedicareBasics />} />
+                <Route path="basics/enrollment-periods" element={<EnrollmentPeriods />} />
                 <Route path="eligibility" element={<MedicareEligibility />} />
                 <Route path="parts" element={<MedicareParts />} />
+                <Route path="basics/medicare-costs" element={<MedicareCosts />} />
               </Route>
               
               {/* Plan routes */}
@@ -71,10 +75,8 @@ const App = () => (
               {/* Static routes */}
               <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
               <Route path="/medicaresupplement" element={<MedicareSupplement />} />
-              
-              {/* Company information */}
               <Route path="/about" element={<AboutPage />} />
-              <Route path="/team" element={<TeamPage />} />
+              <Route path="/about/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               

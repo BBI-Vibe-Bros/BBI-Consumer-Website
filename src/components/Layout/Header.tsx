@@ -19,7 +19,7 @@ const Header = () => {
       href: '/medicare/basics/enrollment-periods'
     }, {
       title: 'Medicare Costs',
-      href: '/medicare/basics/costs'
+      href: '/medicare/basics/medicare-costs'
     }, {
       title: 'Medicare Eligibility',
       href: '/medicare/eligibility'

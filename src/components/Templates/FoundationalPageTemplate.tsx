@@ -24,6 +24,7 @@ interface FoundationalPageTemplateProps {
       title: string;
       slug: string;
       featuredImage?: string;
+      excerpt?: string;
     }>;
     callToAction?: {
       title?: string;
@@ -109,6 +110,18 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
     fetchBlogPosts();
   }, []);
 
+  // Defensive: Only render CTA if at least one field is non-empty
+  const cta = page.callToAction;
+  const isNonEmpty = (val: any) =>
+    typeof val === 'string' ? val.trim().length > 0 : !!val;
+
+  const shouldShowCTA =
+    cta &&
+    (isNonEmpty(cta.title) ||
+      isNonEmpty(cta.text) ||
+      isNonEmpty(cta.buttonText) ||
+      isNonEmpty(cta.buttonLink));
+
   return (
     <>
       {/* Hero Section (now outside container) */}
@@ -154,15 +167,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
 
             {/* Related Blog Posts */}
             {relatedBlogs.length > 0 && (
-              <section className="mt-12">
+              <section className="mt-12 w-full">
                 <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                   {relatedBlogs.map((blog) => (
-                    <Link
-                      key={blog.slug}
-                      to={`/blog/${blog.slug}`}
-                      className="block group"
-                    >
+                    <div key={blog.slug} className="border border-gray-200 rounded-lg p-4 bg-white h-full flex flex-col">
                       {blog.featuredImage && (
                         <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
                           <img
@@ -172,34 +181,28 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                           />
                         </div>
                       )}
-                      <h3 className="text-lg font-medium group-hover:text-bb-blue">
+                      <h3 className="text-lg font-medium group-hover:text-bb-blue mb-2">
                         {blog.title}
                       </h3>
-                    </Link>
+                      {blog.excerpt && (
+                        <p className="text-gray-600 mb-4">
+                          {blog.excerpt.length > 120
+                            ? blog.excerpt.slice(0, 120).trim() + '...'
+                            : blog.excerpt}
+                        </p>
+                      )}
+                      <Link
+                        to={`/blog/${blog.slug}`}
+                        className="mt-auto w-fit bg-bb-blue text-white px-4 py-2 rounded hover:bg-bb-dark-blue transition-colors text-sm font-semibold"
+                      >
+                        Read More
+                      </Link>
+                    </div>
                   ))}
                 </div>
               </section>
             )}
-
-            {/* Call to Action */}
-            {page.callToAction && (
-              <section className="mt-12 bg-gray-50 rounded-xl p-8">
-                {page.callToAction.title && (
-                  <h2 className="text-2xl font-semibold mb-4">{page.callToAction.title}</h2>
-                )}
-                {page.callToAction.text && (
-                  <p className="text-lg text-gray-700 mb-6">{page.callToAction.text}</p>
-                )}
-                {page.callToAction.buttonText && page.callToAction.buttonLink && (
-                  <Link
-                    to={page.callToAction.buttonLink}
-                    className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
-                  >
-                    {page.callToAction.buttonText}
-                  </Link>
-                )}
-              </section>
-            )}
+      
           </div>
 
           {/* Sidebar */}

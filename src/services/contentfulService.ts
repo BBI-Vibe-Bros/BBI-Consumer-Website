@@ -23,6 +23,7 @@ interface FoundationalPageFields {
     title: string;
     slug: string;
     featuredImage?: string;
+    excerpt: string;
   }>;
   callToAction?: {
     title: string;
@@ -160,7 +161,7 @@ class ContentfulService {
           ? `https:${post.fields.featuredImage.fields.file.url}` 
           : '',
       })),
-      callToAction: entry.fields?.callToAction?.fields ? {
+      callToAction: (entry.fields?.callToAction?.fields && entry.fields?.callToAction?.sys?.contentType?.sys?.id === 'websiteCta') ? {
         title: entry.fields.callToAction.fields.title || '',
         text: entry.fields.callToAction.fields.text || '',
         buttonText: entry.fields.callToAction.fields.buttonText || '',
@@ -198,8 +199,9 @@ class ContentfulService {
         featuredImage: blog.fields?.featuredImage?.fields?.file?.url 
           ? `https:${blog.fields.featuredImage.fields.file.url}` 
           : '',
+        excerpt: blog.fields?.excerpt || '',
       })),
-      callToAction: entry.fields?.callToAction?.fields ? {
+      callToAction: (entry.fields?.callToAction?.fields && entry.fields?.callToAction?.sys?.contentType?.sys?.id === 'websiteCta') ? {
         title: entry.fields.callToAction.fields.title || '',
         text: entry.fields.callToAction.fields.text || '',
         buttonText: entry.fields.callToAction.fields.buttonText || '',
