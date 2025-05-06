@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Document } from '@contentful/rich-text-types';
 import RichTextRenderer from '@/components/Content/RichTextRenderer';
+import BlogCTA from '@/components/Home/BlogCTA';
 
 interface BlogPostTemplateProps {
   post: {
@@ -49,8 +50,8 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Blog Header */}
-      <header className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
+      <header className="mb-8 w-1280">
+        <h1 className="text-3xl md:text-5xl font-bold mb-4">{post.title}</h1>
         <div className="flex items-center text-gray-600 mb-6">
           {post.publishedDate && <span className="mr-4">{post.publishedDate}</span>}
           {post.author && (
@@ -68,28 +69,33 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
         </div>
       </header>
 
-      {/* Featured Image */}
-      {post.featuredImage && (
-        <div className="mb-8">
-          <img 
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-auto rounded-lg object-cover max-h-[500px]"
-          />
-        </div>
-      )}
-
       {/* Excerpt */}
       {post.excerpt && (
-        <div className="prose max-w-none lg:prose-lg mb-8">
+        <div className="prose max-w-none lg:prose-lg mb-8 w-1280">
           <p className="text-xl text-gray-700 italic">{post.excerpt}</p>
         </div>
       )}
 
+      {/* Featured Image */}
+      {post.featuredImage && (
+        <div className="mb-8 w-1920">
+          <img 
+            src={post.featuredImage}
+            alt={post.title}
+            className="w-1920 h-auto rounded-lg object-cover max-h-[605px]"
+          />
+        </div>
+      )}
+
       {/* Main Content */}
-      <article className="prose max-w-none lg:prose-lg mb-8">
+      <article className="prose prose-lg max-w-none lg:prose-xl mb-8 w-1920">
         {post.contentBody && <RichTextRenderer content={post.contentBody} />}
       </article>
+
+      {/* Call to Action */}
+      <div className="mb-12 w-1920">
+        <BlogCTA />
+      </div>
 
       {/* Category */}
       {post.category && (
@@ -129,26 +135,6 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
               </Link>
             ))}
           </div>
-        </section>
-      )}
-
-      {/* Call to Action */}
-      {post.callToAction && (
-        <section className="mt-12 bg-gray-50 rounded-xl p-8">
-          {post.callToAction.title && (
-            <h2 className="text-2xl font-semibold mb-4">{post.callToAction.title}</h2>
-          )}
-          {post.callToAction.text && (
-            <p className="text-lg text-gray-700 mb-6">{post.callToAction.text}</p>
-          )}
-          {post.callToAction.buttonText && post.callToAction.buttonLink && (
-            <Link
-              to={post.callToAction.buttonLink}
-              className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
-            >
-              {post.callToAction.buttonText}
-            </Link>
-          )}
         </section>
       )}
     </div>

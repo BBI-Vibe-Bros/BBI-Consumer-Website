@@ -5,8 +5,8 @@ import Layout from '@/components/Layout/Layout';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
-import CTASection from '@/components/Home/CTASection';
 import BlogPostTemplate from '@/components/Templates/BlogPostTemplate';
+import Sidebar from '@/components/Sidebar';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -82,9 +82,19 @@ const BlogPost = () => {
         </div>
       </div>
 
-      <BlogPostTemplate post={blog} />
-      
-      <CTASection />
+      <div className="container mx-auto px-4 py-8">
+        <div className="lg:flex lg:flex-row lg:space-x-8">
+          {/* Main Content */}
+          <div className="lg:w-2/3">
+            <BlogPostTemplate post={blog} />
+          </div>
+
+          {/* Sidebar */}
+          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
+            <Sidebar />
+          </aside>
+        </div>
+      </div>
     </Layout>
   );
 };

@@ -86,7 +86,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p className="mb-4 text-base leading-relaxed text-gray-800 last:mb-0">
+        <p className="mb-4 text-xl leading-relaxed text-gray-800 last:mb-0">
           {children}
         </p>
       ),
@@ -271,7 +271,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
     renderNode: {
       ...options.renderNode,
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p className="mb-4 text-base leading-relaxed text-gray-800">
+        <p className="mb-4 text-xl leading-relaxed text-gray-800">
           {children}
         </p>
       ),
