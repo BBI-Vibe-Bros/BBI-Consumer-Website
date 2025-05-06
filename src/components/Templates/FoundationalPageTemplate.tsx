@@ -1,136 +1,231 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
+import RichTextRenderer from '@/components/Content/RichTextRenderer';
+import ContentfulService from '@/services/contentfulService';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Link } from 'react-router-dom';
 
 interface FoundationalPageTemplateProps {
   page: {
-    title: string;
-    subtitle?: string;
-    heroImage?: string;
-    content: Document;
-    callToAction?: any;
-    author?: any;
+    pageName: string;
+    author?: string;
+    pageSlug: string;
+    fBodyContent: Document;
     youTubeVideo?: string;
-    sections?: Array<{
+    metadata?: {
+      title?: string;
+      description?: string;
+      keywords?: string[];
+    };
+    relatedBlogs?: Array<{
       title: string;
-      content: Document;
-      image?: string;
+      slug: string;
+      featuredImage?: string;
     }>;
+    callToAction?: {
+      title?: string;
+      text?: string;
+      buttonText?: string;
+      buttonLink?: string;
+    };
   };
 }
 
+const STATIC_BLOGS = [
+  {
+    title: 'What to Do If Your Medicare Card Expires, Is Lost, or Damaged!',
+    slug: '/blog/medicare-card-expired',
+    image: '/static/sidebar-blog-1.png',
+  },
+  {
+    title: '3 Reasons Why Medicare Supplements Rates Increase',
+    slug: '/blog/medicare-supplements-increase',
+    image: '/static/sidebar-blog-2.png',
+  },
+  {
+    title: 'Is Original Medicare Parts A & B Enough Coverage?',
+    slug: '/blog/original-medicare-enough',
+    image: '/static/sidebar-blog-3.png',
+  },
+];
+const STATIC_GUIDES = [
+  { title: 'Understanding Medicare', slug: '/resources/medicare-overview' },
+  { title: 'Medicare Advantage', slug: '/resources/medicare-advantage' },
+  { title: 'Medicare Supplement', slug: '/resources/medicare-supplements' },
+  { title: 'Medicare Part D', slug: '/resources/medicare-part-d' },
+];
+
 const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [loadingBlogs, setLoadingBlogs] = useState(true);
+  const [blogError, setBlogError] = useState<string | null>(null);
+
+  // Defensive fallback for relatedBlogs
+  const relatedBlogs = Array.isArray(page.relatedBlogs) ? page.relatedBlogs : [];
+
+  // Debug log
+  useEffect(() => {
+    console.log('relatedBlogs:', relatedBlogs);
+  }, [relatedBlogs]);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        setLoadingBlogs(true);
+        const contentfulService = ContentfulService.getInstance();
+        const response = await contentfulService.getBlogPosts(3);
+        
+        console.log('Blog posts response:', response);
+        
+        if (response && response.items) {
+          const mappedPosts = response.items.map((item: any) => {
+            console.log('Processing blog post item:', item);
+            return {
+              title: item.fields.title,
+              slug: item.fields.slug,
+              image: item.fields.featuredImage?.fields?.file?.url 
+                ? `https:${item.fields.featuredImage.fields.file.url}` 
+                : '/static/blog-placeholder.png',
+              excerpt: item.fields.excerpt
+            };
+          });
+          
+          console.log('Mapped blog posts:', mappedPosts);
+          setBlogPosts(mappedPosts);
+        } else {
+          console.warn('No blog posts found in response');
+        }
+      } catch (err) {
+        console.error('Error fetching blog posts:', err);
+        setBlogError('Failed to load blog posts');
+      } finally {
+        setLoadingBlogs(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
+
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-bb-light-gray py-12 md:py-16 mb-8">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-bb-dark mb-4">{page.title}</h1>
-              {page.subtitle && (
-                <p className="text-xl text-gray-700">{page.subtitle}</p>
-              )}
-            </div>
-            {page.heroImage && (
-              <div className="flex justify-center lg:justify-end">
-                <img
-                  src={page.heroImage}
-                  alt={page.title}
-                  className="rounded-lg object-cover max-h-[400px]"
-                />
-              </div>
-            )}
+    <div className="container mx-auto px-4 py-8">
+      {/* Main Content */}
+      <article className="prose max-w-none lg:prose-lg mb-8">
+        <RichTextRenderer content={page.fBodyContent} />
+      </article>
+
+      {/* YouTube Video */}
+      {page.youTubeVideo && (
+        <div className="mb-8">
+          <div className="aspect-w-16 aspect-h-9">
+            <iframe
+              src={page.youTubeVideo}
+              title={page.pageName}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-lg"
+            />
           </div>
         </div>
-      </section>
+      )}
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        {/* YouTube Video if available */}
-        {page.youTubeVideo && (
-          <div className="mb-10 w-full max-w-4xl mx-auto">
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe 
-                className="w-full h-[400px] rounded-lg"
-                src={`https://www.youtube.com/embed/${page.youTubeVideo}`}
-                title="YouTube video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen>
-              </iframe>
-            </div>
-          </div>
-        )}
-
-        <article className="prose max-w-none lg:prose-lg mb-12">
-          {documentToReactComponents(page.content)}
-        </article>
-
-        {/* Author info if available */}
-        {page.author && (
-          <div className="bg-gray-50 p-6 rounded-lg mb-8 flex items-center">
-            {page.author.fields?.photo?.fields?.file?.url && (
-              <div className="mr-4">
-                <img 
-                  src={`https:${page.author.fields.photo.fields.file.url}`} 
-                  alt={page.author.fields.name} 
-                  className="w-16 h-16 rounded-full object-cover"
-                />
-              </div>
-            )}
-            <div>
-              <p className="font-semibold text-lg">{page.author.fields?.name}</p>
-              {page.author.fields?.title && (
-                <p className="text-gray-600">{page.author.fields.title}</p>
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* Additional Sections */}
-        {page.sections && page.sections.map((section, index) => (
-          <section key={index} className={`py-8 ${index % 2 === 0 ? 'bg-white' : 'bg-bb-light-gray'}`}>
-            <div className="container mx-auto px-4">
-              <div className={`grid grid-cols-1 ${section.image ? 'lg:grid-cols-2' : ''} gap-8 items-center`}>
-                <div className={`${index % 2 !== 0 && section.image ? 'lg:order-2' : ''}`}>
-                  <h2 className="text-2xl md:text-3xl font-bold mb-4">{section.title}</h2>
-                  <div className="prose max-w-none">
-                    {documentToReactComponents(section.content)}
-                  </div>
-                </div>
-                {section.image && (
-                  <div className={`${index % 2 !== 0 ? 'lg:order-1' : ''} flex justify-center`}>
+      {/* Related Blog Posts */}
+      {relatedBlogs.length > 0 && (
+        <section className="mt-12">
+          <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedBlogs.map((blog) => (
+              <Link
+                key={blog.slug}
+                to={`/blog/${blog.slug}`}
+                className="block group"
+              >
+                {blog.featuredImage && (
+                  <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
                     <img
-                      src={section.image}
-                      alt={section.title}
-                      className="rounded-lg object-cover max-w-full h-auto"
+                      src={blog.featuredImage}
+                      alt={blog.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
                     />
                   </div>
                 )}
-              </div>
-            </div>
-          </section>
-        ))}
+                <h3 className="text-lg font-medium group-hover:text-bb-blue">
+                  {blog.title}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
-        {/* Call to Action if available */}
-        {page.callToAction && (
-          <div className="bg-bb-blue text-white p-8 rounded-lg my-8 text-center">
-            <h3 className="text-2xl font-bold mb-3">{page.callToAction.fields?.heading}</h3>
-            {page.callToAction.fields?.subheading && (
-              <p className="mb-6">{page.callToAction.fields.subheading}</p>
-            )}
-            {page.callToAction.fields?.buttonText && page.callToAction.fields?.buttonLink && (
-              <a 
-                href={page.callToAction.fields.buttonLink} 
-                className="bg-white text-bb-blue font-medium py-2 px-6 rounded-md hover:bg-gray-100 transition-colors"
+      {/* Blog Posts Section */}
+      <section className="mt-12">
+        <h2 className="text-2xl font-semibold mb-4">Latest Articles</h2>
+        {loadingBlogs ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
+                <div className="h-48 bg-gray-200 rounded mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded"></div>
+                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : blogError ? (
+          <div className="text-center py-8">
+            <p className="text-red-500">{blogError}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {blogPosts.map((post) => (
+              <Link
+                key={post.slug}
+                to={`/blog/${post.slug}`}
+                className="block group"
               >
-                {page.callToAction.fields.buttonText}
-              </a>
-            )}
+                {post.image && (
+                  <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    />
+                  </div>
+                )}
+                <h3 className="text-lg font-medium group-hover:text-bb-blue">
+                  {post.title}
+                </h3>
+                <p className="text-gray-500 text-sm mt-1">{post.excerpt}</p>
+              </Link>
+            ))}
           </div>
         )}
-      </div>
+      </section>
+
+      {/* Call to Action */}
+      {page.callToAction && (
+        <section className="mt-12 bg-gray-50 rounded-xl p-8">
+          {page.callToAction.title && (
+            <h2 className="text-2xl font-semibold mb-4">{page.callToAction.title}</h2>
+          )}
+          {page.callToAction.text && (
+            <p className="text-lg text-gray-700 mb-6">{page.callToAction.text}</p>
+          )}
+          {page.callToAction.buttonText && page.callToAction.buttonLink && (
+            <Link
+              to={page.callToAction.buttonLink}
+              className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
+            >
+              {page.callToAction.buttonText}
+            </Link>
+          )}
+        </section>
+      )}
     </div>
   );
 };

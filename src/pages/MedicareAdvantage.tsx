@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
@@ -19,24 +18,17 @@ const MedicareAdvantage = () => {
         const contentfulService = ContentfulService.getInstance();
         const response = await contentfulService.getFoundationalPageBySlug('medicare-advantage');
         
-        if (response && response.fields) {
+        if (response) {
           setPageData({
-            title: response.fields.pageName || 'Medicare Advantage Plans',
-            subtitle: response.fields.metadata?.subtitle,
-            heroImage: response.fields.metadata?.heroImage?.fields?.file?.url 
-              ? `https:${response.fields.metadata.heroImage.fields.file.url}` 
-              : undefined,
-            content: response.fields.fBodyContent || {},
-            callToAction: response.fields.callToAction,
-            author: response.fields.author,
-            youTubeVideo: response.fields.youTubeVideo,
-            sections: response.fields.sections?.map((section: any) => ({
-              title: section.fields.title,
-              content: section.fields.content,
-              image: section.fields.image?.fields?.file?.url 
-                ? `https:${section.fields.image.fields.file.url}` 
-                : undefined
-            })) || []
+            title: response.pageName || 'Medicare Advantage Plans',
+            subtitle: response.metadata?.title,
+            heroImage: response.metadata?.heroImage,
+            fBodyContent: response.fBodyContent || {},
+            callToAction: response.callToAction,
+            author: response.author,
+            youTubeVideo: response.youTubeVideo,
+            sections: response.sections || [],
+            relatedBlogs: response.relatedBlogs || []
           });
         } else {
           setError('Failed to load page content');
@@ -115,7 +107,6 @@ const MedicareAdvantage = () => {
         </>
       )}
       
-      <CTASection />
     </Layout>
   );
 };

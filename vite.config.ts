@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -13,7 +12,15 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react({
       // Use only valid properties for the React SWC plugin
-      jsxImportSource: "react"
+      jsxImportSource: "react",
+      // Ensure proper React imports
+      babel: {
+        plugins: [
+          ['@babel/plugin-transform-react-jsx', {
+            runtime: 'automatic'
+          }]
+        ]
+      }
     }),
     mode === 'development' &&
     componentTagger(),

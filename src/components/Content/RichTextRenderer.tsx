@@ -1,0 +1,290 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
+import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
+
+interface RichTextRendererProps {
+  content: any; // Contentful rich text document
+  className?: string;
+  planType?: 'part-a' | 'part-b' | 'part-c' | 'part-d' | 'advantage' | 'supplement' | 'prescription';
+}
+
+// Embedded Entry Components
+const EmbeddedResource = ({ entry }: { entry: any }) => (
+  <div className="my-6 p-4 border border-gray-200 rounded-lg">
+    <h3 className="text-xl font-bold mb-2">{entry.title}</h3>
+    <Link
+      to={`/resources/${entry.slug}`}
+      className="text-bbi-blue hover:text-bbi-red"
+    >
+      Learn More →
+    </Link>
+  </div>
+);
+
+const EmbeddedVideo = ({ entry }: { entry: any }) => {
+  const videoUrl = entry.videoUrl;
+  const isSelfHosted = entry.isSelfHosted;
+  const title = entry.title;
+  const thumbnail = entry.thumbnailImage;
+
+  if (!videoUrl) return null;
+
+  if (isSelfHosted) {
+    return (
+      <div className="my-6">
+        <video
+          src={videoUrl}
+          controls
+          poster={thumbnail}
+          className="w-full rounded-lg"
+        >
+          Sorry, your browser does not support embedded videos.
+        </video>
+      </div>
+    );
+  }
+
+  // Assume YouTube or Vimeo if not self-hosted
+  return (
+    <div className="my-6">
+      <iframe
+        src={videoUrl}
+        title={title}
+        className="w-full aspect-video rounded-lg"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
+  );
+};
+
+const RichTextRenderer = ({ content, className, planType }: RichTextRendererProps) => {
+  console.log('RichTextRenderer props:', { content, className, planType });
+
+  if (!content) {
+    console.warn('RichTextRenderer: No content provided');
+    return null;
+  }
+
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text: React.ReactNode) => (
+        <strong className="font-bold">{text}</strong>
+      ),
+      [MARKS.ITALIC]: (text: React.ReactNode) => (
+        <em className="italic">{text}</em>
+      ),
+      [MARKS.UNDERLINE]: (text: React.ReactNode) => (
+        <u className="underline">{text}</u>
+      ),
+      [MARKS.CODE]: (text: React.ReactNode) => (
+        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">
+          {text}
+        </code>
+      ),
+    },
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
+        <p className="mb-4 text-base leading-relaxed text-gray-800 last:mb-0">
+          {children}
+        </p>
+      ),
+      [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
+        <h1 className="text-4xl font-bold mb-6 text-bbi-blue">{children}</h1>
+      ),
+      [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
+        <h2 className="text-3xl font-bold mb-5 text-bbi-blue">{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
+        <h3 className="text-2xl font-bold mb-4 text-bbi-blue">{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (_node: any, children: React.ReactNode) => (
+        <h4 className="text-xl font-bold mb-3 text-bbi-blue">{children}</h4>
+      ),
+      [BLOCKS.HEADING_5]: (_node: any, children: React.ReactNode) => (
+        <h5 className="text-lg font-bold mb-2 text-bbi-blue">{children}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (_node: any, children: React.ReactNode) => (
+        <h6 className="text-base font-bold mb-2 text-bbi-blue">{children}</h6>
+      ),
+      [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
+        <ul className="list-disc pl-6 mb-4 space-y-2">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (_node: any, children: React.ReactNode) => (
+        <ol className="list-decimal pl-6 mb-4 space-y-2">{children}</ol>
+      ),
+      [BLOCKS.LIST_ITEM]: (_node: any, children: React.ReactNode) => (
+        <li className="mb-2 last:mb-0">{children}</li>
+      ),
+      [BLOCKS.QUOTE]: (_node: any, children: React.ReactNode) => (
+        <blockquote className="border-l-4 border-bbi-blue pl-4 italic my-4">
+          {children}
+        </blockquote>
+      ),
+      [BLOCKS.HR]: () => <hr className="my-6 border-t border-gray-200" />,
+      [BLOCKS.TABLE]: (_node: any, children: React.ReactNode) => (
+        <div className="overflow-x-auto my-6">
+          <table className="min-w-full border-collapse">
+            <tbody>
+              {children}
+            </tbody>
+          </table>
+        </div>
+      ),
+      [BLOCKS.TABLE_ROW]: (_node: any, children: React.ReactNode) => (
+        <tr className="border-b border-gray-200">{children}</tr>
+      ),
+      [BLOCKS.TABLE_HEADER_CELL]: (_node: any, children: React.ReactNode) => (
+        <th className="px-4 py-2 text-left font-bold bg-gray-50">
+          {children}
+        </th>
+      ),
+      [BLOCKS.TABLE_CELL]: (_node: any, children: React.ReactNode) => (
+        <td className="px-4 py-2">{children}</td>
+      ),
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const { title, description, url } = node.data.target;
+        const isImage = url?.endsWith('.jpg') || url?.endsWith('.png') || url?.endsWith('.gif');
+        const isPDF = url?.endsWith('.pdf');
+
+        if (isImage) {
+          return (
+            <figure className="my-6">
+              <img
+                src={url}
+                alt={description || title}
+                className="max-w-full h-auto rounded-lg"
+                loading="lazy"
+              />
+              {description && (
+                <figcaption className="text-sm text-gray-600 mt-2">
+                  {description}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+
+        if (isPDF) {
+          return (
+            <div className="my-6">
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-bbi-blue hover:text-bbi-red"
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                  />
+                </svg>
+                {title}
+              </a>
+            </div>
+          );
+        }
+
+        return null;
+      },
+      [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
+        const entry = node.data.target;
+        const contentType = entry.contentType;
+
+        switch (contentType) {
+          case 'resourceGuide':
+            return <EmbeddedResource entry={entry} />;
+          case 'video':
+            return <EmbeddedVideo entry={entry} />;
+          case 'youTubeEmbed': {
+            const link = entry.youTubeLink;
+            if (!link) return null;
+            // Extract YouTube video ID from the link
+            const match = link.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
+            const videoId = match ? match[1] : null;
+            if (!videoId) return null;
+            return (
+              <div className="my-6">
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  title={entry.title || 'YouTube Video'}
+                  className="w-full aspect-video rounded-lg"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            );
+          }
+          default:
+            return null;
+        }
+      },
+      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => (
+        <a
+          href={node.data.uri}
+          target={node.data.uri.startsWith('http') ? '_blank' : undefined}
+          rel={node.data.uri.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className="text-bbi-blue hover:text-bbi-red underline"
+        >
+          {children}
+        </a>
+      ),
+      [INLINES.ENTRY_HYPERLINK]: (node: any, children: React.ReactNode) => {
+        const entry = node.data.target;
+        return (
+          <Link 
+            to={`/${entry.contentType}/${entry.slug}`}
+            className="text-bbi-blue hover:text-bbi-red underline"
+          >
+            {children}
+          </Link>
+        );
+      },
+      [INLINES.ASSET_HYPERLINK]: (node: any, children: React.ReactNode) => (
+        <a
+          href={node.data.target.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-bbi-blue hover:text-bbi-red underline"
+        >
+          {children}
+        </a>
+      ),
+    },
+  };
+
+  // Apply Medicare-specific styling if planType is provided
+  const customOptions = planType ? {
+    ...options,
+    renderNode: {
+      ...options.renderNode,
+      [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
+        <p className="mb-4 text-base leading-relaxed text-gray-800">
+          {children}
+        </p>
+      ),
+      [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
+        <h2 className="text-3xl font-bold mb-5 text-bbi-blue">
+          {children}
+        </h2>
+      ),
+    },
+  } : options;
+
+  return (
+    <div className={cn('prose prose-lg max-w-none', className)}>
+      {documentToReactComponents(content, customOptions)}
+    </div>
+  );
+};
+
+export default RichTextRenderer; 

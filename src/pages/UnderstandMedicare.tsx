@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
@@ -19,26 +18,22 @@ const UnderstandMedicare = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug(slug || 'medicare-basics');
+        let contentfulSlug = slug || 'what-is-medicare';
+        if (slug === 'eligibility') contentfulSlug = 'medicare-eligibility';
+        if (slug === 'enrollment-periods') contentfulSlug = 'enrollment-periods';
+        const response = await contentfulService.getFoundationalPageBySlug(contentfulSlug);
         
-        if (response && response.fields) {
+        if (response) {
           setPageData({
-            title: response.fields.pageName || 'Understand Medicare',
-            subtitle: response.fields.metadata?.subtitle,
-            heroImage: response.fields.metadata?.heroImage?.fields?.file?.url 
-              ? `https:${response.fields.metadata.heroImage.fields.file.url}` 
-              : undefined,
-            content: response.fields.fBodyContent || {},
-            callToAction: response.fields.callToAction,
-            author: response.fields.author,
-            youTubeVideo: response.fields.youTubeVideo,
-            sections: response.fields.sections?.map((section: any) => ({
-              title: section.fields.title,
-              content: section.fields.content,
-              image: section.fields.image?.fields?.file?.url 
-                ? `https:${section.fields.image.fields.file.url}` 
-                : undefined
-            })) || []
+            title: response.pageName || 'Understand Medicare',
+            subtitle: response.metadata?.title,
+            heroImage: response.metadata?.heroImage,
+            fBodyContent: response.fBodyContent || {},
+            callToAction: response.callToAction,
+            author: response.author,
+            youTubeVideo: response.youTubeVideo,
+            sections: response.sections || [],
+            relatedBlogs: response.relatedBlogs || [],
           });
         } else {
           setError('Failed to load page content');
@@ -138,7 +133,6 @@ const UnderstandMedicare = () => {
         </>
       )}
       
-      <CTASection />
     </Layout>
   );
 };

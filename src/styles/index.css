@@ -1,5 +1,52 @@
-
 @import './base.css';
 @import './typography.css';
 @import './components.css';
 @import './utilities.css';
+
+header ul, header ol,
+footer ul, footer ol {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+header ul li::before, header ol li::before,
+footer ul li::before, footer ol li::before {
+  display: none !important;
+}
+
+/* Use a box as the bullet for all lists except in header/footer */
+ul, ol {
+  list-style-type: none;
+}
+ul li, ol li {
+  line-height: 1.7;
+  font-size: 1.125rem;
+}
+ul li::marker,
+ol li::marker {
+  content: '■ ';
+  color: #00a3e0;
+  font-size: 0.65em;
+  /* Try to nudge up for better vertical alignment */
+  position: relative;
+  top: -1.5px;
+}
+
+header ul li::marker,
+header ol li::marker,
+footer ul li::marker,
+footer ol li::marker {
+  content: '';
+}
+
+/* Remove any custom before/after bullets from all lists, including rich text */
+ul li::before,
+ol li::before,
+ul li::after,
+ol li::after,
+.prose ul li::before,
+.prose ol li::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+}

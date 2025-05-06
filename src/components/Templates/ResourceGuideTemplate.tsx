@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
+import RichTextRenderer from '@/components/Content/RichTextRenderer';
 
 interface ResourceGuideTemplateProps {
   guide: {
@@ -60,7 +60,7 @@ const ResourceGuideTemplate = ({ guide }: ResourceGuideTemplateProps) => {
 
       {/* Main Content */}
       <article className="prose max-w-none lg:prose-lg mb-8">
-        {documentToReactComponents(guide.content)}
+        <RichTextRenderer content={guide.content} />
       </article>
 
       {/* Tags */}

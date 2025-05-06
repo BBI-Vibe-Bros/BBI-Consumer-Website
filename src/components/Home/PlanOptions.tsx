@@ -6,19 +6,19 @@ const PlanOptions = () => {
     id: 'advantage',
     title: 'Medicare Advantage Plans',
     description: 'Medicare Advantage (Part C) offers all-in-one alternatives to Original Medicare with additional benefits.',
-    image: '/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
+    image: '/services/MedicareAdvantage_FeaturedImg.png',
     link: '/plans/advantage'
   }, {
     id: 'supplement',
     title: 'Medicare Supplements',
     description: 'Medicare Supplements (Medigap) help fill the "gaps" in Original Medicare coverage and provide more flexibility.',
-    image: '/lovable-uploads/b5ebd66f-258a-442f-b477-05d9eca83670.png',
+    image: '/services/MedicareSupplement_FeaturedImg.png',
     link: '/plans/supplement'
   }, {
     id: 'prescription',
     title: 'Prescription Drug Plans',
     description: 'Medicare Part D helps cover the cost of prescription drugs, including many recommended shots or vaccines.',
-    image: '/lovable-uploads/e9a50103-153f-420a-b667-5f76c69fd66d.png',
+    image: '/services/MedicarePartD_FeaturedImg.png',
     link: '/plans/prescription'
   }];
   return <section className="py-16">
@@ -31,7 +31,7 @@ const PlanOptions = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map(plan => <Card key={plan.id} className="border border-gray-200 shadow-card hover:shadow-lg transition-shadow">
               <CardHeader className="pb-4">
-                <img src={plan.image} alt={plan.title} className="w-full h-48 object-cover rounded-t-lg mb-4" />
+                <img src={plan.image} alt={plan.title} className="h-full object-contain rounded-t-lg mb-3" />
                 <CardTitle className="text-2xl font-bold">{plan.title}</CardTitle>
               </CardHeader>
               <CardContent className="pb-4">
@@ -39,7 +39,7 @@ const PlanOptions = () => {
               </CardContent>
               <CardFooter className="pt-0">
                 <Link to={plan.link} className="text-bb-blue hover:text-bb-light-blue font-semibold text-lg flex items-center gap-2">
-                  Learn More 
+                  Learn More
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
                 </Link>
               </CardFooter>

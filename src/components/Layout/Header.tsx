@@ -40,15 +40,15 @@ const Header = () => {
       title: 'Prescription Drug Plans',
       href: '/plans/prescription'
     }, {
-      title: 'Dental & Vision',
-      href: '/plans/dental'
+      title: 'Additional Coverage',
+      href: '/plans/additional-coverage'
     }]
   }, {
     title: 'Why Choose Us',
     href: '/about',
     submenu: [{
       title: 'Our Team',
-      href: '/about/team'
+      href: '/team'
     }, {
       title: 'Our Services',
       href: '/about/services'
@@ -76,13 +76,13 @@ const Header = () => {
       href: '/resources/glossary'
     }]
   }];
-  return <header className="bg-white py-[15px]">
+  return <header className="bg-white py-[25px]">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
-              <img alt="Bobby Brock Insurance" className="h-12" src="/lovable-uploads/61e96f8c-c4f8-44fe-af6a-dcbc445403d3.png" />
+              <img alt="Bobby Brock Insurance" className="h-12" src="/lovable-uploads/bobby-brock-insurance-logo.png" />
             </Link>
           </div>
 
@@ -106,7 +106,7 @@ const Header = () => {
                               </li>)}
                           </ul>
                         </NavigationMenuContent>
-                      </> : <Link to={item.href} className="text-base font-medium text-gray-800 hover:text-bb-blue px-5 py-2">
+                      </> : <Link to={item.href} className="text-base font-semibold text-gray-800 hover:text-bb-blue px-5 py-2">
                         {item.title}
                       </Link>}
                   </NavigationMenuItem>)}

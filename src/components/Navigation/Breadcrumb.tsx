@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
@@ -41,20 +40,18 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
         className={`mx-auto px-4 sm:px-6 py-4 ${className}`}
       >
         <BreadcrumbList>
-          {items.map((item, index) => (
-            <React.Fragment key={index}>
-              {index > 0 && <BreadcrumbSeparator />}
-              <BreadcrumbItem>
-                {item.isLast ? (
-                  <BreadcrumbPage>{item.label}</BreadcrumbPage>
-                ) : (
-                  <BreadcrumbLink asChild>
-                    <Link to={item.path}>{item.label}</Link>
-                  </BreadcrumbLink>
-                )}
-              </BreadcrumbItem>
-            </React.Fragment>
-          ))}
+          {items.map((item, index) => [
+            index > 0 ? <BreadcrumbSeparator key={`sep-${index}`} /> : null,
+            <BreadcrumbItem key={`item-${index}`}>
+              {item.isLast ? (
+                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink asChild>
+                  <Link to={item.path}>{item.label}</Link>
+                </BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          ])}
         </BreadcrumbList>
       </ShadcnBreadcrumb>
       

@@ -23,7 +23,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <img alt="Bobby Brock Insurance Advisors" className="w-full h-auto rounded-lg shadow-lg" src="/lovable-uploads/1ac2fffd-5fdf-42bd-bca7-22683515d254.png" />
+            <img alt="Bobby Brock Insurance Advisors" className="w-full h-auto rounded-lg shadow-lg" src="/lovable-uploads/bbi-meet-the-team.png" />
           </div>
 
           <div>

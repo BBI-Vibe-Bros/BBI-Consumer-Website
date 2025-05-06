@@ -1,4 +1,3 @@
-
 /**
  * Schema Generator utility for creating structured data (JSON-LD) as per the build guide
  */
@@ -146,10 +145,105 @@ export const validateSchema = (schema: Record<string, any>): boolean => {
   return requiredFields.every(field => field in schema);
 };
 
-export default {
-  generateWebPageSchema,
-  generateBlogPostSchema,
-  generateVideoSchema,
-  generateInsurancePlanSchema,
-  validateSchema
-};
+interface SchemaGeneratorOptions {
+  type: 'Video' | 'BlogPost' | 'FoundationalPage' | 'FAQ';
+  data: Record<string, any>;
+}
+
+export class SchemaGenerator {
+  static generate(options: SchemaGeneratorOptions) {
+    switch (options.type) {
+      case 'Video':
+        return this.generateVideoSchema(options.data);
+      case 'BlogPost':
+        return this.generateBlogPostSchema(options.data);
+      case 'FoundationalPage':
+        return this.generateFoundationalPageSchema(options.data);
+      case 'FAQ':
+        return this.generateFAQSchema(options.data);
+      default:
+        return null;
+    }
+  }
+
+  private static generateVideoSchema(data: Record<string, any>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: data.title,
+      description: data.description,
+      thumbnailUrl: data.thumbnailUrl,
+      uploadDate: data.uploadDate,
+      duration: data.duration,
+      contentUrl: data.contentUrl,
+      embedUrl: data.embedUrl,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Bobby Brock Insurance',
+        logo: {
+          '@type': 'ImageObject',
+          url: '/images/logo.png'
+        }
+      }
+    };
+  }
+
+  private static generateBlogPostSchema(data: Record<string, any>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: data.title,
+      description: data.description,
+      image: data.image,
+      datePublished: data.publishedDate,
+      dateModified: data.updatedDate,
+      author: {
+        '@type': 'Person',
+        name: data.author
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: 'Bobby Brock Insurance',
+        logo: {
+          '@type': 'ImageObject',
+          url: '/images/logo.png'
+        }
+      }
+    };
+  }
+
+  private static generateFoundationalPageSchema(data: Record<string, any>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: data.title,
+      description: data.description,
+      url: data.url,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Bobby Brock Insurance',
+        logo: {
+          '@type': 'ImageObject',
+          url: '/images/logo.png'
+        }
+      }
+    };
+  }
+
+  private static generateFAQSchema(data: Record<string, any>) {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: data.questions.map((q: any) => ({
+        '@type': 'Question',
+        name: q.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: q.answer
+        }
+      }))
+    };
+  }
+}
+
+export default SchemaGenerator;
