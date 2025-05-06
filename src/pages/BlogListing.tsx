@@ -1,16 +1,37 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Layout from '@/components/Layout/Layout';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
+import BlogSidebar from '@/components/BlogSidebar';
 
 const BlogListing = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const postsPerPage = 6;
   const contentfulService = ContentfulService.getInstance();
+
+  // Handle category from URL query parameter
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get('category');
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams]);
+
+  // Update URL when category changes
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    if (category === 'all') {
+      searchParams.delete('category');
+    } else {
+      searchParams.set('category', category);
+    }
+    setSearchParams(searchParams);
+  };
 
   // Fetch blog posts
   const { data, isLoading, error } = useQuery({
@@ -75,112 +96,123 @@ const BlogListing = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">Medicare Insurance Blog</h1>
-
-        {/* Category Filter */}
-        <div className="mb-8">
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="border border-gray-300 rounded-md px-4 py-2"
-          >
-            <option value="all">All Categories</option>
-            {categories.map((category: any) => (
-              <option key={category.slug} value={category.slug}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* Blog Posts Grid */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
-                <div className="h-48 bg-gray-200 rounded mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
-                <div className="space-y-2">
-                  <div className="h-4 bg-gray-200 rounded"></div>
-                  <div className="h-4 bg-gray-200 rounded"></div>
-                  <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : error ? (
-          <div className="text-center py-16">
-            <h2 className="text-2xl font-semibold text-gray-700">Error Loading Blog Posts</h2>
-            <p className="text-gray-500 mt-2">Please try again later</p>
-          </div>
-        ) : posts.length === 0 ? (
-          <div className="text-center py-16">
-            <h2 className="text-2xl font-semibold text-gray-700">No blog posts found</h2>
-            <p className="text-gray-500 mt-2">Check back soon for new content</p>
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {posts.map((post: any) => (
-                <Link 
-                  key={post.slug}
-                  to={`/blog/${post.slug}`}
-                  className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full border border-gray-100"
-                >
-                  {post.featuredImage && (
-                    <div className="h-48 overflow-hidden">
-                      <img 
-                        src={post.featuredImage}
-                        alt={post.title}
-                        className="w-full h-full object-cover transition-transform hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  )}
-                  <div className="p-5 flex-grow">
-                    {post.category && (
-                      <span className="bg-blue-100 text-bb-blue px-2 py-1 rounded-full text-xs mb-2 inline-block">
-                        {typeof post.category === 'string' ? post.category : post.category[0]}
-                      </span>
-                    )}
-                    <h2 className="text-xl font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
-                      {post.title}
-                    </h2>
-                    <p className="text-gray-500 text-sm mb-3">{post.publishedDate}</p>
-                    <p className="text-gray-700 line-clamp-3">{post.excerpt}</p>
-                  </div>
-                </Link>
-              ))}
+      {/* Hero Section */}
+      <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
+                Medicare Insurance Blog
+              </h1>
+              <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+                Expert articles on Medicare Advantage, Medicare Supplements, and Part D plans. Stay informed about your Medicare coverage options.
+              </p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="mt-8 flex justify-center">
-                <nav className="flex items-center space-x-2">
-                  <button
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                    disabled={currentPage === 1}
-                    className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
-                  >
-                    Previous
-                  </button>
-                  <span className="px-3 py-1">
-                    Page {currentPage} of {totalPages}
-                  </span>
-                  <button
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
-                    className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
-                  >
-                    Next
-                  </button>
-                </nav>
+      <div className="container mx-auto px-4 py-8">
+        <div className="lg:flex lg:flex-row lg:space-x-8">
+          {/* Main Content */}
+          <div className="lg:w-2/3">
+            {/* Blog Posts Grid */}
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
+                    <div className="h-48 bg-gray-200 rounded mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div className="space-y-2">
+                      <div className="h-4 bg-gray-200 rounded"></div>
+                      <div className="h-4 bg-gray-200 rounded"></div>
+                      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                ))}
               </div>
+            ) : error ? (
+              <div className="text-center py-16">
+                <h2 className="text-2xl font-semibold text-gray-700">Error Loading Blog Posts</h2>
+                <p className="text-gray-500 mt-2">Please try again later</p>
+              </div>
+            ) : posts.length === 0 ? (
+              <div className="text-center py-16">
+                <h2 className="text-2xl font-semibold text-gray-700">No blog posts found</h2>
+                <p className="text-gray-500 mt-2">Check back soon for new content</p>
+              </div>
+            ) : (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {posts.map((post: any) => (
+                    <Link 
+                      key={post.slug}
+                      to={`/blog/${post.slug}`}
+                      className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full border border-gray-100"
+                    >
+                      {post.featuredImage && (
+                        <div className="h-48 overflow-hidden">
+                          <img 
+                            src={post.featuredImage}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform hover:scale-105"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      <div className="p-5 flex-grow">
+                        {post.category && (
+                          <span className="bg-blue-100 text-bb-blue px-2 py-1 rounded-full text-xs mb-2 inline-block">
+                            {typeof post.category === 'string' ? post.category : post.category[0]}
+                          </span>
+                        )}
+                        <h2 className="text-xl font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
+                          {post.title}
+                        </h2>
+                        <p className="text-gray-500 text-sm mb-3">{post.publishedDate}</p>
+                        <p className="text-gray-700 line-clamp-3">{post.excerpt}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Pagination */}
+                {totalPages > 1 && (
+                  <div className="mt-8 flex justify-center">
+                    <nav className="flex items-center space-x-2">
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                        disabled={currentPage === 1}
+                        className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                      >
+                        Previous
+                      </button>
+                      <span className="px-3 py-1">
+                        Page {currentPage} of {totalPages}
+                      </span>
+                      <button
+                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                        disabled={currentPage === totalPages}
+                        className="px-3 py-1 rounded border border-gray-300 disabled:opacity-50"
+                      >
+                        Next
+                      </button>
+                    </nav>
+                  </div>
+                )}
+              </>
             )}
-          </>
-        )}
+          </div>
+
+          {/* Sidebar */}
+          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
+            <BlogSidebar 
+              selectedCategory={selectedCategory}
+              onCategoryChange={handleCategoryChange}
+            />
+          </aside>
+        </div>
       </div>
     </Layout>
   );

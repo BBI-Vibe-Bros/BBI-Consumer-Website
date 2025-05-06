@@ -265,7 +265,17 @@ class ContentfulService {
       };
 
       if (category && category !== 'all') {
-        query['fields.category.sys.id'] = category;
+        // First get the category ID from the slug
+        const categoryEntries = await this.client.getEntries({
+          content_type: 'category',
+          'fields.slug': category,
+          limit: 1
+        });
+        
+        if (categoryEntries.items.length > 0) {
+          const categoryId = categoryEntries.items[0].sys.id;
+          query['fields.category.sys.id'] = categoryId;
+        }
       }
 
       console.log('Contentful query:', query);
@@ -397,12 +407,13 @@ class ContentfulService {
       const entries = await this.client.getEntries({
         content_type: 'category',
         order: 'fields.name',
-        select: 'fields.name,fields.slug',
+        select: 'fields.name,fields.slug,sys.id',
         limit: 100
       });
       return entries.items.map((item: any) => ({
         name: item.fields.name,
-        slug: item.fields.slug
+        slug: item.fields.slug,
+        id: item.sys.id
       }));
     } catch (error) {
       console.error('Error fetching categories:', error);
