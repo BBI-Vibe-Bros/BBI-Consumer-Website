@@ -25,7 +25,7 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="hidden lg:block">
-            <img alt="Senior couple with Medicare advisor" className="w-full h-auto rounded-lg" src="/lovable-uploads/bbi-home-hero.png" />
+            <img alt="Senior couple with Medicare advisor" className="w-full h-auto rounded-lg" src="public/lovable-uploads/bbi-meet-the-team.png" />
           </div>
         </div>
       </div>

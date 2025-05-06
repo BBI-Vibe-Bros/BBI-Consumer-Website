@@ -45,16 +45,16 @@ const Header = () => {
     }]
   }, {
     title: 'Why Choose Us',
-    href: '/about',
+    href: '/about-us',
     submenu: [{
-      title: 'Our Team',
-      href: '/team'
+      title: 'About Us',
+      href: '/about-us'
     }, {
-      title: 'Our Services',
-      href: '/about/services'
+      title: 'Our Team',
+      href: '/about-us/team'
     }, {
       title: 'Client Testimonials',
-      href: '/about/testimonials'
+      href: '/about-us/testimonials'
     }]
   }, {
     title: 'Resources',

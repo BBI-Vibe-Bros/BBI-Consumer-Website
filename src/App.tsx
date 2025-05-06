@@ -75,8 +75,8 @@ const App = () => (
               {/* Static routes */}
               <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
               <Route path="/medicaresupplement" element={<MedicareSupplement />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/about/team" element={<TeamPage />} />
+              <Route path="/about-us" element={<AboutPage />} />
+              <Route path="/about-us/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
               

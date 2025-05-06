@@ -40,8 +40,8 @@ const BlogPost = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
-        <div className="container mx-auto px-6">
+      <section className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-8 lg:pt-20 lg:pb-5">
+        <div className="container mx-auto px-3">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               {isLoading ? (
