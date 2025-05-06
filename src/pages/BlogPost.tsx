@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -16,6 +15,7 @@ const BlogPost = () => {
   const { data: blog, isLoading, error } = useQuery({
     queryKey: ['blog', slug],
     queryFn: () => contentfulService.getBlogPostBySlug(slug || ''),
+    enabled: !!slug,
   });
 
   if (isLoading) {
@@ -49,49 +49,30 @@ const BlogPost = () => {
     );
   }
 
-  const blogData = blog.fields;
-  const publishDate = new Date(blog.sys.createdAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
   // Build breadcrumb items
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
     { label: 'Blog', path: '/blog' },
-    { label: blogData.title, path: `/blog/${slug}`, isLast: true }
+    { label: blog.title, path: `/blog/${slug}`, isLast: true }
   ];
 
-  // Transform data for BlogPostTemplate
-  const templateData = {
-    title: blogData.title,
-    publishDate,
-    author: blogData.author?.fields?.name || undefined,
-    featuredImage: blogData.featuredImage?.fields?.file?.url ? `https:${blogData.featuredImage.fields.file.url}` : undefined,
-    content: blogData.content,
-    tags: blogData.tags,
-    relatedPosts: blogData.relatedPosts?.map((relatedPost: any) => ({
-      title: relatedPost.fields.title,
-      slug: relatedPost.fields.slug,
-      featuredImage: relatedPost.fields.featuredImage?.fields?.file?.url 
-        ? `https:${relatedPost.fields.featuredImage.fields.file.url}`
-        : undefined
-    })) || []
-  };
+  // Get SEO data
+  const seoTitle = blog.seoFields?.title || blog.title;
+  const seoDescription = blog.seoFields?.description || blog.excerpt || blog.title;
+  const ogImage = blog.featuredImage;
 
   return (
     <Layout>
       <SEO 
-        title={blogData.title}
-        description={blogData.description || blogData.title}
-        ogImage={templateData.featuredImage}
+        title={seoTitle}
+        description={seoDescription}
+        ogImage={ogImage}
         ogType="article"
         schemaType="blogpost"
         schemaData={{
-          author: templateData.author,
-          datePublished: blog.sys.createdAt,
-          dateModified: blog.sys.updatedAt
+          author: typeof blog.author === 'string' ? blog.author : blog.author?.name,
+          datePublished: blog.publishedDate,
+          dateModified: blog.publishedDate
         }}
       />
 
@@ -101,7 +82,7 @@ const BlogPost = () => {
         </div>
       </div>
 
-      <BlogPostTemplate post={templateData} />
+      <BlogPostTemplate post={blog} />
       
       <CTASection />
     </Layout>

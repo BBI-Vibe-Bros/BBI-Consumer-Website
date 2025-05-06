@@ -1,34 +1,70 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document } from '@contentful/rich-text-types';
+import RichTextRenderer from '@/components/Content/RichTextRenderer';
 
 interface BlogPostTemplateProps {
   post: {
+    internalName: string;
     title: string;
-    publishDate: string;
-    author?: string;
+    slug: string;
+    publishedDate: string;
+    author?: {
+      name: string;
+      photo?: string;
+    } | string;
+    category?: string | string[];
     featuredImage?: string;
-    content: Document;
-    tags?: string[];
-    relatedPosts?: Array<{
+    excerpt: string;
+    contentBody: Document;
+    seoFields?: {
+      title?: string;
+      description?: string;
+      keywords?: string[];
+    };
+    relatedBlogPosts?: Array<{
       title: string;
       slug: string;
       featuredImage?: string;
     }>;
+    callToAction?: {
+      title?: string;
+      text?: string;
+      buttonText?: string;
+      buttonLink?: string;
+    };
   };
 }
 
 const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
+  // Debug logging
+  console.log('Rendering BlogPostTemplate with:', JSON.stringify(post, null, 2));
+
+  // Helper function to get author name
+  const getAuthorName = () => {
+    if (typeof post.author === 'string') return post.author;
+    return post.author?.name || '';
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Blog Header */}
       <header className="mb-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
         <div className="flex items-center text-gray-600 mb-6">
-          {post.publishDate && <span className="mr-4">{post.publishDate}</span>}
-          {post.author && <span>By {post.author}</span>}
+          {post.publishedDate && <span className="mr-4">{post.publishedDate}</span>}
+          {post.author && (
+            <div className="flex items-center">
+              {typeof post.author !== 'string' && post.author.photo && (
+                <img
+                  src={post.author.photo}
+                  alt={getAuthorName()}
+                  className="w-8 h-8 rounded-full mr-2"
+                />
+              )}
+              <span>By {getAuthorName()}</span>
+            </div>
+          )}
         </div>
       </header>
 
@@ -36,38 +72,43 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
       {post.featuredImage && (
         <div className="mb-8">
           <img 
-            src={post.featuredImage} 
+            src={post.featuredImage}
             alt={post.title}
             className="w-full h-auto rounded-lg object-cover max-h-[500px]"
           />
         </div>
       )}
 
-      {/* Blog Content */}
+      {/* Excerpt */}
+      {post.excerpt && (
+        <div className="prose max-w-none lg:prose-lg mb-8">
+          <p className="text-xl text-gray-700 italic">{post.excerpt}</p>
+        </div>
+      )}
+
+      {/* Main Content */}
       <article className="prose max-w-none lg:prose-lg mb-8">
-        {documentToReactComponents(post.content)}
+        {post.contentBody && <RichTextRenderer content={post.contentBody} />}
       </article>
 
-      {/* Tags */}
-      {post.tags && post.tags.length > 0 && (
+      {/* Category */}
+      {post.category && (
         <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-3">Topics:</h2>
+          <h2 className="text-xl font-semibold mb-3">Category:</h2>
           <div className="flex flex-wrap gap-2">
-            {post.tags.map((tag, index) => (
-              <span key={index} className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">
-                {tag}
-              </span>
-            ))}
+            <span className="bg-blue-100 text-bb-blue px-3 py-1 rounded-full text-sm">
+              {typeof post.category === 'string' ? post.category : post.category[0]}
+            </span>
           </div>
         </div>
       )}
 
       {/* Related Posts */}
-      {post.relatedPosts && post.relatedPosts.length > 0 && (
+      {post.relatedBlogPosts && post.relatedBlogPosts.length > 0 && (
         <section className="mt-12">
           <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {post.relatedPosts.map((related) => (
+            {post.relatedBlogPosts.map((related) => (
               <Link
                 key={related.slug}
                 to={`/blog/${related.slug}`}
@@ -88,6 +129,26 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
               </Link>
             ))}
           </div>
+        </section>
+      )}
+
+      {/* Call to Action */}
+      {post.callToAction && (
+        <section className="mt-12 bg-gray-50 rounded-xl p-8">
+          {post.callToAction.title && (
+            <h2 className="text-2xl font-semibold mb-4">{post.callToAction.title}</h2>
+          )}
+          {post.callToAction.text && (
+            <p className="text-lg text-gray-700 mb-6">{post.callToAction.text}</p>
+          )}
+          {post.callToAction.buttonText && post.callToAction.buttonLink && (
+            <Link
+              to={post.callToAction.buttonLink}
+              className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
+            >
+              {post.callToAction.buttonText}
+            </Link>
+          )}
         </section>
       )}
     </div>
