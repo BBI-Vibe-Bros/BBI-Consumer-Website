@@ -4,8 +4,15 @@ import { Document } from '@contentful/rich-text-types';
 import RichTextRenderer from '@/components/Content/RichTextRenderer';
 import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
+import Breadcrumb from '@/components/Navigation/Breadcrumb';
+
+interface BreadcrumbItem {
+  label: string;
+  path: string;
+  isLast?: boolean;
+}
 
 interface FoundationalPageTemplateProps {
   page: {
@@ -63,6 +70,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
   const [blogError, setBlogError] = useState<string | null>(null);
+  const location = useLocation();
 
   // Defensive fallback for relatedBlogs
   const relatedBlogs = Array.isArray(page.relatedBlogs) ? page.relatedBlogs : [];
@@ -71,6 +79,59 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
   useEffect(() => {
     console.log('relatedBlogs:', relatedBlogs);
   }, [relatedBlogs]);
+
+  // Build journey-style breadcrumb items based on the current path
+  const getBreadcrumbItems = () => {
+    const path = location.pathname;
+    const items: BreadcrumbItem[] = [];
+
+    // Plans section breadcrumbs
+    if (path.startsWith('/plans/')) {
+      // Add all plan types
+      const planItems = [
+        { label: 'Medicare Advantage', path: '/plans/advantage' },
+        { label: 'Medicare Supplements', path: '/plans/supplement' },
+        { label: 'Prescription Drug Plans', path: '/plans/prescription' },
+        { label: 'Additional Coverage', path: '/plans/additional-coverage' }
+      ];
+
+      // Add all items, marking the current one as last
+      planItems.forEach(item => {
+        items.push({
+          ...item,
+          isLast: path === item.path
+        });
+      });
+    }
+    // Basics section breadcrumbs
+    else if (path.startsWith('/medicare/basics/')) {
+      // Add all basic pages
+      const basicItems = [
+        { label: 'What is Medicare?', path: '/medicare/basics/what-is-medicare' },
+        { label: 'Enrollment Periods', path: '/medicare/basics/enrollment-periods' },
+        { label: 'Medicare Costs', path: '/medicare/basics/medicare-costs' }
+      ];
+
+      // Add all items, marking the current one as last
+      basicItems.forEach(item => {
+        items.push({
+          ...item,
+          isLast: path === item.path
+        });
+      });
+    }
+
+    // If no specific breadcrumb was built, use the page title
+    if (items.length === 0) {
+      items.push({ 
+        label: page.pageName || page.title || 'Page', 
+        path: path,
+        isLast: true 
+      });
+    }
+
+    return items;
+  };
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -126,7 +187,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
     <>
       {/* Hero Section (now outside container) */}
       <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-3">
+          {/* Breadcrumb Navigation */}
+          <div className="-ml-3 py-4">
+            <Breadcrumb items={getBreadcrumbItems()} />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
