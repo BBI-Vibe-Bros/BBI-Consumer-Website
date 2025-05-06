@@ -196,17 +196,20 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
 
         return null;
       },
-      [BLOCKS.EMBEDDED_ENTRY]: (node: any) => {
+      ['embedded-entry-block']: (node: any) => {
+        console.log('Embedded entry block node:', node);
         const entry = node.data.target;
-        const contentType = entry.contentType;
+        // Robustly extract contentType and fields
+        const contentType = entry.sys?.contentType?.sys?.id || entry.contentType;
+        const fields = entry.fields || {};
 
         switch (contentType) {
           case 'resourceGuide':
-            return <EmbeddedResource entry={entry} />;
+            return <EmbeddedResource entry={fields} />;
           case 'video':
-            return <EmbeddedVideo entry={entry} />;
+            return <EmbeddedVideo entry={fields} />;
           case 'youTubeEmbed': {
-            const link = entry.youTubeLink;
+            const link = fields.youTubeLink;
             if (!link) return null;
             // Extract YouTube video ID from the link
             const match = link.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/);
@@ -216,7 +219,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
               <div className="my-6">
                 <iframe
                   src={`https://www.youtube.com/embed/${videoId}`}
-                  title={entry.title || 'YouTube Video'}
+                  title={fields.title || 'YouTube Video'}
                   className="w-full aspect-video rounded-lg"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

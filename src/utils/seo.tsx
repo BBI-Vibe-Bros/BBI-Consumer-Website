@@ -7,7 +7,7 @@ import * as SchemaGenerator from './schemaGenerator';
 const defaultMetaConfig = {
   title: {
     template: '%s | Bobby Brock Insurance',
-    default: 'Medicare Insurance Plans & Coverage | Bobby Brock Insurance'
+    default: 'Your Local Trusted Medicare Partners in Tupelo, MS | Bobby Brock Insurance'
   },
   description: {
     default: 'Expert Medicare insurance guidance and plan selection in Tupelo, MS. Compare Medicare Advantage, Supplement, and Part D plans.'
@@ -16,7 +16,7 @@ const defaultMetaConfig = {
     type: 'website',
     locale: 'en_US',
     site_name: 'Bobby Brock Insurance',
-    url: 'https://bobbybrock.com'
+    url: 'https://www.bobbybrockinsurance.com'
   }
 };
 

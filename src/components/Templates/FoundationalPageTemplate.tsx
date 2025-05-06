@@ -9,6 +9,7 @@ import Sidebar from '@/components/Sidebar';
 
 interface FoundationalPageTemplateProps {
   page: {
+    title?: string;
     pageName: string;
     author?: string;
     pageSlug: string;
@@ -109,85 +110,105 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="lg:flex lg:flex-row lg:space-x-8">
-        {/* Main Content */}
-        <div className="lg:w-3/4">
-          <article className="prose max-w-none lg:prose-lg mb-8">
-            <RichTextRenderer content={page.fBodyContent} />
-          </article>
-
-          {/* YouTube Video */}
-          {page.youTubeVideo && (
-            <div className="mb-8">
-              <div className="aspect-w-16 aspect-h-9">
-                <iframe
-                  src={page.youTubeVideo}
-                  title={page.pageName}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full rounded-lg"
-                />
-              </div>
+    <>
+      {/* Hero Section (now outside container) */}
+      <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
+                {page.title || page.metadata?.title || page.pageName || 'NO TITLE FOUND'}
+              </h1>
+              {page.metadata?.description && (
+                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                  {page.metadata.description}
+                </p>
+              )}
             </div>
-          )}
-
-          {/* Related Blog Posts */}
-          {relatedBlogs.length > 0 && (
-            <section className="mt-12">
-              <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {relatedBlogs.map((blog) => (
-                  <Link
-                    key={blog.slug}
-                    to={`/blog/${blog.slug}`}
-                    className="block group"
-                  >
-                    {blog.featuredImage && (
-                      <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
-                        <img
-                          src={blog.featuredImage}
-                          alt={blog.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform"
-                        />
-                      </div>
-                    )}
-                    <h3 className="text-lg font-medium group-hover:text-bb-blue">
-                      {blog.title}
-                    </h3>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Call to Action */}
-          {page.callToAction && (
-            <section className="mt-12 bg-gray-50 rounded-xl p-8">
-              {page.callToAction.title && (
-                <h2 className="text-2xl font-semibold mb-4">{page.callToAction.title}</h2>
-              )}
-              {page.callToAction.text && (
-                <p className="text-lg text-gray-700 mb-6">{page.callToAction.text}</p>
-              )}
-              {page.callToAction.buttonText && page.callToAction.buttonLink && (
-                <Link
-                  to={page.callToAction.buttonLink}
-                  className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
-                >
-                  {page.callToAction.buttonText}
-                </Link>
-              )}
-            </section>
-          )}
+          </div>
         </div>
+      </section>
+      <div className="container mx-auto px-4 py-8">
+        <div className="lg:flex lg:flex-row lg:space-x-8">
+          {/* Main Content */}
+          <div className="lg:w-3/4">
+            <article className="prose max-w-none lg:prose-lg mb-8">
+              <RichTextRenderer content={page.fBodyContent} />
+            </article>
 
-        {/* Sidebar */}
-        <aside className="mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
-          <Sidebar />
-        </aside>
+            {/* YouTube Video */}
+            {page.youTubeVideo && (
+              <div className="mb-8">
+                <div className="aspect-w-16 aspect-h-9">
+                  <iframe
+                    src={page.youTubeVideo.includes('embed') ? page.youTubeVideo : `https://www.youtube.com/embed/${page.youTubeVideo}`}
+                    title={`${page.pageName} - YouTube Video`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full rounded-lg"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Related Blog Posts */}
+            {relatedBlogs.length > 0 && (
+              <section className="mt-12">
+                <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {relatedBlogs.map((blog) => (
+                    <Link
+                      key={blog.slug}
+                      to={`/blog/${blog.slug}`}
+                      className="block group"
+                    >
+                      {blog.featuredImage && (
+                        <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
+                          <img
+                            src={blog.featuredImage}
+                            alt={blog.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                          />
+                        </div>
+                      )}
+                      <h3 className="text-lg font-medium group-hover:text-bb-blue">
+                        {blog.title}
+                      </h3>
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Call to Action */}
+            {page.callToAction && (
+              <section className="mt-12 bg-gray-50 rounded-xl p-8">
+                {page.callToAction.title && (
+                  <h2 className="text-2xl font-semibold mb-4">{page.callToAction.title}</h2>
+                )}
+                {page.callToAction.text && (
+                  <p className="text-lg text-gray-700 mb-6">{page.callToAction.text}</p>
+                )}
+                {page.callToAction.buttonText && page.callToAction.buttonLink && (
+                  <Link
+                    to={page.callToAction.buttonLink}
+                    className="inline-block bg-bb-blue text-white px-6 py-3 rounded-lg hover:bg-bb-dark-blue transition-colors"
+                  >
+                    {page.callToAction.buttonText}
+                  </Link>
+                )}
+              </section>
+            )}
+          </div>
+
+          {/* Sidebar */}
+          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
+            <Sidebar />
+          </aside>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
