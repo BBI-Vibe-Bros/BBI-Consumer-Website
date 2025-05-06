@@ -86,12 +86,12 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p className="mb-4 text-xl leading-relaxed text-gray-800 last:mb-0">
+        <p className="mb-4 text-xl leading-loose tracking-normal text-gray-800 last:mb-0">
           {children}
         </p>
       ),
       [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
-        <h1 className="text-4xl font-bold mb-6 text-bbi-blue">{children}</h1>
+        <h1 className="text-4xl font-bold mb-6 tracking-normal text-bbi-blue">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
         <h2 className="text-3xl font-bold mb-5 text-bbi-blue">{children}</h2>
@@ -136,12 +136,12 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         <tr className="border-b border-gray-200">{children}</tr>
       ),
       [BLOCKS.TABLE_HEADER_CELL]: (_node: any, children: React.ReactNode) => (
-        <th className="px-4 py-2 text-left font-bold bg-gray-50">
+        <th className="px-4 py-2 text-left font-bold bg-gray-100">
           {children}
         </th>
       ),
       [BLOCKS.TABLE_CELL]: (_node: any, children: React.ReactNode) => (
-        <td className="px-4 py-2">{children}</td>
+        <td className="px-4 py-2 text-left text-sm">{children}</td>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { title, description, url } = node.data.target;

@@ -34,27 +34,48 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
     }))
   };
 
+  // Helper to determine pill color
+  const getPillClass = (_index: number, isLast: boolean) => {
+    // Only the active (current) breadcrumb is yellow, all others are blue
+    return isLast ? 'bg-yellow-400 text-black' : 'bg-blue-400 text-white';
+  };
+
   return (
     <>
-      <ShadcnBreadcrumb 
-        className={`mx-auto px-4 sm:px-6 py-4 ${className}`}
+      <nav
+        className={`w-auto flex flex-col items-center sm:items-start ${className}`}
+        aria-label="breadcrumb"
       >
-        <BreadcrumbList>
-          {items.map((item, index) => [
-            index > 0 ? <BreadcrumbSeparator key={`sep-${index}`} /> : null,
-            <BreadcrumbItem key={`item-${index}`}>
+        <ol className="flex flex-row items-center gap-1.5 sm:gap-2 py-2">
+          {items.map((item, index) => (
+            <li key={`item-${index}`} className="inline-flex items-center">
               {item.isLast ? (
-                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                <span
+                  className={`rounded-full px-3 py-0.5 font-semibold text-sm sm:text-base ${getPillClass(index, item.isLast)}`}
+                  aria-current="page"
+                >
+                  {item.label}
+                </span>
               ) : (
-                <BreadcrumbLink asChild>
-                  <Link to={item.path}>{item.label}</Link>
-                </BreadcrumbLink>
+                <Link
+                  to={item.path}
+                  className={`rounded-full px-3 py-0.5 font-regular text-sm sm:text-base transition-colors hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getPillClass(index, false)}`}
+                >
+                  {item.label}
+                </Link>
               )}
-            </BreadcrumbItem>
-          ])}
-        </BreadcrumbList>
-      </ShadcnBreadcrumb>
-      
+              {/* Mobile-only blue pill indicators after first pill */}
+              {index === 0 && (
+                <span className="flex sm:hidden ml-1 gap-0.5">
+                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
+                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
+                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
       {/* Inject breadcrumb schema */}
       <script
         type="application/ld+json"

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Document } from '@contentful/rich-text-types';
 import RichTextRenderer from '@/components/Content/RichTextRenderer';
 import BlogCTA from '@/components/Home/BlogCTA';
+import Breadcrumb from '@/components/Navigation/Breadcrumb';
 
 interface BlogPostTemplateProps {
   post: {
@@ -47,10 +48,19 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
     return post.author?.name || '';
   };
 
+  // Breadcrumb items: Home > Blog > Current Post
+  const breadcrumbItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Blog', path: '/blog' },
+    { label: post.title, path: `/blog/${post.slug}`, isLast: true }
+  ];
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Blog Header */}
       <header className="mb-8 w-1280">
+        {/* Breadcrumb Navigation */}
+        <Breadcrumb items={breadcrumbItems} className="mb-4" />
         <h1 className="text-3xl md:text-5xl font-bold mb-4">{post.title}</h1>
         <div className="flex items-center text-gray-600 mb-6">
           {post.publishedDate && <span className="mr-4">{post.publishedDate}</span>}

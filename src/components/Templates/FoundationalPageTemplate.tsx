@@ -120,7 +120,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                 {page.title || page.metadata?.title || page.pageName || 'NO TITLE FOUND'}
               </h1>
               {page.metadata?.description && (
-                <p className="text-lg text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg text-gray-700 mb-4 leading-relaxed">
                   {page.metadata.description}
                 </p>
               )}

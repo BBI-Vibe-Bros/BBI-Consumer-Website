@@ -51,7 +51,6 @@ const BlogPost = () => {
 
   // Build breadcrumb items
   const breadcrumbItems = [
-    { label: 'Home', path: '/' },
     { label: 'Blog', path: '/blog' },
     { label: blog.title, path: `/blog/${slug}`, isLast: true }
   ];
@@ -75,12 +74,6 @@ const BlogPost = () => {
           dateModified: blog.publishedDate
         }}
       />
-
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto">
-          <Breadcrumb items={breadcrumbItems} />
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 py-8">
         <div className="lg:flex lg:flex-row lg:space-x-8">

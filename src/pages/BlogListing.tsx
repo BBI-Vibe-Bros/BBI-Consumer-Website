@@ -69,7 +69,7 @@ const BlogListing = () => {
         schemaType="webpage"
       />
 
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div className="bg-0">
         <div className="container mx-auto">
           <Breadcrumb items={breadcrumbItems} />
         </div>
