@@ -48,7 +48,7 @@ const App = () => (
                 <Route path="basics/what-is-medicare" element={<MedicareBasics />} />
                 <Route path="basics/enrollment-periods" element={<EnrollmentPeriods />} />
                 <Route path="eligibility" element={<MedicareEligibility />} />
-                <Route path="parts" element={<MedicareParts />} />
+                <Route path="four-parts-of-medicare" element={<MedicareParts />} />
                 <Route path="basics/medicare-costs" element={<MedicareCosts />} />
               </Route>
               

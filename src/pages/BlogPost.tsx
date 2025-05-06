@@ -5,7 +5,7 @@ import Layout from '@/components/Layout/Layout';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
-import BlogSidebar from '@/components/BlogSidebar';
+import BlogPostSidebar from '@/components/BlogPostSidebar';
 import RichTextRenderer from '@/components/Content/RichTextRenderer';
 
 const BlogPost = () => {
@@ -34,7 +34,7 @@ const BlogPost = () => {
       />
 
       <div className="bg-0">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-0 pb-5">
           <Breadcrumb items={breadcrumbItems} />
         </div>
       </div>
@@ -114,10 +114,7 @@ const BlogPost = () => {
 
           {/* Sidebar */}
           <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
-            <BlogSidebar 
-              selectedCategory="all"
-              onCategoryChange={() => {}}
-            />
+            {post && <BlogPostSidebar content={post.contentBody} />}
           </aside>
         </div>
       </div>

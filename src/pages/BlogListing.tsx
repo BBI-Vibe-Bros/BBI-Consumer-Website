@@ -91,16 +91,16 @@ const BlogListing = () => {
       />
 
       <div className="bg-0">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-0 pb-5">
           <Breadcrumb items={breadcrumbItems} />
         </div>
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
+      <section className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-8 lg:pt-20 lg:pb-5">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="w-full max-w-3xl">
               <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
                 Medicare Insurance Blog
               </h1>

@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ContentfulService from '@/services/contentfulService';
 import { ArrowRight } from 'lucide-react';
+import TableOfContents from '@/components/Content/TableOfContents';
+import { Document } from '@contentful/rich-text-types';
 
-const STATIC_GUIDES = [
-  { title: 'Understanding Medicare', slug: '/resources/medicare-overview' },
-  { title: 'Medicare Advantage', slug: '/resources/medicare-advantage' },
-  { title: 'Medicare Supplement', slug: '/resources/medicare-supplements' },
-  { title: 'Medicare Part D', slug: '/resources/medicare-part-d' },
-];
+interface SidebarProps {
+  content?: Document;
+}
 
-const Sidebar = () => {
+const Sidebar = ({ content }: SidebarProps) => {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,6 +41,9 @@ const Sidebar = () => {
 
   return (
     <div className="space-y-6">
+      {/* Table of Contents */}
+      {content && <TableOfContents content={content} />}
+
       {/* Blog Section */}
       <div className="bg-gray-50 rounded-2xl p-5">
         <h3 className="font-bold text-xl mb-4">Read Our Blog</h3>
@@ -76,23 +78,6 @@ const Sidebar = () => {
             ))
           )}
         </div>
-      </div>
-
-      {/* Guides Section */}
-      <div className="bg-gray-50 rounded-2xl p-5">
-        <h3 className="font-bold text-xl mb-4">Medicare Guides</h3>
-        <ul className="space-y-2">
-          {STATIC_GUIDES.map(guide => (
-            <li key={guide.slug}>
-              <Link
-                to={guide.slug}
-                className="text-bb-blue font-medium hover:underline text-base"
-              >
-                {guide.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
 
       {/* Appointment Button */}

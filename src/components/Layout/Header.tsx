@@ -25,7 +25,7 @@ const Header = () => {
       href: '/medicare/eligibility'
     }, {
       title: 'Medicare Parts',
-      href: '/medicare/parts'
+      href: '/medicare/four-parts-of-medicare'
     }]
   }, {
     title: 'Medicare Plans',

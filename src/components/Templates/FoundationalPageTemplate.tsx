@@ -207,7 +207,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
 
           {/* Sidebar */}
           <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
-            <Sidebar />
+            <Sidebar content={page.fBodyContent} />
           </aside>
         </div>
       </div>
