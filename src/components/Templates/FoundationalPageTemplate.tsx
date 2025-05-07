@@ -40,6 +40,7 @@ interface FoundationalPageTemplateProps {
       buttonLink?: string;
     };
   };
+  hideBreadcrumbs?: boolean;
 }
 
 const STATIC_BLOGS = [
@@ -66,7 +67,7 @@ const STATIC_GUIDES = [
   { title: 'Medicare Part D', slug: '/resources/medicare-part-d' },
 ];
 
-const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
+const FoundationalPageTemplate = ({ page, hideBreadcrumbs = false }: FoundationalPageTemplateProps) => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
   const [blogError, setBlogError] = useState<string | null>(null);
@@ -189,9 +190,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
         <div className="container mx-auto px-3">
           {/* Breadcrumb Navigation */}
-          <div className="-ml-3 py-4">
-            <Breadcrumb items={getBreadcrumbItems()} />
-          </div>
+          {!hideBreadcrumbs && (
+            <div className="-ml-3 py-4">
+              <Breadcrumb items={getBreadcrumbItems()} />
+            </div>
+          )}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
