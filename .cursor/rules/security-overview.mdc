@@ -1,0 +1,38 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Security Implementation Overview
+
+## Content Security Policy (CSP)
+The CSP implementation is defined in [middleware.ts](mdc:src/server/middleware.ts) and includes:
+- Strict resource loading rules for scripts, styles, images, and fonts
+- Trusted domains for analytics and content delivery
+- Protection against XSS and other injection attacks
+
+## Rate Limiting
+Rate limiting rules are defined in [rateLimiter.ts](mdc:src/server/rateLimiter.ts) with different limits for:
+- General API: 100 requests/15 minutes
+- Authentication: 5 requests/hour
+- Forms: 10 requests/hour
+- Contentful: 30 requests/minute
+- Health checks: 60 requests/minute
+
+## Security Headers
+Additional security headers are implemented in [middleware.ts](mdc:src/server/middleware.ts):
+- X-Content-Type-Options
+- X-Frame-Options
+- X-XSS-Protection
+- Referrer-Policy
+- Permissions-Policy
+- Strict-Transport-Security
+
+## Testing
+Security tests are located in [rateLimiter.test.ts](mdc:src/server/__tests__/rateLimiter.test.ts) and verify:
+- Rate limiting functionality
+- Request blocking at limits
+- Header presence and values
+
+## Integration
+The security middleware is integrated into the Vite development server in [vite.config.ts](mdc:vite.config.ts).

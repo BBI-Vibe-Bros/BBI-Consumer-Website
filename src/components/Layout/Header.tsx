@@ -72,8 +72,8 @@ const Header = () => {
       title: 'Medicare FAQs',
       href: '/resources/faqs'
     }, {
-      title: 'Medicare Glossary',
-      href: '/resources/glossary'
+      title: 'Medicare Breakdown',
+      href: '/medicare/breakdown'
     }]
   }];
   return <header className="bg-white py-[25px]">

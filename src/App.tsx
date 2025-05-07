@@ -26,6 +26,7 @@ import MedicareParts from "./pages/MedicareParts";
 import EnrollmentPeriods from "./pages/EnrollmentPeriods";
 import TeamPage from "./pages/TeamPage";
 import MedicareCosts from './pages/MedicareCosts';
+import MedicareBreakdown from './pages/MedicareBreakdown';
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -50,6 +51,7 @@ const App = () => (
                 <Route path="eligibility" element={<MedicareEligibility />} />
                 <Route path="four-parts-of-medicare" element={<MedicareParts />} />
                 <Route path="basics/medicare-costs" element={<MedicareCosts />} />
+                <Route path="breakdown" element={<MedicareBreakdown />} />
               </Route>
               
               {/* Plan routes */}

@@ -1,0 +1,49 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Rate Limiting Implementation
+
+## Configuration
+Rate limiters are configured in [rateLimiter.ts](mdc:src/server/rateLimiter.ts) using express-rate-limit:
+
+### API Limiter
+- Window: 15 minutes
+- Max Requests: 100
+- Used for: General API endpoints
+
+### Auth Limiter
+- Window: 1 hour
+- Max Requests: 5
+- Used for: Authentication endpoints
+
+### Form Limiter
+- Window: 1 hour
+- Max Requests: 10
+- Used for: Form submission endpoints
+
+### Contentful Limiter
+- Window: 1 minute
+- Max Requests: 30
+- Used for: Contentful API requests
+
+### Health Check Limiter
+- Window: 1 minute
+- Max Requests: 60
+- Used for: Health check endpoints
+
+## Usage
+Rate limiters are applied in [middleware.ts](mdc:src/server/middleware.ts) based on route patterns:
+- `/api/auth/*` → Auth Limiter
+- `/api/forms/*` → Form Limiter
+- `/api/content/*` → Contentful Limiter
+- `/api/health` → Health Check Limiter
+- `/api/*` → General API Limiter
+
+## Testing
+Tests in [rateLimiter.test.ts](mdc:src/server/__tests__/rateLimiter.test.ts) verify:
+- Requests within limits are allowed
+- Requests exceeding limits are blocked
+- Appropriate error messages are returned
+- Rate limit headers are set correctly

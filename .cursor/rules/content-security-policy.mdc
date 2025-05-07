@@ -1,0 +1,59 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Content Security Policy (CSP) Implementation
+
+## Policy Configuration
+The CSP policy is defined in [middleware.ts](mdc:src/server/middleware.ts) with the following directives:
+
+### Resource Loading
+- `default-src`: Only allow resources from same origin
+- `script-src`: Allow scripts from:
+  - Same origin
+  - Inline scripts (development)
+  - Google Analytics
+  - Google Tag Manager
+- `style-src`: Allow styles from:
+  - Same origin
+  - Inline styles
+  - Google Fonts
+- `img-src`: Allow images from:
+  - Same origin
+  - Data URLs
+  - Contentful CDN
+  - Lovable CDN
+- `font-src`: Allow fonts from:
+  - Same origin
+  - Google Fonts
+
+### Security Controls
+- `connect-src`: Restrict API connections to:
+  - Same origin
+  - Contentful API
+  - Google Analytics
+- `frame-src`: Allow frames only from:
+  - Same origin
+  - YouTube (for embedded videos)
+- `object-src`: Block all object/embed sources
+- `base-uri`: Restrict base tag to same origin
+- `form-action`: Restrict form submissions to same origin
+- `frame-ancestors`: Block site from being framed
+- `upgrade-insecure-requests`: Force HTTPS
+
+## Implementation
+The policy is:
+1. Defined as an object in [middleware.ts](mdc:src/server/middleware.ts)
+2. Converted to a string format
+3. Applied via security headers middleware
+4. Integrated with Vite in [vite.config.ts](mdc:vite.config.ts)
+
+## Security Headers
+Additional security headers are set alongside CSP:
+- `X-Content-Type-Options`: Prevent MIME type sniffing
+- `X-Frame-Options`: Prevent clickjacking
+- `X-XSS-Protection`: Enable XSS filtering
+- `Referrer-Policy`: Control referrer information
+- `Permissions-Policy`: Restrict browser features
+- `Strict-Transport-Security`: Enforce HTTPS
