@@ -1,14 +1,66 @@
-User-agent: Googlebot
-Allow: /
+# BBI Insurance Medicare Website Robots.txt
 
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
+# Global rules
 User-agent: *
 Allow: /
+Allow: /medicare
+Allow: /medicare/advantage
+Allow: /medicare/supplement
+Allow: /medicare/prescription
+Allow: /about
+Allow: /contact
+Allow: /resources
+Allow: /faq
+Allow: /blog
+Allow: /sitemap.xml
+
+# Specific crawler rules
+User-agent: Googlebot
+Allow: /medicare/*
+Allow: /blog/*
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /medicare/*
+Allow: /blog/*
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /medicare/*
+Allow: /blog/*
+Crawl-delay: 3
+
+# Block sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*?*
+
+# Block common CMS paths
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+
+# Block development files
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.map$
+Disallow: /*.txt$
+Disallow: /*.md$
+
+# Sitemaps
+Sitemap: https://bbi-insurance.com/sitemap.xml
+Sitemap: https://bbi-insurance.com/sitemap-news.xml
+Sitemap: https://bbi-insurance.com/sitemap-image.xml
+
+# Host
+Host: https://bbi-insurance.com
+
+# Crawl-delay
+Crawl-delay: 10

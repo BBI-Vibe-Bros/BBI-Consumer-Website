@@ -1,50 +1,160 @@
-# Bobby Brock Insurance Website
+# BBI Insurance Medicare Website
 
-## Project Info
+A modern, secure, and accessible Medicare insurance website built with React, TypeScript, and Contentful CMS.
 
-This is the codebase for the Bobby Brock Insurance website.
+## 🚀 Quick Start
 
-## How to Edit This Code
+```bash
+# Install dependencies
+npm install
 
-You can work with this project in several ways:
+# Start development server
+npm run dev
 
-### Local Development
+# Build for production
+npm run build
 
-1. **Clone the repository:**
-   ```sh
-   git clone <YOUR_GIT_URL>
-   cd <YOUR_PROJECT_NAME>
-   ```
-2. **Install dependencies:**
-   ```sh
-   npm install
-   ```
-3. **Start the development server:**
-   ```sh
-   npm run dev
-   ```
-   The app will be available at `http://localhost:5173` (or as indicated in your terminal).
+# Preview production build
+npm run preview
+```
 
-### Edit Directly in GitHub
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit them.
+## 🛠 Tech Stack
 
-### Use GitHub Codespaces
-- Go to your repository on GitHub.
-- Click the "Code" button and select the "Codespaces" tab.
-- Click "New codespace" to launch a cloud development environment.
-- Edit files and commit/push your changes as needed.
+- **Frontend**: React 18, TypeScript, TailwindCSS
+- **Build Tool**: Vite
+- **CMS**: Contentful
+- **Testing**: Jest, React Testing Library
+- **Linting**: ESLint, Prettier
+- **Security**: CSP, Rate Limiting, Security Headers
 
-## Tech Stack
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📁 Project Structure
 
-## Deployment
-Deployment is handled outside this repository. Use your preferred platform or CI/CD pipeline to build and deploy the site.
+```
+src/
+├── components/     # Reusable React components
+├── pages/         # Page components and routing
+├── server/        # Server middleware and API routes
+├── styles/        # Global styles and Tailwind config
+├── types/         # TypeScript type definitions
+└── utils/         # Utility functions and helpers
+```
 
-## Custom Domains
-To connect a custom domain, follow your hosting provider's instructions for domain setup and DNS configuration.
+## 🔒 Security Features
+
+- Content Security Policy (CSP)
+- Rate Limiting
+- Security Headers
+- XSS Protection
+- CSRF Protection
+- HTTPS Enforcement
+
+## 🎯 Key Features
+
+- Responsive design for all devices
+- Accessibility compliance (WCAG 2.1)
+- SEO optimization
+- Fast page loads
+- Secure form handling
+- Content management via Contentful
+
+## 📝 Content Management
+
+Content is managed through Contentful CMS. Key content types:
+
+- Medicare Plans
+- Resources
+- FAQs
+- Team Members
+- Testimonials
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm test
+
+# Run e2e tests
+npm run test:e2e
+
+# Run accessibility tests
+npm run test:a11y
+```
+
+## 🔄 Deployment
+
+The site is deployed to production using GitHub Actions. The workflow:
+
+1. Run tests
+2. Build production assets
+3. Deploy to hosting platform
+4. Run post-deployment checks
+
+## 📈 Performance Monitoring
+
+- Google Analytics 4
+- Error tracking
+- Performance metrics
+- User behavior analytics
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📄 License
+
+This project is proprietary and confidential. All rights reserved.
+
+## 👥 Team
+
+- Project Manager: [Name]
+- Lead Developer: [Name]
+- Content Manager: [Name]
+- Designer: [Name]
+
+## 📞 Support
+
+For technical support, contact:
+- Email: support@bbi-insurance.com
+- Phone: (555) 123-4567
+
+## 🔍 SEO Implementation
+
+### Technical SEO
+- XML Sitemaps with image and news support
+- Robots.txt with specific crawler directives
+- Structured data (JSON-LD) for Medicare plans
+- Canonical URLs implementation
+- Hreflang tags for language targeting
+- Mobile-first responsive design
+- Fast loading times (Core Web Vitals optimization)
+
+### Content SEO
+- Semantic HTML structure
+- Meta tags optimization
+- Open Graph and Twitter Card support
+- Alt text for all images
+- Internal linking strategy
+- URL structure optimization
+- Content hierarchy (H1-H6)
+
+### Performance SEO
+- Image optimization
+- Lazy loading
+- Code splitting
+- Caching strategy
+- CDN implementation
+- Gzip compression
+- Minification of assets
+
+### Monitoring
+- Google Search Console integration
+- Bing Webmaster Tools
+- Regular SEO audits
+- Keyword tracking
+- Backlink monitoring
+- Mobile usability testing
+- Core Web Vitals monitoring
