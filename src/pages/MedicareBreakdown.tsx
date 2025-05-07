@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
+import LeadMagnetTemplate from '@/components/Templates/LeadMagnetTemplate';
 import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
 import Layout from '@/components/Layout/Layout';
@@ -217,7 +217,7 @@ const MedicareBreakdown = () => {
         title={page.metadata?.title || page.pageName || "Medicare Breakdown"}
         description={page.metadata?.description || "Learn about Medicare coverage options and find the right plan for your needs."}
       />
-      <FoundationalPageTemplate page={page} hideBreadcrumbs={true} />
+      <LeadMagnetTemplate page={page} />
     </Layout>
   );
 };
