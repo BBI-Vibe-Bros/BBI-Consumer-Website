@@ -51,10 +51,10 @@ src/
 The application uses the following routes:
 
 - `/` - Homepage
-- `/medicare-breakdown` - Medicare overview
 - `/medicare/basics/*` - Medicare basics pages
 - `/medicare/eligibility` - Medicare eligibility
 - `/medicare/four-parts-of-medicare` - Medicare parts overview
+- `/medicare-breakdown` - 'Medicare Breakdown: The Alphabet Soup of Medicare' Book Landing Page
 - `/plans/*` - Medicare plan pages
 - `/resources/*` - Resource pages
 - `/blog` - Blog listing
@@ -140,19 +140,6 @@ The site is deployed to production using GitHub Actions. The workflow:
 ## 📄 License
 
 This project is proprietary and confidential. All rights reserved.
-
-## 👥 Team
-
-- Project Manager: [Name]
-- Lead Developer: [Name]
-- Content Manager: [Name]
-- Designer: [Name]
-
-## 📞 Support
-
-For technical support, contact:
-- Email: support@bbi-insurance.com
-- Phone: (555) 123-4567
 
 ## 🔍 SEO Implementation
 
