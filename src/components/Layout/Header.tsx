@@ -10,7 +10,7 @@ import {
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
-import { ChevronDown, BookOpen, FileText, Users, HelpCircle, Calendar, DollarSign, Shield, Pill, PlusCircle, Download } from 'lucide-react';
+import { ChevronDown, BookOpen, FileText, Users, HelpCircle, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star } from 'lucide-react';
 import DropdownCallout from './DropdownCallout';
 
 const Header = () => {
@@ -44,7 +44,7 @@ const Header = () => {
       submenu: [
         { title: 'About Us', href: '/about-us', icon: Users, description: 'Learn about our company and our mission.' },
         { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
-        { title: 'Client Testimonials', href: '/about-us/testimonials', icon: Users, description: 'Read what our clients have to say about us.' }
+        { title: 'Client Testimonials', href: '/client-reviews', icon: Star, description: 'Read what our clients have to say about us.' }
       ]
     },
     {
@@ -87,8 +87,8 @@ const Header = () => {
             title="Join Our Growing Family of Satisfied Clients"
             description="See why thousands of Medicare beneficiaries trust us with their healthcare coverage. Read real stories from our clients."
             ctaText="Read Testimonials"
-            ctaLink="/about-us/testimonials"
-            icon={Users}
+            ctaLink="/client-reviews"
+            icon={Star}
             bgColor="bg-green-50"
           />
         );

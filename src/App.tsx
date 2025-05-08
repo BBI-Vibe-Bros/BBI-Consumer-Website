@@ -28,6 +28,7 @@ import EnrollmentPeriods from "./pages/EnrollmentPeriods";
 import TeamPage from "./pages/TeamPage";
 import MedicareCosts from './pages/MedicareCosts';
 import MedicareBreakdown from './pages/MedicareBreakdown';
+import ClientTestimonials from './pages/ClientTestimonials';
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -82,6 +83,7 @@ const App = () => (
               <Route path="/about-us/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/client-reviews" element={<ClientTestimonials />} />
               
               {/* Catch all for 404 */}
               <Route path="*" element={<NotFound />} />

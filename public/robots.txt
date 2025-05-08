@@ -24,6 +24,7 @@ Allow: /about-us
 Allow: /about-us/team
 Allow: /contact
 Allow: /privacy-policy
+Allow: /client-reviews
 Allow: /sitemap.xml
 
 # Specific crawler rules

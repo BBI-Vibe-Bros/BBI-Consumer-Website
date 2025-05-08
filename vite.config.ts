@@ -18,6 +18,13 @@ export default defineConfig(({ mode }) => ({
         server.middlewares.use(applyRateLimits);
         server.middlewares.use(securityHeaders);
       }
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
     }
   },
   plugins: [
