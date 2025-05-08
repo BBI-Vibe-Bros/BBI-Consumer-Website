@@ -102,10 +102,10 @@ const BlogListing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="w-full max-w-3xl">
               <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
-                Medicare Insurance Blog
+                Blogs & Insights
               </h1>
-              <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-                Expert articles on Medicare Advantage, Medicare Supplements, and Part D plans. Stay informed about your Medicare coverage options.
+              <p className="text-base text-gray-700 mb-4 leading-snug">
+                Get clear answers, timely news, and helpful tips from Bobby Brock Insurance.
               </p>
             </div>
           </div>
@@ -167,11 +167,13 @@ const BlogListing = () => {
                             {typeof post.category === 'string' ? post.category : post.category[0]}
                           </span>
                         )}
-                        <h2 className="text-xl font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
+                        <p className="text-gray-500 text-sm mb-3">{post.publishedDate}</p>
+                        <h2 className="text-lg font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
                           {post.title}
                         </h2>
-                        <p className="text-gray-500 text-sm mb-3">{post.publishedDate}</p>
-                        <p className="text-gray-700 line-clamp-3">{post.excerpt}</p>
+                        <p className="text-gray-700 text-[16px] leading-normal line-clamp-3">{post.excerpt}</p>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              
                       </div>
                     </Link>
                   ))}

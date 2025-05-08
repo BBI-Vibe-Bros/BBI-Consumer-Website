@@ -63,22 +63,6 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/contact"/>
   </url>
 
-  <!-- Resources -->
-  <url>
-    <loc>https://bbi-insurance.com/resources</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/resources"/>
-  </url>
-  <url>
-    <loc>https://bbi-insurance.com/faq</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/faq"/>
-  </url>
-
   <!-- Blog Posts -->
   <url>
     <loc>https://bbi-insurance.com/blog</loc>

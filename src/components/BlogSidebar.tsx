@@ -57,7 +57,7 @@ const BlogSidebar = ({ selectedCategory, onCategoryChange }: { selectedCategory:
           No fluff, no jargon—just clear, helpful answers to your most important Medicare questions. Download your free copy now and take the guesswork out of getting the right coverage.
         </p>
         <Link
-          to="/resources/medicare-breakdown"
+          to="/medicare-breakdown"
           className="flex items-center justify-center bg-bb-blue text-white rounded-lg px-4 py-3 hover:bg-bb-dark-blue transition group"
         >
           <Download className="mr-2" size={20} />

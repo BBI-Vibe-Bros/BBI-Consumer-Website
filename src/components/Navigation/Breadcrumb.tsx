@@ -51,7 +51,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
             <li key={`item-${index}`} className="inline-flex items-center">
               {item.isLast ? (
                 <span
-                  className={`rounded-full px-3 py-0.5 font-semibold text-sm sm:text-base ${getPillClass(index, item.isLast)}`}
+                  className={`rounded-full px-3 py-0.5 font-semibold text-sm ${getPillClass(index, item.isLast)}`}
                   aria-current="page"
                 >
                   {item.label}
@@ -59,7 +59,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
               ) : (
                 <Link
                   to={item.path}
-                  className={`rounded-full px-3 py-0.5 font-regular text-sm sm:text-base transition-colors hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getPillClass(index, false)}`}
+                  className={`rounded-full px-3 py-0.5 font-regular text-sm transition-colors hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getPillClass(index, false)}`}
                 >
                   {item.label}
                 </Link>

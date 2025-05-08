@@ -111,5 +111,5 @@
 /* Standard readability */
 article p, 
 .readable-content p {
-  @apply mb-4 max-w-3xl leading-relaxed md:leading-7;
+  @apply mb-4 max-w-3xl leading-normal md:leading-7;
 }

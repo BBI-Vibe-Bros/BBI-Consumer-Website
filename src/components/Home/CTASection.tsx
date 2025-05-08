@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const CTASection = () => {
   return (
@@ -14,9 +15,9 @@ const CTASection = () => {
           <p className="text-lg md:text-lg mb-4 md:mb-5 leading-relaxed text-white/90">
             Download our comprehensive guide to understanding Medicare coverage options. Learn about plans, costs, and how to make the right choice for your healthcare needs.
           </p>
-          <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark text-sm md:text-base font-bold w-fit px-4 py-2 md:px-6 md:py-3">
-            Get Your Free Guide
-          </Button>
+          <Link to="/medicare-breakdown">
+            <Button>Get Your Free Guide</Button>
+          </Link>
         </div>
         <div className="md:w-1/2 relative flex justify-end overflow-hidden">
           <img 

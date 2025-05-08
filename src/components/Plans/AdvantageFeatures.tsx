@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const AdvantageFeatures = () => {
@@ -41,7 +40,7 @@ const AdvantageFeatures = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-bb-dark">Key Benefits of Medicare Advantage Plans</h2>
+          <h2 className="font-heading font-bold text-bb-dark">Key Benefits of Medicare Advantage Plans</h2>
           <p className="text-xl text-gray-700 mt-4 max-w-3xl mx-auto">
             Medicare Advantage plans offer comprehensive coverage with valuable benefits beyond Original Medicare
           </p>
@@ -56,7 +55,7 @@ const AdvantageFeatures = () => {
               <div className="bg-blue-50 p-3 rounded-full w-14 h-14 flex items-center justify-center mb-5">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-bb-dark mb-3">{feature.title}</h3>
+              <h3 className="font-heading font-bold text-bb-dark mb-3">{feature.title}</h3>
               <p className="text-gray-700">{feature.description}</p>
             </div>
           ))}

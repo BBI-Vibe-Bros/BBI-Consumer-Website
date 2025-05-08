@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Link } from 'react-router-dom';
 
 const DentalVisionResources = () => {
   return (
@@ -121,13 +121,13 @@ const DentalVisionResources = () => {
         </Tabs>
 
         <div className="text-center mt-12">
-          <a 
-            href="/resources"
+          <Link 
+            to="/resources"
             className="inline-flex items-center justify-center text-bb-blue hover:text-bb-light-blue font-semibold text-lg"
           >
             View All Medicare Resources 
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

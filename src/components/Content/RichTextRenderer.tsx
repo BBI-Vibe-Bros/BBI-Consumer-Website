@@ -12,7 +12,7 @@ interface RichTextRendererProps {
 // Embedded Entry Components
 const EmbeddedResource = ({ entry }: { entry: any }) => (
   <div className="my-6 p-4 border border-gray-200 rounded-lg">
-    <h3 className="text-xl font-bold mb-2">{entry.title}</h3>
+    <h3 className="font-bold mb-2">{entry.title}</h3>
     <Link
       to={`/resources/${entry.slug}`}
       className="text-bbi-blue hover:text-bbi-red"
@@ -103,7 +103,7 @@ const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
 
   return (
     <div className="my-6 p-6 bg-bbi-blue/5 rounded-lg border border-bbi-blue/20">
-      {isNonEmpty(title) && <h3 className="text-xl font-bold mb-2 text-bbi-blue">{title}</h3>}
+      {isNonEmpty(title) && <h3 className="font-bold mb-2 text-bbi-blue">{title}</h3>}
       {isNonEmpty(description) && <p className="mb-4 text-gray-700">{description}</p>}
       {isNonEmpty(buttonText) && isNonEmpty(buttonLink) && (
         <a
@@ -128,7 +128,7 @@ const EmbeddedBlogPost = ({ entry }: { entry: any }) => (
         className="w-full h-48 object-cover rounded-t-lg mb-4"
       />
     )}
-    <h3 className="text-xl font-bold mb-2">{entry.title}</h3>
+    <h3 className="font-bold mb-2">{entry.title}</h3>
     <p className="text-gray-600 mb-4">{entry.excerpt}</p>
     <Link
       to={`/blog/${entry.slug}`}
@@ -141,8 +141,8 @@ const EmbeddedBlogPost = ({ entry }: { entry: any }) => (
 
 const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => (
   <div className="my-6 p-4 border border-gray-200 rounded-lg bg-[#d5effc]">
-    <h2 className="text-base font-medium mb-2">Learn More About</h2>
-    <h3 className="text-xl font-bold mb-2">{entry.pageName}</h3>
+    <h3 className="font-normal mb-2">Learn More About</h3>
+    <h4 className="font-bold mb-2">{entry.pageName}</h4>
     <p className="text-gray-600 mb-4">{entry.metadata?.description}</p>
     <Link
       to={`/medicare/${entry.pageSlug}`}
@@ -173,34 +173,34 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         <u className="underline">{text}</u>
       ),
       [MARKS.CODE]: (text: React.ReactNode) => (
-        <code className="bg-gray-100 px-1 py-0.5 rounded text-sm font-mono">
+        <code className="bg-gray-100 px-1 py-0.5 rounded font-mono">
           {text}
         </code>
       ),
     },
     renderNode: {
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p className="mb-4 text-xl leading-loose tracking-normal text-gray-800 last:mb-0">
+        <p className="mb-4 leading-loose tracking-normal text-gray-800 last:mb-0">
           {children}
         </p>
       ),
       [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
-        <h1 className="text-4xl font-bold mb-6 tracking-normal text-bbi-blue">{children}</h1>
+        <h1 className="mb-6 tracking-normal text-bbi-blue">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
-        <h2 className="text-3xl font-bold mb-5 text-bbi-blue">{children}</h2>
+        <h2 className="mb-5 text-bbi-blue">{children}</h2>
       ),
       [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
-        <h3 className="text-2xl font-bold mb-4 text-bbi-blue">{children}</h3>
+        <h3 className="mb-4 text-bbi-blue">{children}</h3>
       ),
       [BLOCKS.HEADING_4]: (_node: any, children: React.ReactNode) => (
-        <h4 className="text-xl font-bold mb-3 text-bbi-blue">{children}</h4>
+        <h4 className="mb-3 text-bbi-blue">{children}</h4>
       ),
       [BLOCKS.HEADING_5]: (_node: any, children: React.ReactNode) => (
-        <h5 className="text-lg font-bold mb-2 text-bbi-blue">{children}</h5>
+        <h5 className="mb-2 text-bbi-blue">{children}</h5>
       ),
       [BLOCKS.HEADING_6]: (_node: any, children: React.ReactNode) => (
-        <h6 className="text-base font-bold mb-2 text-bbi-blue">{children}</h6>
+        <h6 className="mb-2 text-bbi-blue">{children}</h6>
       ),
       [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
         <ul className="mb-4">{children}</ul>
@@ -227,15 +227,15 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         </div>
       ),
       [BLOCKS.TABLE_ROW]: (_node: any, children: React.ReactNode) => (
-        <tr className="border-b border-gray-200">{children}</tr>
+        <tr className="border-b font-body border-gray-200">{children}</tr>
       ),
       [BLOCKS.TABLE_HEADER_CELL]: (_node: any, children: React.ReactNode) => (
-        <th className="px-4 py-2 text-left text-sm font-bold bg-gray-100">
+        <th className="px-4 py-2 text-left font-body bg-gray-100">
           {children}
         </th>
       ),
       [BLOCKS.TABLE_CELL]: (_node: any, children: React.ReactNode) => (
-        <td className="px-4 py-2 text-left text-sm">{children}</td>
+        <td className="px-4 py-2 text-left">{children}</td>
       ),
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { title, description, url } = node.data.target;
@@ -252,7 +252,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
                 loading="lazy"
               />
               {description && (
-                <figcaption className="text-sm text-gray-600 mt-2">
+                <figcaption className="text-gray-600 mt-2">
                   {description}
                 </figcaption>
               )}
@@ -358,7 +358,7 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
     renderNode: {
       ...options.renderNode,
       [BLOCKS.PARAGRAPH]: (_node: any, children: React.ReactNode) => (
-        <p className="mb-4 text-xl leading-relaxed text-gray-800">
+        <p className="mb-4 leading-relaxed text-gray-800">
           {children}
         </p>
       ),

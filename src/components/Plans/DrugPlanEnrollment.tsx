@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CalendarCheck } from 'lucide-react';
@@ -8,7 +7,7 @@ const DrugPlanEnrollment = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Medicare Part D Enrollment Periods</h2>
+          <h2 className="font-heading font-bold text-bb-dark mb-4">Medicare Part D Enrollment Periods</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Knowing when you can enroll in or change Medicare Part D plans is essential to avoid late enrollment penalties and get the coverage you need.
           </p>
@@ -78,7 +77,7 @@ const DrugPlanEnrollment = () => {
         </div>
 
         <div className="mt-12 p-6 bg-red-50 rounded-lg shadow-sm">
-          <h3 className="text-xl font-semibold mb-4 text-red-700">Late Enrollment Penalty</h3>
+          <h3 className="font-heading font-bold text-bb-dark mb-4">Late Enrollment Penalty</h3>
           <p className="text-gray-800 mb-4">
             If you go without Part D or other creditable prescription drug coverage for 63 days or more after your Initial Enrollment Period ends, you may have to pay a late enrollment penalty if you join later.
           </p>
@@ -86,6 +85,9 @@ const DrugPlanEnrollment = () => {
             The penalty is calculated by multiplying 1% of the "national base beneficiary premium" by the number of full months you went without Part D or creditable coverage. This amount is added to your monthly premium for as long as you have Part D coverage.
           </p>
         </div>
+
+        <div className="mt-12 p-6 bg-gray-50 rounded-lg shadow-sm">
+          <h3 className="font-heading font-bold text-bb-dark mb-4">Ready to Enroll or Have Questions?</h3>
       </div>
     </section>
   );

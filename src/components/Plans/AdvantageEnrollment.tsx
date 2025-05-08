@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -42,7 +41,7 @@ const AdvantageEnrollment = () => {
     <section className="py-16 bg-bb-light-gray">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-bb-dark">Medicare Advantage Enrollment Periods</h2>
+          <h2 className="font-heading font-bold text-bb-dark">Medicare Advantage Enrollment Periods</h2>
           <p className="text-xl text-gray-700 mt-4 max-w-3xl mx-auto">
             Understanding when you can enroll in or change your Medicare Advantage plan is essential
           </p>
@@ -57,7 +56,7 @@ const AdvantageEnrollment = () => {
                     {period.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-bb-dark mb-2">{period.title}</h3>
+                    <h3 className="font-heading font-bold text-bb-dark mb-2">{period.title}</h3>
                     <p className="text-gray-700">{period.description}</p>
                   </div>
                 </div>
@@ -67,8 +66,8 @@ const AdvantageEnrollment = () => {
         </div>
 
         <div className="mt-10 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-          <h3 className="text-xl font-bold text-bb-dark mb-4">Ready to Enroll or Have Questions?</h3>
-          <p className="text-lg text-gray-700 mb-6">
+          <h3 className="font-heading font-bold text-bb-dark mb-4">Ready to Enroll or Have Questions?</h3>
+          <p className="font-body text-gray-700 mb-6">
             Our Medicare specialists can help you understand your enrollment options and guide you through the process.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">

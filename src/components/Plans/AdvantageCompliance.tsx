@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const AdvantageCompliance = () => {
@@ -6,7 +5,7 @@ const AdvantageCompliance = () => {
     <section className="py-10 bg-gray-50 border-t border-gray-200">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-bb-dark mb-4">Important Medicare Information</h2>
+          <h2 className="font-heading font-bold text-bb-dark mb-4">Important Medicare Information</h2>
           
           <div className="text-sm text-gray-700 space-y-3">
             <p>

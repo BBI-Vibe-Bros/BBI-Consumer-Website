@@ -20,7 +20,7 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
       const items: TocItem[] = [];
       
       const processNode = (node: any) => {
-        if (node.nodeType === BLOCKS.HEADING_1 || node.nodeType === BLOCKS.HEADING_2) {
+        if (node.nodeType === BLOCKS.HEADING_1) {
           const text = node.content
             .map((content: any) => content.value)
             .join('')
@@ -54,18 +54,16 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
   }
 
   return (
-    <div className="bg-gray-50 rounded-2xl p-5">
-      <h3 className="font-bold text-xl mb-4">Explore This Page</h3>
-      <nav className="space-y-2">
+    <div className="bg-gray-50 rounded-2xl p-3">
+      <h3 className="font-bold text-lg mb-4">Explore This Page</h3>
+      <nav className="space-y-0">
         {tocItems.map((item) => (
           <a
             key={item.id}
             href={`#${item.id}`}
-            className={`block leading-tight text-bb-blue hover:underline ${
-              item.level === 2 ? 'pl-4 text-sm' : 'font-medium'
-            }`}
+            className={`block leading-normal text-[16px] font-medium hover:bg-gray-100 rounded-lg p-1`}
           >
-            {item.text}
+           • {item.text}
           </a>
         ))}
       </nav>

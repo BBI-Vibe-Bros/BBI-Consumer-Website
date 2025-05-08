@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Shield, ShieldCheck, ShieldPlus } from 'lucide-react';
@@ -41,7 +40,7 @@ const SupplementFeatures = () => {
     <section className="py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">What Medicare Supplements Cover</h2>
+          <h2 className="font-heading font-bold text-bb-dark">What Medicare Supplements Cover</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Medicare Supplement plans help pay for some of the costs that Original Medicare doesn't cover. Each plan offers standardized benefits.
           </p>
@@ -53,7 +52,7 @@ const SupplementFeatures = () => {
               <CardContent className="pt-6">
                 <div className="flex flex-col items-center text-center">
                   <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <h3 className="font-heading font-bold text-bb-dark mb-3">{feature.title}</h3>
                   <p className="text-gray-600">{feature.description}</p>
                 </div>
               </CardContent>

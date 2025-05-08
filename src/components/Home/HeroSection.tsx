@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -8,24 +7,18 @@ const HeroSection = () => {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
-              Making Medicare Easy,<br />
-              <span className="text-bb-blue">One Choice at a Time</span>
+            <h1 className="font-bold text-4xl text-bb-blue mb-6 leading-tight">
+              Making Medicare Easy, One Choice at a Time 
             </h1>
-            <p className="text-gray-700 mb-8 leading-relaxed text-lg">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
+            <p className="text-gray-700 mb-8 leading-relaxed text-">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact">
-                <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark px-[30px] text-lg font-semibold py-[25px] rounded text-center">Schedule an Appointment</Button>
-              </Link>
-              <Link to="/resources">
-                <Button variant="outline" className="border-bb-blue text-bb-blue hover:bg-bb-blue/10 px-[30px] text-lg font-semibold py-[25px] rounded text-center">
-                  Medicare Resources
-                </Button>
+              <Link to="https://go.bobbybrockinsurance.com/appointment/">
+                <Button>Schedule an Appointment</Button>
               </Link>
             </div>
           </div>
           <div className="hidden lg:block">
-            <img alt="Senior couple with Medicare advisor" className="w-full h-auto rounded-lg" src="public/lovable-uploads/bbi-meet-the-team.png" />
+            <img alt="Senior couple with Medicare advisor" className="w-full h-auto rounded-lg" src="/lovable-uploads/bbi-home-hero.png" />
           </div>
         </div>
       </div>

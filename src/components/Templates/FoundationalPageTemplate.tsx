@@ -194,11 +194,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
+              <h1 className="font-heading font-bold text-bb-dark mb-6 leading-tight">
                 {page.title || page.metadata?.title || page.pageName || 'NO TITLE FOUND'}
               </h1>
               {page.metadata?.description && (
-                <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+                <p className="font-body text-gray-700 mb-4 leading-relaxed">
                   {page.metadata.description}
                 </p>
               )}
@@ -209,7 +209,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       <div className="container mx-auto px-4 py-8">
         <div className="lg:flex lg:flex-row lg:space-x-8">
           {/* Main Content */}
-          <div className="lg:w-3/4">
+          <div className="lg:w-2/3">
             <article className="prose max-w-none lg:prose-lg mb-8">
               <RichTextRenderer content={page.fBodyContent} />
             </article>
@@ -233,7 +233,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
             {/* Related Blog Posts */}
             {relatedBlogs.length > 0 && (
               <section className="mt-12 w-full">
-                <h2 className="text-2xl font-semibold mb-4">Related Articles</h2>
+                <h2 className="font-heading font-bold mb-4">Related Articles</h2>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                   {relatedBlogs.map((blog) => (
                     <div key={blog.slug} className="border border-gray-200 rounded-lg p-4 bg-white h-full flex flex-col">
@@ -246,11 +246,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                           />
                         </div>
                       )}
-                      <h3 className="text-lg font-medium group-hover:text-bb-blue mb-2">
+                      <h3 className="font-heading font-semibold mb-2 group-hover:text-bb-blue">
                         {blog.title}
                       </h3>
                       {blog.excerpt && (
-                        <p className="text-gray-600 mb-4">
+                        <p className="font-body text-gray-600 mb-4">
                           {blog.excerpt.length > 120
                             ? blog.excerpt.slice(0, 120).trim() + '...'
                             : blog.excerpt}

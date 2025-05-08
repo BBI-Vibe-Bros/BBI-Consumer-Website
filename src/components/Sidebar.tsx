@@ -70,7 +70,7 @@ const Sidebar = ({ content }: SidebarProps) => {
                   alt={blog.title}
                   className="w-14 h-14 rounded-md object-cover mr-3 flex-shrink-0"
                 />
-                <span className="flex-1 text-sm font-medium text-gray-900 group-hover:text-bb-blue">
+                <span className="flex-1 text-base font-semibold text-gray-900 leading-snug group-hover:text-bb-blue">
                   {blog.title}
                 </span>
                 <ArrowRight className="ml-2 text-bb-blue group-hover:translate-x-1 transition-transform" size={20} />

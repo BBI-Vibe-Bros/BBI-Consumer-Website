@@ -4,16 +4,20 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { securityHeaders, applyRateLimits } from './src/server/middleware';
 import type { ViteDevServer } from 'vite';
+import sitemap from 'vite-plugin-sitemap';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
-    middlewareMode: true,
+    host: "localhost",
+    port: 3000,
+    strictPort: false,
+    middlewareMode: false, // Disabled for development
     configureServer: (server: ViteDevServer) => {
-      server.middlewares.use(applyRateLimits);
-      server.middlewares.use(securityHeaders);
+      if (mode === 'production') {
+        server.middlewares.use(applyRateLimits);
+        server.middlewares.use(securityHeaders);
+      }
     }
   },
   plugins: [
@@ -31,6 +35,28 @@ export default defineConfig(({ mode }) => ({
     }),
     mode === 'development' &&
     componentTagger(),
+    sitemap({
+      hostname: 'https://www.bobbybrockinsurance.com',
+      dynamicRoutes: [
+        '/',
+        '/about',
+        '/contact',
+        '/services',
+        '/blog',
+        '/medicare',
+        '/auto-insurance',
+        '/home-insurance',
+        '/life-insurance',
+        '/business-insurance'
+      ],
+      exclude: [
+        '/404',
+        '/admin/**'
+      ],
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date().toISOString()
+    })
   ].filter(Boolean),
   resolve: {
     alias: {

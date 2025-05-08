@@ -29,24 +29,22 @@ const AboutSection = () => {
           <div>
             <div className="mb-6">
               <h2 className="font-bold text-bb-blue text-base">ABOUT US</h2>
-              <h3 className="text-3xl font-bold text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
+              <h3 className="font-bold text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
             </div>
 
-            <p className="mb-8 text-base text-[#002a3a]">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
+            <p className="mb-8 text-[#002a3a]">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
 
             <div className="space-y-4 mb-8">
               {features.map(feature => <div key={feature.id} className="flex gap-3 items-start py-0">
                   <div className="text-bb-blue">{feature.icon}</div>
                   <div>
-                    <h4 className="font-semibold text-bb-dark">{feature.title}</h4>
+                    <p className="font-semibold text-bb-dark">{feature.title}</p>
                   </div>
                 </div>)}
             </div>
 
             <Link to="/about">
-              <Button className="bg-bb-blue hover:bg-bb-light-blue my-[5px] px-[30px] py-[20px] font-medium text-[inheri] text-white">
-                Learn More About Us
-              </Button>
+              <Button>Learn More About Us</Button>
             </Link>
           </div>
         </div>

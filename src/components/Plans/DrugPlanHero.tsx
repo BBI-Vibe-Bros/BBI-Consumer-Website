@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { PillIcon } from 'lucide-react';
@@ -13,7 +12,7 @@ const DrugPlanHero = () => {
               <PillIcon className="h-5 w-5" />
               <span className="font-medium">Medicare Part D</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-bb-dark mb-6">
+            <h1 className="font-heading font-bold text-bb-dark mb-6">
               Prescription Drug Coverage That Works For You
             </h1>
             <p className="text-lg md:text-xl text-gray-700 mb-8">
@@ -30,7 +29,7 @@ const DrugPlanHero = () => {
           </div>
           <div className="relative">
             <div className="bg-white p-6 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-semibold mb-4">Part D Benefits</h3>
+              <h3 className="font-heading font-semibold mb-4">Part D Benefits</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-3">
                   <div className="bg-green-100 p-1 rounded-full mt-1">

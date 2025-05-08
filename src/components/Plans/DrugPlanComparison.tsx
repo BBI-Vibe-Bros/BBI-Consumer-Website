@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -8,7 +7,7 @@ const DrugPlanComparison = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Compare Medicare Part D Plans</h2>
+          <h2 className="font-heading font-bold mb-4">Compare Medicare Part D Plans</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
             Medicare Part D plans can vary widely in costs, coverage, and pharmacy networks. Here's a comparison of typical plan features.
           </p>
@@ -65,7 +64,7 @@ const DrugPlanComparison = () => {
         </div>
 
         <div className="mt-10 p-6 bg-white rounded-lg shadow-sm">
-          <h3 className="text-xl font-semibold mb-4">Finding the Right Part D Plan</h3>
+          <h3 className="font-heading font-bold mb-4">Finding the Right Part D Plan</h3>
           <p className="text-gray-700 mb-4">
             The best Medicare Part D plan for you depends on your specific medication needs, preferred pharmacies, and budget. We can help you compare plans based on:
           </p>

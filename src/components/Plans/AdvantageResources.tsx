@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -33,7 +32,7 @@ const AdvantageResources = () => {
     <section className="py-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-bb-dark">Medicare Advantage Resources</h2>
+          <h2 className="font-heading font-bold text-bb-dark">Medicare Advantage Resources</h2>
           <p className="text-xl text-gray-700 mt-4 max-w-3xl mx-auto">
             Access our guides and videos to better understand Medicare Advantage plans
           </p>
@@ -46,7 +45,7 @@ const AdvantageResources = () => {
                 <div className="bg-bb-light-blue/20 text-bb-blue text-sm font-semibold rounded-full px-3 py-1 mb-2 w-fit">
                   {resource.type}
                 </div>
-                <CardTitle className="text-xl font-bold hover:text-bb-blue transition-colors">
+                <CardTitle className="font-heading font-bold hover:text-bb-blue transition-colors">
                   <Link to={resource.link}>
                     {resource.title}
                   </Link>

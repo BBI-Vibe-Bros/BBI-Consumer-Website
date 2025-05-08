@@ -9,18 +9,7 @@ const BlogCTA = () => {
         <p className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
           Our licensed Medicare agents are ready to help you find the right coverage for your needs. Get personalized guidance and answers to all your Medicare questions.
         </p>
-        <Button
-          asChild
-          className="bg-bb-blue hover:bg-bb-dark-blue text-white font-medium px-6 py-3"
-        >
-          <a
-            href="https://go.bobbybrockinsurance.com/appointment/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Talk with an Agent
-          </a>
-        </Button>
+        <Button>Read Our Blog</Button>
       </div>
     </div>
   );

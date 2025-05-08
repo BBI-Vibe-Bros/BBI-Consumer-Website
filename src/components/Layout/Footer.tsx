@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Bobby Brock Insurance</h3>
-            <p className="mb-4 text-base">
+            <h3 className="text-xl font-semibold mb-6">Bobby Brock Insurance</h3>
+            <p className="mb-2 text-base leading-tight">
               A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States since 1992.
             </p>
             <div className="flex space-x-4 mt-6">

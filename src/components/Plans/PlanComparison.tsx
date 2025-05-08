@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
@@ -34,7 +33,7 @@ const PlanComparison = () => {
     <section className="py-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-bb-dark">Compare Medicare Advantage Plan Types</h2>
+          <h2 className="font-heading font-bold text-bb-dark">Compare Medicare Advantage Plan Types</h2>
           <p className="text-xl text-gray-700 mt-4 max-w-3xl mx-auto">
             Understanding the differences between plan types helps you select coverage that fits your healthcare needs and preferences
           </p>

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import ErrorBoundary from "@/components/ErrorBoundary";
+import ScrollToTop from "@/utils/scrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MedicareAdvantage from "./pages/MedicareAdvantage";
@@ -39,10 +40,11 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               {/* Home page */}
               <Route path="/" element={<Index />} />
-              
+              <Route path="/medicare-breakdown" element={<MedicareBreakdown />} />
               {/* Medicare basics and information routes */}
               <Route path="/medicare">
                 <Route path="basics" element={<MedicareBasics />} />
@@ -51,7 +53,6 @@ const App = () => (
                 <Route path="eligibility" element={<MedicareEligibility />} />
                 <Route path="four-parts-of-medicare" element={<MedicareParts />} />
                 <Route path="basics/medicare-costs" element={<MedicareCosts />} />
-                <Route path="breakdown" element={<MedicareBreakdown />} />
               </Route>
               
               {/* Plan routes */}
