@@ -178,3 +178,19 @@ This project is proprietary and confidential. All rights reserved.
 - Backlink monitoring
 - Mobile usability testing
 - Core Web Vitals monitoring
+
+## 🌐 Sitemap & Dynamic URL Structure
+
+- The sitemap.xml in /public includes all major static and dynamic routes.
+- Foundational pages (Contentful type: foundationalPage) now use a `parentSlug` field to determine their URL structure, e.g. `/basics/{pageSlug}` or `/plans/{pageSlug}`.
+- When adding or updating foundational pages, ensure the `parentSlug` is set in Contentful for correct routing and SEO.
+- The sitemap should be updated to reflect any new or changed foundationalPage URLs.
+
+### Example FoundationalPage URLs
+- `/basics/what-is-medicare`
+- `/plans/advantage`
+- `/resources/enrollment-guide`
+
+## 🤖 robots.txt
+- The robots.txt in /public references the sitemap and allows/disallows crawling as appropriate.
+- Ensure new dynamic routes are not accidentally disallowed.
