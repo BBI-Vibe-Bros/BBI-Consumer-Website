@@ -31,13 +31,42 @@ npm run preview
 
 ```
 src/
-├── components/     # Reusable React components
-├── pages/         # Page components and routing
-├── server/        # Server middleware and API routes
-├── styles/        # Global styles and Tailwind config
-├── types/         # TypeScript type definitions
-└── utils/         # Utility functions and helpers
+├── components/          # Reusable React components
+│   ├── Blog/           # Blog-related components
+│   ├── Content/        # Content rendering components
+│   ├── Home/           # Homepage components
+│   ├── Layout/         # Layout components (Header, Footer)
+│   ├── Navigation/     # Navigation components
+│   ├── Plans/          # Medicare plan components
+│   ├── Templates/      # Page templates
+│   └── ui/             # UI components
+├── pages/              # Page components and routing
+├── styles/             # Global styles and Tailwind config
+├── types/              # TypeScript type definitions
+└── utils/              # Utility functions and helpers
 ```
+
+## 🛣️ Routing Structure
+
+The application uses the following routes:
+
+- `/` - Homepage
+- `/medicare-breakdown` - Medicare overview
+- `/medicare/basics/*` - Medicare basics pages
+- `/medicare/eligibility` - Medicare eligibility
+- `/medicare/four-parts-of-medicare` - Medicare parts overview
+- `/plans/*` - Medicare plan pages
+- `/resources/*` - Resource pages
+- `/blog` - Blog listing
+- `/videos` - Video content
+- `/about-us` - About page
+- `/contact` - Contact page
+- `/privacy-policy` - Privacy policy
+
+Example URLs:
+- https://www.bobbybrockinsurance.com/medicare-breakdown
+- https://www.bobbybrockinsurance.com/plans/advantage
+- https://www.bobbybrockinsurance.com/resources/guides
 
 ## 🔒 Security Features
 
@@ -56,6 +85,8 @@ src/
 - Fast page loads
 - Secure form handling
 - Content management via Contentful
+- Automatic scroll-to-top on navigation
+- React Router for client-side routing
 
 ## 📝 Content Management
 
@@ -66,6 +97,8 @@ Content is managed through Contentful CMS. Key content types:
 - FAQs
 - Team Members
 - Testimonials
+- Blog Posts
+- Videos
 
 ## 🧪 Testing
 

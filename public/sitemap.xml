@@ -5,70 +5,173 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Home Page -->
   <url>
-    <loc>https://bbi-insurance.com/</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://www.bobbybrockinsurance.com/</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://bbi-insurance.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bobbybrockinsurance.com/"/>
     <image:image>
-      <image:loc>https://bbi-insurance.com/images/logo.png</image:loc>
+      <image:loc>https://www.bobbybrockinsurance.com/images/logo.png</image:loc>
       <image:title>BBI Insurance Logo</image:title>
     </image:image>
   </url>
 
   <!-- Medicare Pages -->
   <url>
-    <loc>https://bbi-insurance.com/medicare</loc>
-    <lastmod>2024-03-25</lastmod>
+    <loc>https://www.bobbybrockinsurance.com/medicare-breakdown</loc>
+    <lastmod>2024-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/medicare"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare-breakdown"/>
   </url>
   <url>
-    <loc>https://bbi-insurance.com/medicare/advantage</loc>
-    <lastmod>2024-03-25</lastmod>
+    <loc>https://www.bobbybrockinsurance.com/medicare/basics</loc>
+    <lastmod>2024-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/medicare/advantage"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/basics"/>
   </url>
   <url>
-    <loc>https://bbi-insurance.com/medicare/supplement</loc>
-    <lastmod>2024-03-25</lastmod>
+    <loc>https://www.bobbybrockinsurance.com/medicare/basics/what-is-medicare</loc>
+    <lastmod>2024-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/medicare/supplement"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/basics/what-is-medicare"/>
   </url>
   <url>
-    <loc>https://bbi-insurance.com/medicare/prescription</loc>
-    <lastmod>2024-03-25</lastmod>
+    <loc>https://www.bobbybrockinsurance.com/medicare/basics/enrollment-periods</loc>
+    <lastmod>2024-03-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/medicare/prescription"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/basics/enrollment-periods"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/eligibility</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/eligibility"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/four-parts-of-medicare</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/four-parts-of-medicare"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/basics/medicare-costs</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/basics/medicare-costs"/>
   </url>
 
-  <!-- About Pages -->
+  <!-- Plan Pages -->
   <url>
-    <loc>https://bbi-insurance.com/about</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/about"/>
+    <loc>https://www.bobbybrockinsurance.com/plans/advantage</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/plans/advantage"/>
   </url>
   <url>
-    <loc>https://bbi-insurance.com/contact</loc>
-    <lastmod>2024-03-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/contact"/>
+    <loc>https://www.bobbybrockinsurance.com/plans/supplement</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/plans/supplement"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/plans/prescription</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/plans/prescription"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/plans/additional-coverage</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/plans/additional-coverage"/>
   </url>
 
-  <!-- Blog Posts -->
+  <!-- Resources -->
   <url>
-    <loc>https://bbi-insurance.com/blog</loc>
-    <lastmod>2024-03-25</lastmod>
+    <loc>https://www.bobbybrockinsurance.com/resources</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/resources"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/resources/guides</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/resources/guides"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/resources/calculators</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/resources/calculators"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare-breakdown</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare-breakdown"/>
+  </url>
+  <!-- Blog and Videos -->
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/blog</loc>
+    <lastmod>2024-03-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://bbi-insurance.com/blog"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/blog"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/videos</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/videos"/>
+  </url>
+
+  <!-- About and Contact -->
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/about-us</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/about-us"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/about-us/team</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/about-us/team"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/contact</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/contact"/>
+  </url>
+
+  <!-- Legal -->
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/privacy-policy</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/privacy-policy"/>
   </url>
 </urlset> 

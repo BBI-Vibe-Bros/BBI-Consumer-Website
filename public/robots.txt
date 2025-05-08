@@ -3,31 +3,52 @@
 # Global rules
 User-agent: *
 Allow: /
-Allow: /medicare
-Allow: /medicare/advantage
-Allow: /medicare/supplement
-Allow: /medicare/prescription
-Allow: /about
-Allow: /contact
+Allow: /medicare-breakdown
+Allow: /medicare/basics
+Allow: /medicare/basics/what-is-medicare
+Allow: /medicare/basics/enrollment-periods
+Allow: /medicare/eligibility
+Allow: /medicare/four-parts-of-medicare
+Allow: /medicare/basics/medicare-costs
+Allow: /plans/advantage
+Allow: /plans/supplement
+Allow: /plans/prescription
+Allow: /plans/additional-coverage
 Allow: /resources
-Allow: /faq
+Allow: /resources/guides
+Allow: /resources/calculators
+Allow: /resources/glossary
 Allow: /blog
+Allow: /videos
+Allow: /about-us
+Allow: /about-us/team
+Allow: /contact
+Allow: /privacy-policy
 Allow: /sitemap.xml
 
 # Specific crawler rules
 User-agent: Googlebot
 Allow: /medicare/*
+Allow: /plans/*
+Allow: /resources/*
 Allow: /blog/*
+Allow: /videos/*
 Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /medicare/*
+Allow: /plans/*
+Allow: /resources/*
 Allow: /blog/*
+Allow: /videos/*
 Crawl-delay: 2
 
 User-agent: Slurp
 Allow: /medicare/*
+Allow: /plans/*
+Allow: /resources/*
 Allow: /blog/*
+Allow: /videos/*
 Crawl-delay: 3
 
 # Block sensitive areas
@@ -55,12 +76,12 @@ Disallow: /*.txt$
 Disallow: /*.md$
 
 # Sitemaps
-Sitemap: https://bbi-insurance.com/sitemap.xml
-Sitemap: https://bbi-insurance.com/sitemap-news.xml
-Sitemap: https://bbi-insurance.com/sitemap-image.xml
+Sitemap: https://www.bobbybrockinsurance.com/sitemap.xml
+Sitemap: https://www.bobbybrockinsurance.com/sitemap-news.xml
+Sitemap: https://www.bobbybrockinsurance.com/sitemap-image.xml
 
 # Host
-Host: https://bbi-insurance.com
+Host: https://www.bobbybrockinsurance.com
 
 # Crawl-delay
 Crawl-delay: 10
