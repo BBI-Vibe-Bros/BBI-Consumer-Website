@@ -2,6 +2,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import { cn } from '@/lib/utils';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 interface RichTextRendererProps {
   content: any; // Contentful rich text document
@@ -81,12 +82,26 @@ const EmbeddedYouTube = ({ entry }: { entry: any }) => {
 };
 
 const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
-  console.log('Website CTA entry:', entry);
-  // Handle both direct fields and nested fields from Contentful
-  const title = entry.title || entry.fields?.title;
-  const description = entry.description || entry.fields?.description;
-  const buttonText = entry.buttonText || entry.fields?.buttonText;
-  const buttonLink = entry.buttonLink || entry.fields?.buttonLink;
+  console.log('Website CTA entry:', JSON.stringify(entry, null, 2));
+  
+  // Extract fields from the entry structure
+  const fields = entry.fields || {};
+  
+  // Map Contentful fields to our expected structure
+  const title = fields.ctaTitle || '';
+  const description = fields.ctaCopy?.content?.[0]?.content?.[0]?.value || '';
+  const buttonText = fields.ctaButtonText || '';
+  const buttonLink = fields.ctaButtonLink || '';
+  const imageUrl = fields.ctaImage?.fields?.file?.url ? `https:${fields.ctaImage.fields.file.url}` : '';
+
+  console.log('Extracted CTA fields:', {
+    title,
+    description,
+    buttonText,
+    buttonLink,
+    imageUrl,
+    rawFields: fields
+  });
 
   const isNonEmpty = (val: any) =>
     typeof val === 'string' ? val.trim().length > 0 : !!val;
@@ -97,24 +112,46 @@ const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
     !isNonEmpty(buttonText) &&
     !isNonEmpty(buttonLink)
   ) {
-    console.warn('Website CTA missing required fields:', entry);
+    console.warn('Website CTA missing required fields:', {
+      title,
+      description,
+      buttonText,
+      buttonLink,
+      imageUrl,
+      rawFields: fields
+    });
     return null;
   }
 
   return (
-    <div className="my-6 p-6 bg-bbi-blue/5 rounded-lg border border-bbi-blue/20">
-      {isNonEmpty(title) && <h3 className="font-bold mb-2 text-bbi-blue">{title}</h3>}
-      {isNonEmpty(description) && <p className="mb-4 text-gray-700">{description}</p>}
-      {isNonEmpty(buttonText) && isNonEmpty(buttonLink) && (
-        <a
-          href={buttonLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-6 py-2 bg-bbi-blue text-white rounded-md hover:bg-bbi-red transition-colors"
-        >
-          {buttonText}
-        </a>
-      )}
+<div className="my-6 rounded-lg overflow-hidden bg-[#d5effc]">
+  <div className="flex flex-col gap-4 md:flex-row items-stretch">
+    {imageUrl && (
+      <div className="md:w-[280px] md:flex-shrink-0">
+        <img 
+          src={imageUrl} 
+          alt={title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+    )}
+        <div className={`${imageUrl ? 'md:w-2/3' : 'w-full'}`}>
+        <div className="p-6">
+          {isNonEmpty(title) && <h3 className="font-bold mb-2 text-bbi-blue">{title}</h3>}
+          {isNonEmpty(description) && <p className="mb-4 text-gray-700">{description}</p>}
+          {isNonEmpty(buttonText) && isNonEmpty(buttonLink) && (
+            <a
+              href={buttonLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-[#fadb21] text-bb-dark hover:text-[#fadb21] text-sm font-medium rounded hover:bg-[#002a3a] transition-colors duration-300 transform"
+            >
+              {buttonText}
+            </a>
+          )}
+        </div>  
+        </div>
+      </div>
     </div>
   );
 };
@@ -139,19 +176,41 @@ const EmbeddedBlogPost = ({ entry }: { entry: any }) => (
   </div>
 );
 
-const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => (
-  <div className="my-6 p-4 border border-gray-200 rounded-lg bg-[#d5effc]">
-    <h3 className="font-normal mb-2">Learn More About</h3>
-    <h4 className="font-bold mb-2">{entry.pageName}</h4>
-    <p className="text-gray-600 mb-4">{entry.metadata?.description}</p>
-    <Link
-      to={`/medicare/${entry.pageSlug}`}
-      className="text-bbi-blue hover:text-bbi-red"
-    >
-      Learn More →
-    </Link>
-  </div>
-);
+const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => {
+  console.log('Foundational Page Entry:', JSON.stringify(entry, null, 2));
+  console.log('Entry Keys:', Object.keys(entry));
+  
+  const imageUrl = entry.fShareImage?.fields?.file?.url ? `https:${entry.fShareImage.fields.file.url}` : '';
+  const description = entry.fPageExcerpt || '';
+  
+  console.log('Extracted Description:', description);
+  
+  return (
+    <div className="my-6 rounded-lg overflow-hidden bg-[#d5effc]">
+      <div className="flex flex-col md:flex-row items-stretch">
+        {imageUrl && (
+          <div className="md:w-[280px] md:flex-shrink-0">
+            <img
+              src={imageUrl}
+              alt={entry.pageName}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+        <div className="p-4 flex flex-col justify-center">
+          <h3 className="font-bold mb-2">{entry.pageName}</h3>
+          {description && <p className="text-bb-dark text-sm leading-snug mb-4">{description}</p>}
+          <Link
+            to={`/medicare/${entry.pageSlug}`}
+            className="inline-block px-4 py-2 bg-[#fadb21] text-bb-dark hover:text-[#fadb21] text-sm font-medium rounded hover:bg-[#002a3a] transition-colors duration-300 transform"
+          >
+            Dive Deeper →
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const RichTextRenderer = ({ content, className, planType }: RichTextRendererProps) => {
   console.log('RichTextRenderer props:', { content, className, planType });
@@ -160,6 +219,16 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
     console.warn('RichTextRenderer: No content provided');
     return null;
   }
+
+  // Add detailed logging for content structure
+  console.log('Content structure:', {
+    nodeType: content.nodeType,
+    content: content.content?.map(node => ({
+      nodeType: node.nodeType,
+      data: node.data,
+      content: node.content?.length
+    }))
+  });
 
   const options = {
     renderMark: {
@@ -291,8 +360,17 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
         return null;
       },
       ['embedded-entry-block']: (node: any) => {
-        console.log('Embedded entry block node:', node);
+        console.log('Embedded entry block node:', JSON.stringify(node, null, 2));
         const entry = node.data.target;
+        
+        // Add more detailed logging for the entry
+        console.log('Embedded entry details:', {
+          sys: entry.sys,
+          fields: entry.fields,
+          contentType: entry.sys?.contentType?.sys?.id || entry.contentType,
+          rawEntry: entry
+        });
+
         // Robustly extract contentType and fields
         const contentType = entry.sys?.contentType?.sys?.id || entry.contentType;
         const fields = entry.fields || {};
@@ -308,13 +386,14 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
           case 'youTubeEmbed':
             return <EmbeddedYouTube entry={fields} />;
           case 'websiteCta':
+            // Pass the entire entry for website CTA since it needs both sys and fields
             return <EmbeddedWebsiteCTA entry={entry} />;
           case 'blogPost':
             return <EmbeddedBlogPost entry={fields} />;
           case 'foundationalPage':
             return <EmbeddedFoundationalPage entry={fields} />;
           default:
-            console.warn(`Unhandled embedded entry type: ${contentType}`);
+            console.warn(`Unhandled embedded entry type: ${contentType}`, entry);
             return null;
         }
       },

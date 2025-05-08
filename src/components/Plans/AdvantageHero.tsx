@@ -6,7 +6,7 @@ const AdvantageHero = () => {
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 bg-blue-100 text-bb-blue px-4 py-2 rounded-full mb-4">
               <ShieldCheck className="h-5 w-5" />

@@ -135,7 +135,18 @@ class ContentfulService {
       return null;
     }
 
-    console.log('Raw blog post entry:', entry);
+    console.log('Raw blog post entry:', JSON.stringify(entry, null, 2));
+    
+    // Add specific logging for contentBody
+    console.log('ContentBody structure:', {
+      raw: entry.fields?.contentBody,
+      nodeType: entry.fields?.contentBody?.nodeType,
+      content: entry.fields?.contentBody?.content?.map((node: any) => ({
+        nodeType: node.nodeType,
+        data: node.data,
+        content: node.content?.length
+      }))
+    });
     
     const transformed = {
       internalName: entry.fields?.internalName || '',
@@ -169,7 +180,7 @@ class ContentfulService {
       } : null,
     };
 
-    console.log('Transformed blog post:', transformed);
+    console.log('Transformed blog post:', JSON.stringify(transformed, null, 2));
     return transformed;
   }
 
@@ -303,12 +314,15 @@ class ContentfulService {
    */
   public async getBlogPostBySlug(slug: string): Promise<BlogPostFields | null> {
     try {
+      console.log('Fetching blog post with slug:', slug);
+      
       const response = await this.client.getEntries({
         content_type: 'pageBlogPost',
         'fields.slug': slug,
-        include: 3,
+        include: 10, // Increase include depth to ensure we get all embedded entries
       });
 
+      console.log('Blog post response:', JSON.stringify(response, null, 2));
       this.logContentfulResponse('pageBlogPost', slug, response);
 
       if (response.items.length === 0) {
@@ -316,7 +330,9 @@ class ContentfulService {
         return null;
       }
 
-      return this.transformBlogPost(response.items[0]);
+      const transformed = this.transformBlogPost(response.items[0]);
+      console.log('Transformed blog post:', JSON.stringify(transformed, null, 2));
+      return transformed;
     } catch (error) {
       console.error('Error fetching blog post:', error);
       return null;

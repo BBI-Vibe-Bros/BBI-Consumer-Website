@@ -54,7 +54,7 @@ const BlogSidebar = ({ selectedCategory, onCategoryChange }: { selectedCategory:
         <h2 className="text-2xl leading-normal font-bold mb-4">Medicare Breakdown: The Alphabet Soup of Medicare</h2>
         <h4 className="font-medium italic text-base mb-4">Download the Guide That Makes Medicare Make Sense</h4>
         <p className="text-sm leading-normal text-gray-700 mb-4">
-          No fluff, no jargon—just clear, helpful answers to your most important Medicare questions. Download your free copy now and take the guesswork out of getting the right coverage.
+          No fluff, no jargon—just clear, helpful answers to your most important Medicare questions.
         </p>
         <Link
           to="/medicare-breakdown"

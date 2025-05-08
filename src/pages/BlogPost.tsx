@@ -40,10 +40,10 @@ const BlogPost = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-8 lg:pt-20 lg:pb-5">
+      <section className="bg-gradient-to-b from-blue-50 to-white pt-16 pb-8 mb-[-4]lg:pt-20 lg:pb-5">
         <div className="container mx-auto px-3">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-center">
+            <div className="max-w-7xl object-cover">
               {isLoading ? (
                 <div className="animate-pulse">
                   <div className="h-12 bg-gray-200 rounded w-3/4 mb-6"></div>
@@ -63,7 +63,7 @@ const BlogPost = () => {
                   <h1 className="text-3xl font-bold text-bb-dark mb-6 leading-tight md:text-5xl">
                     {post?.title}
                   </h1>
-                  <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+                  <p className="text-base text-gray-700 mb-4 leading-relaxed">
                     {post?.excerpt}
                   </p>
                   {post?.publishedDate && (
@@ -81,7 +81,7 @@ const BlogPost = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="lg:flex lg:flex-row lg:space-x-8">
           {/* Main Content */}
-          <div className="lg:w-2/3">
+          <div className="lg:w-[65%]">
             {isLoading ? (
               <div className="animate-pulse space-y-4">
                 <div className="h-4 bg-gray-200 rounded w-full"></div>
@@ -99,7 +99,7 @@ const BlogPost = () => {
                   <img 
                     src={post.featuredImage}
                     alt={post.title}
-                    className="w-full h-auto rounded-lg mb-8"
+                    className="w-full h-auto object-cover mb-6 rounded-lg"
                   />
                 )}
                 <RichTextRenderer content={post.contentBody} />
@@ -113,7 +113,7 @@ const BlogPost = () => {
           </div>
 
           {/* Sidebar */}
-          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
+          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/4">
             {post && <BlogPostSidebar content={post.contentBody} />}
           </aside>
         </div>

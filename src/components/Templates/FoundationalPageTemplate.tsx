@@ -186,15 +186,15 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
   return (
     <>
       {/* Hero Section (now outside container) */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-16 lg:py-20">
+      <section className="bg-gradient-to-b from-blue-50 to-white py-8 lg:py-4">
         <div className="container mx-auto px-3">
           {/* Breadcrumb Navigation */}
           <div className="-ml-3 py-4">
             <Breadcrumb items={getBreadcrumbItems()} />
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="font-heading font-bold text-bb-dark mb-6 leading-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12 items-center">
+            <div className="max-w-4xl object-contain">
+              <h1 className="font-heading font-bold text-6xl text-bb-dark mb-6 leading-tight">
                 {page.title || page.metadata?.title || page.pageName || 'NO TITLE FOUND'}
               </h1>
               {page.metadata?.description && (
@@ -271,7 +271,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
           </div>
 
           {/* Sidebar */}
-          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
+          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
             <Sidebar content={page.fBodyContent} />
           </aside>
         </div>

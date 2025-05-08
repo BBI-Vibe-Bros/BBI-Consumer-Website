@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Calendar, Download } from 'lucide-react';
 import TableOfContents from '@/components/Content/TableOfContents';
 import { Document } from '@contentful/rich-text-types';
+import Button from './ui/button';
 
 interface BlogPostSidebarProps {
   content: Document;
@@ -15,33 +16,29 @@ const BlogPostSidebar = ({ content }: BlogPostSidebarProps) => {
       <TableOfContents content={content} />
 
       {/* Lead Magnet Section */}
-      <div className="bg-blue-50 rounded-2xl p-8">
-        <h2 className="text-2xl leading-normal font-bold mb-4">Medicare Breakdown: The Alphabet Soup of Medicare</h2>
-        <h4 className="font-medium italic text-base mb-4">Download the Guide That Makes Medicare Make Sense</h4>
-        <p className="text-sm leading-normal text-gray-700 mb-4">
-          No fluff, no jargon—just clear, helpful answers to your most important Medicare questions. Download your free copy now and take the guesswork out of getting the right coverage.
+      <div className="bg-blue-50 rounded-2xl p-6">
+        <h3 className="leading-snug text-2xl mb-2">Medicare Made <i>Really</i> Simple</h3>
+        <h4 className="text-base leading-normal text-bb-dark mb-2">Your Free Guide to the ABCs</h4>
+        <p className="leading-normal text-gray-700 mb-4">
+        Confused by Parts A, B, C, and D? This free guide breaks it all down in plain English to help you make sense of Medicare and choose the right coverage with confidence.
         </p>
         <Link
-          to="/medicare/medicare-breakdown"
-          className="flex items-center justify-center bg-bb-blue text-white rounded-lg px-4 py-3 hover:bg-bb-dark-blue transition group"
-        >
-          <Download className="mr-2" size={20} />
-          <span className="font-medium">Download Free Guide</span>
+          to="/medicare/medicare-breakdown">
+          
+          <Button className="w-full flex items-center justify-center gap-2">Download Free Guide<Download className="inline-block" size={20} /></Button>
         </Link>
       </div>
 
       {/* Appointment Section */}
       <div className="bg-white rounded-2xl p-5 border border-gray-200">
-        <h3 className="font-bold text-xl mb-4">Schedule a Consultation</h3>
-        <p className="text-gray-700 mb-4">
-          Get personalized help understanding your Medicare options from our licensed insurance agents.
+        <h3 className="leading-snug text-2xl mb-2">Talk to a Licensed Medicare Agent</h3>
+        <p className="leading-normal text-gray-700 mb-4">
+        Get personalized guidance from a real person—no pressure, just friendly help choosing a Medicare plan that fits your needs.
         </p>
         <Link
-          to="/contact"
-          className="flex items-center justify-center bg-green-600 text-white rounded-lg px-4 py-3 hover:bg-green-700 transition group"
-        >
-          <Calendar className="mr-2" size={20} />
-          <span className="font-medium">Book Appointment</span>
+          to="/contact">
+          
+          <Button className="w-full flex items-center justify-center gap-2">Book Appointment<Calendar className="inline-block" size={20}/></Button>
         </Link>
       </div>
     </div>
