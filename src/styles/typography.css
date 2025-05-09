@@ -52,7 +52,7 @@
 
   /* Standard links */
   a:not(.btn):not(.no-underline):not([class*="bg-"]) {
-    @apply text-bb-blue underline-offset-2 hover:underline focus:underline tracking-normal;
+    @apply text-bb-blue tracking-normal;
   }
 }
 
