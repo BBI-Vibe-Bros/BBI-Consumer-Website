@@ -201,7 +201,7 @@ const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => {
           <h3 className="font-bold mb-2">{entry.pageName}</h3>
           {description && <p className="text-bb-dark text-sm leading-snug mb-4">{description}</p>}
           <Link
-            to={`/medicare/${entry.pageSlug}`}
+            to={`/${entry.parentSlug}/${entry.pageSlug}`}
             className="inline-block px-4 py-2 bg-[#fadb21] text-bb-dark hover:text-[#fadb21] text-sm font-medium rounded hover:bg-[#002a3a] transition-colors duration-300 transform"
           >
             Dive Deeper →

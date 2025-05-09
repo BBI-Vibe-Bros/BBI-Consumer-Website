@@ -21,30 +21,21 @@ const Header = () => {
       title: 'Understand Medicare',
       href: '/medicare/basics',
       submenu: [
-        { title: 'What is Medicare?', href: '/medicare/basics/what-is-medicare', icon: BookOpen, description: 'Learn about Medicare, its different parts, and how it works.' },
-        { title: 'Enrollment Periods', href: '/medicare/basics/enrollment-periods', icon: Calendar, description: 'Discover the different enrollment periods for Medicare.' },
-        { title: 'Medicare Costs', href: '/medicare/basics/medicare-costs', icon: DollarSign, description: 'Understand the costs associated with Medicare.' },
-        { title: 'Medicare Eligibility', href: '/medicare/eligibility', icon: Shield, description: 'Check your eligibility for Medicare.' },
-        { title: 'Four Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: FileText, description: 'Learn about the four parts of Medicare.' }
+        { title: 'What is Medicare?', href: '/medicare/what-is-medicare', icon: BookOpen, description: 'Learn about Medicare, its different parts, and how it works.' },
+        { title: 'The 4 Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: FileText, description: 'Learn about the four parts of Medicare and what they cover.' },
+        { title: 'Enrollment Periods', href: '/medicare/enrollment-periods', icon: Calendar, description: 'Discover the different enrollment periods for Medicare.' },
+        { title: 'Medicare Costs', href: '/medicare/medicare-costs', icon: DollarSign, description: 'Understand the costs associated with Medicare.' },
+        { title: 'Medicare Eligibility', href: '/medicare/eligibility', icon: Shield, description: 'Learn what makes you eligible for Medicare based on age, disability, and residency status.' }
       ]
     },
     {
       title: 'Medicare Plans',
       href: '/plans',
       submenu: [
-        { title: 'Medicare Advantage', href: '/plans/advantage', icon: Shield, description: 'Explore Medicare Advantage plans, which combine medical and drug coverage.' },
-        { title: 'Medicare Supplements', href: '/plans/supplement', icon: PlusCircle, description: 'Learn about Medicare Supplements, which cover the gaps in Original Medicare.' },
-        { title: 'Prescription Drug Plans', href: '/plans/prescription', icon: Pill, description: 'Discover Medicare Part D, which cover prescription medications.' },
-        { title: 'Additional Coverage', href: '/plans/additional-coverage', icon: PlusCircle, description: 'Explore additional coverage options for Medicare.' }
-      ]
-    },
-    {
-      title: 'Why Choose Us',
-      href: '/about-us',
-      submenu: [
-        { title: 'About Us', href: '/about-us', icon: Users, description: 'Learn about our company and our mission.' },
-        { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
-        { title: 'Client Testimonials', href: '/client-reviews', icon: Star, description: 'Read what our clients have to say about us.' }
+        { title: 'Medicare Advantage', href: '/plans/medicare-advantage', icon: Shield, description: 'Explore Medicare Advantage plans, which combine medical and drug coverage.' },
+        { title: 'Medicare Supplements', href: '/plans/medicare-supplement', icon: PlusCircle, description: 'Learn about Medicare Supplements, which cover the gaps in Original Medicare.' },
+        { title: 'Prescription Drug Plans', href: '/plans/medicare-part-d', icon: Pill, description: 'Discover Medicare Part D, which cover prescription medications.' },
+        { title: 'Additional Coverage', href: '/plans/additional-coverage', icon: PlusCircle, description: 'Explore additional coverage options for Medicare like dental, vision, and hearing.' }
       ]
     },
     {
@@ -54,6 +45,16 @@ const Header = () => {
         { title: 'Blogs & Insights', href: '/blog', icon: FileText, description: 'Read our latest articles and updates on Medicare.' },
         { title: 'Video Center', href: '/videos', icon: FileText, description: 'Watch educational videos about Medicare.' },
         { title: 'Medicare Breakdown', href: '/medicare-breakdown', icon: FileText, description: 'Explore a detailed breakdown of Medicare.' }
+      ]
+    },
+    {
+      title: 'The BBI Difference',
+      href: '/about-us',
+      submenu: [
+        { title: 'About Us', href: '/about-us', icon: Users, description: 'Learn about our company and our mission.' },
+        { title: 'Client Testimonials', href: '/client-reviews', icon: Star, description: 'Read what our clients have to say about us.' },
+        { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
+        { title: 'Get in Touch', href: '/contact', icon: BookOpen, description: 'Contact us to get started on your Medicare journey.' }
       ]
     }
   ];

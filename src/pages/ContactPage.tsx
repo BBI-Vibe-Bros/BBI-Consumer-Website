@@ -58,17 +58,17 @@ const ContactPage = () => {
         schemaType="webpage"
       />
       
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div>
         <div className="container mx-auto">
           <Breadcrumb items={breadcrumbItems} />
         </div>
       </div>
       
-      <div className="container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto">
+      <div className="mx-auto px-6 py-12">
+        <div className="container mx-auto">
           <h1 className="text-4xl font-bold text-bb-dark mb-6">Contact Us</h1>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
             <div>
               <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
               <p className="mb-8 text-gray-700">
@@ -108,7 +108,7 @@ const ContactPage = () => {
               </div>
             </div>
             
-            <div>
+            <div className="bg-gray-50 border-b border-gray-200 p-6 rounded-lg shadow-md">
               <h2 className="text-2xl font-bold mb-4">Send Us a Message</h2>
               
               <FormProvider {...form}>
@@ -174,7 +174,7 @@ const ContactPage = () => {
                       )}
                     />
                     
-                    <Button type="submit" className="bg-bb-blue hover:bg-bb-light-blue w-full">
+                    <Button>
                       Submit Message
                     </Button>
                   </form>

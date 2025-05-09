@@ -48,19 +48,18 @@ const App = () => (
               <Route path="/medicare-breakdown" element={<MedicareBreakdown />} />
               {/* Medicare basics and information routes */}
               <Route path="/medicare">
-                <Route path="basics" element={<MedicareBasics />} />
-                <Route path="basics/what-is-medicare" element={<MedicareBasics />} />
-                <Route path="basics/enrollment-periods" element={<EnrollmentPeriods />} />
+                <Route path="what-is-medicare" element={<MedicareBasics />} />
+                <Route path="enrollment-periods" element={<EnrollmentPeriods />} />
                 <Route path="eligibility" element={<MedicareEligibility />} />
                 <Route path="four-parts-of-medicare" element={<MedicareParts />} />
-                <Route path="basics/medicare-costs" element={<MedicareCosts />} />
+                <Route path="medicare-costs" element={<MedicareCosts />} />
               </Route>
               
               {/* Plan routes */}
               <Route path="/plans">
-                <Route path="advantage" element={<MedicareAdvantage />} />
-                <Route path="supplement" element={<MedicareSupplement />} />
-                <Route path="prescription" element={<PrescriptionDrugPlans />} />
+                <Route path="medicare-advantage" element={<MedicareAdvantage />} />
+                <Route path="medicare-supplement" element={<MedicareSupplement />} />
+                <Route path="medicare-part-d" element={<PrescriptionDrugPlans />} />
                 <Route path="additional-coverage" element={<AdditionalCoverage />} />
               </Route>
               
@@ -77,8 +76,13 @@ const App = () => (
               <Route path="/videos/watch/:slug" element={<VideoPage />} />
               
               {/* Static routes */}
-              <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
-              <Route path="/medicaresupplement" element={<MedicareSupplement />} />
+              <Route path="/medicare-part-d" element={<PrescriptionDrugPlans />} />
+              <Route path="/medicare-supplement" element={<MedicareSupplement />} />
+              <Route path="/what-is-medicare" element={<MedicareBasics />} />
+              <Route path="/enrollment-periods" element={<EnrollmentPeriods />} />
+              <Route path="/eligibility" element={<MedicareEligibility />} />
+              <Route path="/four-parts-of-medicare" element={<MedicareParts />} />
+              <Route path="/medicare-costs" element={<MedicareCosts />} />
               <Route path="/about-us" element={<AboutPage />} />
               <Route path="/about-us/team" element={<TeamPage />} />
               <Route path="/contact" element={<ContactPage />} />

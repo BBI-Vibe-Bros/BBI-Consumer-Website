@@ -89,9 +89,9 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
     if (path.startsWith('/plans/')) {
       // Add all plan types
       const planItems = [
-        { label: 'Medicare Advantage', path: '/plans/advantage' },
-        { label: 'Medicare Supplements', path: '/plans/supplement' },
-        { label: 'Prescription Drug Plans', path: '/plans/prescription' },
+        { label: 'Medicare Advantage', path: '/plans/medicare-advantage' },
+        { label: 'Medicare Supplements', path: '/plans/medicare-supplement' },
+        { label: 'Prescription Drug Plans', path: '/plans/medicare-part-d' },
         { label: 'Additional Coverage', path: '/plans/additional-coverage' }
       ];
 
@@ -104,12 +104,13 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       });
     }
     // Basics section breadcrumbs
-    else if (path.startsWith('/medicare/basics/')) {
+    else if (path.startsWith('/medicare/')) {
       // Add all basic pages
       const basicItems = [
-        { label: 'What is Medicare?', path: '/medicare/basics/what-is-medicare' },
-        { label: 'Enrollment Periods', path: '/medicare/basics/enrollment-periods' },
-        { label: 'Medicare Costs', path: '/medicare/basics/medicare-costs' }
+        { label: 'What is Medicare?', path: '/medicare/what-is-medicare' },
+        { label: 'The 4 Parts of Medicare', path: '/medicare/the-4-parts-of-medicare' },
+        { label: 'Enrollment Periods', path: '/medicare/enrollment-periods' },
+        { label: 'Medicare Costs', path: '/medicare/medicare-costs' }
       ];
 
       // Add all items, marking the current one as last
@@ -236,9 +237,9 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                 <h2 className="font-heading font-bold mb-4">Related Articles</h2>
                 <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                   {relatedBlogs.map((blog) => (
-                    <div key={blog.slug} className="border border-gray-200 rounded-lg p-4 bg-white h-full flex flex-col">
+                    <div key={blog.slug} className="border border-gray-20 shadow hover:shadow-md rounded p-4 bg-white h-full flex flex-col">
                       {blog.featuredImage && (
-                        <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden mb-2">
+                        <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded overflow-hidden mb-2">
                           <img
                             src={blog.featuredImage}
                             alt={blog.title}
@@ -246,7 +247,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                           />
                         </div>
                       )}
-                      <h3 className="font-heading font-semibold mb-2 group-hover:text-bb-blue">
+                      <h3 className="mb-2 group-hover:text-bb-blue">
                         {blog.title}
                       </h3>
                       {blog.excerpt && (
