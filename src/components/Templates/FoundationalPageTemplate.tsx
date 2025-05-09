@@ -91,7 +91,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       const planItems = [
         { label: 'Medicare Advantage', path: '/plans/medicare-advantage' },
         { label: 'Medicare Supplements', path: '/plans/medicare-supplement' },
-        { label: 'Prescription Drug Plans', path: '/plans/medicare-part-d' },
+        { label: 'Prescription Drug Plans', path: '/plans/medicarepartd' },
         { label: 'Additional Coverage', path: '/plans/additional-coverage' }
       ];
 
@@ -111,7 +111,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
         { label: 'The 4 Parts of Medicare', path: '/medicare/four-parts-of-medicare' },
         { label: 'Enrollment Periods', path: '/medicare/enrollment-periods' },
         { label: 'Medicare Costs', path: '/medicare/medicare-costs' },
-        { label: 'Medicare Eligibility', path: '/medicare/medicare-eligibility' }
+        { label: 'Medicare Eligibility', path: '/medicare/eligibility' }
       ];
 
       // Add all items, marking the current one as last

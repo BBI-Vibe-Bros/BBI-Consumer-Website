@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -11,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow pb-24 lg:pb-0">
         {children}
       </main>
       <Footer />

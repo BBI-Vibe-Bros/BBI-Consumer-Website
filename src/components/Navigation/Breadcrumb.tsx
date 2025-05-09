@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
 import {
   Breadcrumb as ShadcnBreadcrumb,
   BreadcrumbList,
@@ -43,15 +42,15 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
   return (
     <>
       <nav
-        className={`w-auto flex flex-col items-center sm:items-start ${className}`}
+        className={`w-full ${className}`}
         aria-label="breadcrumb"
       >
-        <ol className="flex flex-row items-center gap-1.5 sm:gap-2 py-2">
+        <ol className="flex flex-wrap items-baseline gap-1 sm:gap-1.5 py-2">
           {items.map((item, index) => (
-            <li key={`item-${index}`} className="inline-flex items-center">
+            <li key={`item-${index}`} className="flex items-center">
               {item.isLast ? (
                 <span
-                  className={`rounded-full px-3 py-0.5 font-semibold text-sm ${getPillClass(index, item.isLast)}`}
+                  className={`inline-flex items-center rounded-full px-2 sm:px-2.5 py-1 font-medium text-xs sm:text-sm leading-none ${getPillClass(index, item.isLast)}`}
                   aria-current="page"
                 >
                   {item.label}
@@ -59,18 +58,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' }) => {
               ) : (
                 <Link
                   to={item.path}
-                  className={`rounded-full px-3 py-0.5 font-regular text-sm transition-colors hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getPillClass(index, false)}`}
+                  className={`inline-flex items-center rounded-full px-2 sm:px-2.5 py-1 font-medium text-xs sm:text-sm leading-none transition-colors hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 ${getPillClass(index, false)}`}
                 >
                   {item.label}
                 </Link>
-              )}
-              {/* Mobile-only blue pill indicators after first pill */}
-              {index === 0 && (
-                <span className="flex sm:hidden ml-1 gap-0.5">
-                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
-                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
-                  <span className="inline-block w-2 h-3 rounded-full bg-blue-400" />
-                </span>
               )}
             </li>
           ))}

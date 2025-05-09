@@ -19,7 +19,7 @@ export default function TeamPage() {
         schemaType="webpage"
       />
 
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div>
         <div className="container mx-auto">
           <Breadcrumb items={breadcrumbItems} />
         </div>

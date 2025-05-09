@@ -28,11 +28,11 @@ const AboutSection = () => {
 
           <div>
             <div className="mb-6">
-              <h2 className="font-bold text-bb-blue text-base">ABOUT US</h2>
-              <h3 className="font-bold text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
+            <div className="inline-flex font-medium items-center gap-2 bg-blue-100 text-bb-blue px-4 py-1 rounded-full mb-4"><span className="font-medium">About Us</span></div>
+              <h3 className="font-bold text-xl md:text-3xl text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
             </div>
 
-            <p className="mb-8 text-[#002a3a]">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
+            <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
 
             <div className="space-y-4 mb-8">
               {features.map(feature => <div key={feature.id} className="flex gap-3 items-start py-0">
@@ -43,7 +43,7 @@ const AboutSection = () => {
                 </div>)}
             </div>
 
-            <Link to="/about">
+            <Link to="/about-us">
               <Button>Learn More About Us</Button>
             </Link>
           </div>

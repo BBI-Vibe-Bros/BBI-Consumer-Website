@@ -9,25 +9,25 @@ const PlanOptions = () => {
     title: 'Medicare Advantage Plans',
     description: 'Medicare Advantage (Part C) offers all-in-one alternatives to Original Medicare with additional benefits.',
     image: '/services/MedicareAdvantage_FeaturedImg.png',
-    link: '/plans/advantage'
+    link: '/plans/medicare-advantage'
   }, {
     id: 'supplement',
     title: 'Medicare Supplements',
     description: 'Medicare Supplements (Medigap) help fill the "gaps" in Original Medicare coverage and provide more flexibility.',
     image: '/services/MedicareSupplement_FeaturedImg.png',
-    link: '/plans/supplement'
+    link: '/plans/medicare-supplements'
   }, {
     id: 'prescription',
     title: 'Prescription Drug Plans',
     description: 'Medicare Part D helps cover the cost of prescription drugs, including many recommended shots or vaccines.',
     image: '/services/MedicarePartD_FeaturedImg.png',
-    link: '/plans/prescription'
+    link: '/plans/medicarepartd'
   }];
   return <section className="py-16">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="font-bold mb-4 text-bb-blue text-3xl">Explore Your Medicare Coverage Options with Confidence</h2>
-          <p className="text-gray-700 mx-auto text-lg pl-20 pr-20">We make it easy to understand your Medicare coverage options available to you. Learn how to compare Medicare Advantage, Supplements, and Prescription Drug Plans in one place.</p>
+          <h2 className="font-bold mb-4 text-bb-blue text-2xl md:text-3xl">Explore Your Medicare Coverage Options with Confidence</h2>
+          <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">We make it easy to understand your Medicare coverage options available to you. Learn how to compare Medicare Advantage, Supplements, and Prescription Drug Plans in one place.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
@@ -48,10 +48,6 @@ const PlanOptions = () => {
               </Link>
             </CardFooter>
             </Card>)}
-        </div>
-
-        <div className="text-center mt-12">
-          <Button as={Link} to="/plans/advantage">View All Medicare Options</Button>
         </div>
       </div>
     </section>;

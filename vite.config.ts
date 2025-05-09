@@ -45,20 +45,53 @@ export default defineConfig(({ mode }) => ({
     sitemap({
       hostname: 'https://www.bobbybrockinsurance.com',
       dynamicRoutes: [
+        // Home and main pages
         '/',
-        '/about',
+        '/about-us',
+        '/about-us/team',
         '/contact',
-        '/services',
+        '/privacy-policy',
+        '/client-reviews',
+        '/medicare-breakdown',
+        
+        // Medicare basics and information
+        '/medicare/what-is-medicare',
+        '/medicare/four-parts-of-medicare',
+        '/medicare/enrollment-periods',
+        '/medicare/medicare-costs',
+        '/medicare/eligibility',
+        
+        // Plan routes
+        '/plans/medicare-advantage',
+        '/plans/medicare-supplement',
+        '/plans/medicarepartd',
+        '/plans/additional-coverage',
+        
+        // Resources
+        '/resources',
+        '/resources/calculators',
+        '/resources/glossary',
+        
+        // Content sections
         '/blog',
-        '/medicare',
-        '/auto-insurance',
-        '/home-insurance',
-        '/life-insurance',
-        '/business-insurance'
+        '/videos',
+        
+        // Legacy routes (for SEO)
+        '/medicarepartd',
+        '/medicare-supplement',
+        '/what-is-medicare',
+        '/enrollment-periods',
+        '/eligibility',
+        '/four-parts-of-medicare',
+        '/medicare-costs'
       ],
       exclude: [
         '/404',
-        '/admin/**'
+        '/admin/**',
+        '/api/**',
+        '/resources/guides/**', // These are dynamic and will be handled by the CMS
+        '/blog/**', // These are dynamic and will be handled by the CMS
+        '/videos/watch/**' // These are dynamic and will be handled by the CMS
       ],
       changefreq: 'weekly',
       priority: 0.7,
