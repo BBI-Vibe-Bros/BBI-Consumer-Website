@@ -5,12 +5,14 @@ import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
 import Layout from '@/components/Layout/Layout';
 import SEO from '@/utils/seo';
+import { useLeadCapture } from '@/contexts/LeadCaptureContext';
 
 const MedicareBreakdown = () => {
   const [page, setPage] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { slug } = useParams();
+  const { openLeadCapture } = useLeadCapture();
 
   useEffect(() => {
     const fetchPage = async () => {
@@ -166,26 +168,33 @@ const MedicareBreakdown = () => {
             relatedBlogs: response.relatedBlogs || [],
           });
         } else {
-          setError('Page not found');
+          setError('Failed to load page content');
         }
       } catch (err) {
-        console.error('Error fetching page:', err);
-        setError('Failed to load page');
+        console.error('Error fetching Medicare Breakdown data:', err);
+        setError('Failed to load page content');
       } finally {
         setLoading(false);
       }
     };
 
     fetchPage();
-  }, [slug]);
+  }, []);
 
   if (loading) {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">
-          <Skeleton className="h-8 w-3/4 mb-4" />
-          <Skeleton className="h-4 w-1/2 mb-8" />
-          <Skeleton className="h-64 w-full" />
+          <Skeleton className="h-12 w-3/4 mb-6" />
+          <Skeleton className="h-6 w-1/2 mb-10" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+            <Skeleton className="h-72 rounded-lg" />
+          </div>
         </div>
       </Layout>
     );
@@ -195,7 +204,10 @@ const MedicareBreakdown = () => {
     return (
       <Layout>
         <div className="container mx-auto px-4 py-8">
-          <h1 className="text-2xl font-bold text-red-600">Error: {error}</h1>
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Error</h1>
+            <p className="text-gray-600">{error}</p>
+          </div>
         </div>
       </Layout>
     );
@@ -211,13 +223,22 @@ const MedicareBreakdown = () => {
     );
   }
 
+  // Add click handler to open lead capture modal
+  const handleLeadCaptureClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openLeadCapture('Medicare Breakdown Page');
+  };
+
   return (
     <Layout>
       <SEO 
         title={page.metadata?.title || page.pageName || "Medicare Breakdown"}
         description={page.metadata?.description || "Learn about Medicare coverage options and find the right plan for your needs."}
       />
-      <LeadMagnetTemplate page={page} />
+      <LeadMagnetTemplate 
+        page={page} 
+        onLeadCaptureClick={handleLeadCaptureClick}
+      />
     </Layout>
   );
 };

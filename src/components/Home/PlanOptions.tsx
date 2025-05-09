@@ -27,7 +27,7 @@ const PlanOptions = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="font-bold mb-4 text-bb-blue text-3xl">Explore Your Medicare Coverage Options with Confidence</h2>
-          <p className="text-gray-700 mx-auto text-lg">We make it easy to understand your Medicare coverage options available to you. Learn how to compare Medicare Advantage, Supplements, and Prescription Drug Plans in one place.</p>
+          <p className="text-gray-700 mx-auto text-lg pl-20 pr-20">We make it easy to understand your Medicare coverage options available to you. Learn how to compare Medicare Advantage, Supplements, and Prescription Drug Plans in one place.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">

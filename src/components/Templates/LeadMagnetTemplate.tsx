@@ -6,6 +6,8 @@ import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Link } from 'react-router-dom';
 import Sidebar from '@/components/Sidebar';
+import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
 
 interface LeadMagnetTemplateProps {
   page: {
@@ -32,9 +34,10 @@ interface LeadMagnetTemplateProps {
       buttonLink?: string;
     };
   };
+  onLeadCaptureClick?: (e: React.MouseEvent) => void;
 }
 
-const LeadMagnetTemplate = ({ page }: LeadMagnetTemplateProps) => {
+const LeadMagnetTemplate = ({ page, onLeadCaptureClick }: LeadMagnetTemplateProps) => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
   const [blogError, setBlogError] = useState<string | null>(null);
@@ -151,7 +154,26 @@ const LeadMagnetTemplate = ({ page }: LeadMagnetTemplateProps) => {
 
           {/* Sidebar */}
           <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
-            <Sidebar content={page.fBodyContent} />
+            <div className="space-y-6">
+              {/* Lead Magnet Section */}
+              <div className="bg-blue-50 rounded-2xl p-6">
+                <h3 className="leading-snug text-2xl mb-2">Medicare Made <i>Really</i> Simple</h3>
+                <h4 className="text-base leading-normal text-bb-dark mb-2">Your Free Guide to the ABCs</h4>
+                <p className="leading-normal text-gray-700 mb-4">
+                  Confused by Parts A, B, C, and D? This free guide breaks it all down in plain English to help you make sense of Medicare and choose the right coverage with confidence.
+                </p>
+                <Button 
+                  onClick={onLeadCaptureClick}
+                  className="w-full flex items-center justify-center gap-2"
+                >
+                  Download Free Guide
+                  <Download className="inline-block" size={20} />
+                </Button>
+              </div>
+
+              {/* Table of Contents */}
+              <Sidebar content={page.fBodyContent} />
+            </div>
           </aside>
         </div>
       </div>

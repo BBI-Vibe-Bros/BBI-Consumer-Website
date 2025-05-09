@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@/components/Layout/Layout';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
@@ -23,6 +22,7 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 const ContactPage = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
@@ -34,14 +34,35 @@ const ContactPage = () => {
   });
 
   const onSubmit = async (data: ContactFormValues) => {
-    // In a real implementation, this would send the form data to a server
-    console.log('Form submitted:', data);
-    
-    // Show success toast
-    toast.success('Your message has been sent! We will contact you shortly.');
-    
-    // Reset the form
-    form.reset();
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://services.leadconnectorhq.com/hooks/rIYCLA8SyEzdVF8EtBfR/webhook-trigger/510c1d1b-0d69-45e6-9d3c-d2f1c87659c6', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          phone: data.phone || 'Not provided',
+          message: data.message,
+          source: 'Website Contact Form',
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      toast.success('Your message has been sent! We will contact you shortly.');
+      form.reset();
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast.error('There was an error sending your message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Build breadcrumb items
@@ -174,8 +195,8 @@ const ContactPage = () => {
                       )}
                     />
                     
-                    <Button>
-                      Submit Message
+                    <Button disabled={isSubmitting}>
+                      {isSubmitting ? 'Sending...' : 'Submit Message'}
                     </Button>
                   </form>
                 </Form>

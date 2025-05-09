@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import ErrorBoundary from "@/components/ErrorBoundary";
 import ScrollToTop from "@/utils/scrollToTop";
+import { LeadCaptureProvider } from "@/contexts/LeadCaptureContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import MedicareAdvantage from "./pages/MedicareAdvantage";
@@ -38,61 +39,63 @@ const App = () => (
     <QueryClientProvider client={queryClient}>
       <HelmetProvider>
         <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <ScrollToTop />
-            <Routes>
-              {/* Home page */}
-              <Route path="/" element={<Index />} />
-              <Route path="/medicare-breakdown" element={<MedicareBreakdown />} />
-              {/* Medicare basics and information routes */}
-              <Route path="/medicare">
-                <Route path="what-is-medicare" element={<MedicareBasics />} />
-                <Route path="enrollment-periods" element={<EnrollmentPeriods />} />
-                <Route path="eligibility" element={<MedicareEligibility />} />
-                <Route path="four-parts-of-medicare" element={<MedicareParts />} />
-                <Route path="medicare-costs" element={<MedicareCosts />} />
-              </Route>
-              
-              {/* Plan routes */}
-              <Route path="/plans">
-                <Route path="medicare-advantage" element={<MedicareAdvantage />} />
-                <Route path="medicare-supplement" element={<MedicareSupplement />} />
-                <Route path="medicare-part-d" element={<PrescriptionDrugPlans />} />
-                <Route path="additional-coverage" element={<AdditionalCoverage />} />
-              </Route>
-              
-              {/* Resources routes */}
-              <Route path="/resources" element={<ResourceListing />} />
-              <Route path="/resources/guides/:slug" element={<ResourceGuide />} />
-              <Route path="/resources/calculators" element={<AboutPage />} />
-              <Route path="/resources/glossary" element={<AboutPage />} />
-              
-              {/* Blog and video content */}
-              <Route path="/blog" element={<BlogListing />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="/videos" element={<VideoListing />} />
-              <Route path="/videos/watch/:slug" element={<VideoPage />} />
-              
-              {/* Static routes */}
-              <Route path="/medicare-part-d" element={<PrescriptionDrugPlans />} />
-              <Route path="/medicare-supplement" element={<MedicareSupplement />} />
-              <Route path="/what-is-medicare" element={<MedicareBasics />} />
-              <Route path="/enrollment-periods" element={<EnrollmentPeriods />} />
-              <Route path="/eligibility" element={<MedicareEligibility />} />
-              <Route path="/four-parts-of-medicare" element={<MedicareParts />} />
-              <Route path="/medicare-costs" element={<MedicareCosts />} />
-              <Route path="/about-us" element={<AboutPage />} />
-              <Route path="/about-us/team" element={<TeamPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-              <Route path="/client-reviews" element={<ClientTestimonials />} />
-              
-              {/* Catch all for 404 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
+          <LeadCaptureProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <ScrollToTop />
+              <Routes>
+                {/* Home page */}
+                <Route path="/" element={<Index />} />
+                <Route path="/medicare-breakdown" element={<MedicareBreakdown />} />
+                {/* Medicare basics and information routes */}
+                <Route path="/medicare">
+                  <Route path="what-is-medicare" element={<MedicareBasics />} />
+                  <Route path="enrollment-periods" element={<EnrollmentPeriods />} />
+                  <Route path="eligibility" element={<MedicareEligibility />} />
+                  <Route path="four-parts-of-medicare" element={<MedicareParts />} />
+                  <Route path="medicare-costs" element={<MedicareCosts />} />
+                </Route>
+                
+                {/* Plan routes */}
+                <Route path="/plans">
+                  <Route path="medicare-advantage" element={<MedicareAdvantage />} />
+                  <Route path="medicare-supplement" element={<MedicareSupplement />} />
+                  <Route path="medicarepartd" element={<PrescriptionDrugPlans />} />
+                  <Route path="additional-coverage" element={<AdditionalCoverage />} />
+                </Route>
+                
+                {/* Resources routes */}
+                <Route path="/resources" element={<ResourceListing />} />
+                <Route path="/resources/guides/:slug" element={<ResourceGuide />} />
+                <Route path="/resources/calculators" element={<AboutPage />} />
+                <Route path="/resources/glossary" element={<AboutPage />} />
+                
+                {/* Blog and video content */}
+                <Route path="/blog" element={<BlogListing />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="/videos" element={<VideoListing />} />
+                <Route path="/videos/watch/:slug" element={<VideoPage />} />
+                
+                {/* Static routes */}
+                <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
+                <Route path="/medicare-supplement" element={<MedicareSupplement />} />
+                <Route path="/what-is-medicare" element={<MedicareBasics />} />
+                <Route path="/enrollment-periods" element={<EnrollmentPeriods />} />
+                <Route path="/eligibility" element={<MedicareEligibility />} />
+                <Route path="/four-parts-of-medicare" element={<MedicareParts />} />
+                <Route path="/medicare-costs" element={<MedicareCosts />} />
+                <Route path="/about-us" element={<AboutPage />} />
+                <Route path="/about-us/team" element={<TeamPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/client-reviews" element={<ClientTestimonials />} />
+                
+                {/* Catch all for 404 */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </LeadCaptureProvider>
         </TooltipProvider>
       </HelmetProvider>
     </QueryClientProvider>

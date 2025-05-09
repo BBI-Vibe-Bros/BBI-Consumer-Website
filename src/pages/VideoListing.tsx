@@ -5,7 +5,7 @@ import Layout from '@/components/Layout/Layout';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
-import CTASection from '@/components/Home/CTASection';
+import { Button } from '@/components/ui/button';
 
 const VideoListing = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,9 +39,11 @@ const VideoListing = () => {
         schemaType="webpage"
       />
 
-      <div className="bg-gray-50 border-b border-gray-200">
+      <div>
         <div className="container mx-auto">
-          <Breadcrumb items={breadcrumbItems} />
+          <div className="-ml-5 -py-2">
+            <Breadcrumb items={breadcrumbItems} />
+          </div>
         </div>
       </div>
 
@@ -70,27 +72,30 @@ const VideoListing = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {videos.map((video: any) => {
                 const { fields, sys } = video;
-                const publishDate = new Date(sys.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                });
+                const publishDate = fields.uploadDate
+                  ? new Date(fields.uploadDate).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })
+                  : 'Unknown date';
 
                 return (
                   <Link 
                     key={sys.id}
                     to={`/videos/watch/${fields.slug}`} 
-                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden"
+                    className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full border border-gray-100"
                   >
                     <div className="relative">
-                      {fields.thumbnail?.fields?.file?.url ? (
+                      {fields.thumbnailImage?.fields?.file?.url ? (
                         <img 
-                          src={`https:${fields.thumbnail.fields.file.url}`}
+                          src={`https:${fields.thumbnailImage.fields.file.url}`}
                           alt={fields.title}
-                          className="w-full h-48 object-cover"
+                          className="w-full object-cover transition-transform hover:scale-105"
+                          loading="lazy"
                         />
                       ) : (
                         <div className="w-full h-48 bg-gray-200"></div>
@@ -102,18 +107,16 @@ const VideoListing = () => {
                           </svg>
                         </div>
                       </div>
-                      {fields.duration && (
-                        <div className="absolute bottom-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-                          {fields.duration} mins
-                        </div>
-                      )}
                     </div>
-                    <div className="p-5">
-                      <h2 className="text-xl font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
+                    <div className="p-5 flex flex-col flex-1">
+                      <p className="text-gray-500 text-sm mb-1">{publishDate}</p>
+                      <h2 className="text-lg font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
                         {fields.title}
                       </h2>
-                      <p className="text-gray-500 text-sm mb-3">{publishDate}</p>
-                      <p className="text-gray-700 line-clamp-2">{fields.description}</p>
+                      <p className="text-gray-700 text-[16px] leading-normal line-clamp-3 flex-1">{fields.description}</p>
+                      <Button as={Link} to={`/videos/watch/${fields.slug}`} className="mt-4" onClick={e => e.stopPropagation()}>
+                        Watch Now »
+                      </Button>
                     </div>
                   </Link>
                 );
@@ -164,7 +167,6 @@ const VideoListing = () => {
         )}
       </div>
 
-      <CTASection />
     </Layout>
   );
 };

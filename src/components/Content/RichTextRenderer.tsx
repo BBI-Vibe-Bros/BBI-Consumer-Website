@@ -124,7 +124,7 @@ const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
   }
 
   return (
-<div className="my-6 rounded-lg overflow-hidden bg-[#d5effc]">
+<div className="my-3 rounded-lg border-4 border-[#d5effc] overflow-hidden bg-[#d5effc]">
   <div className="flex flex-col gap-4 md:flex-row items-stretch">
     {imageUrl && (
       <div className="md:w-[280px] md:flex-shrink-0">
@@ -157,7 +157,7 @@ const EmbeddedWebsiteCTA = ({ entry }: { entry: any }) => {
 };
 
 const EmbeddedBlogPost = ({ entry }: { entry: any }) => (
-  <div className="my-6 p-4 border border-gray-200 rounded-lg bg-[#d5effc]">
+  <div className="my-3 rounded-lg border-4 border-[#d5effc] overflow-hidden bg-[#d5effc]">
     {entry.featuredImage && (
       <img
         src={entry.featuredImage}
@@ -182,11 +182,19 @@ const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => {
   
   const imageUrl = entry.fShareImage?.fields?.file?.url ? `https:${entry.fShareImage.fields.file.url}` : '';
   const description = entry.fPageExcerpt || '';
-  
+
+  // Handle parentSlug logic for top-level and nested pages
+  const parent = entry.parentSlug || '';
+  const pageSlug = entry.pageSlug || '';
+  let link = parent === '/'
+    ? `/${pageSlug}`
+    : `/${parent.replace(/^\/+|\/+$/g, '')}/${pageSlug.replace(/^\/+/, '')}`;
+  link = link.replace(/\/+/g, '/'); // Remove any accidental double slashes
+
   console.log('Extracted Description:', description);
   
   return (
-    <div className="my-6 rounded-lg overflow-hidden bg-[#d5effc]">
+    <div className="my-3 rounded-lg border-4 border-[#d5effc] overflow-hidden bg-[#d5effc]">
       <div className="flex flex-col md:flex-row items-stretch">
         {imageUrl && (
           <div className="md:w-[280px] md:flex-shrink-0">
@@ -201,8 +209,8 @@ const EmbeddedFoundationalPage = ({ entry }: { entry: any }) => {
           <h3 className="font-bold mb-2">{entry.pageName}</h3>
           {description && <p className="text-bb-dark text-sm leading-snug mb-4">{description}</p>}
           <Link
-            to={`/${entry.parentSlug}/${entry.pageSlug}`}
-            className="inline-block px-4 py-2 bg-[#fadb21] text-bb-dark hover:text-[#fadb21] text-sm font-medium rounded hover:bg-[#002a3a] transition-colors duration-300 transform"
+            to={link}
+            className="inline-block mx-auto px-4 py-4 bg-[#fadb21] text-bb-dark hover:text-[#fadb21] text-sm font-medium rounded hover:bg-[#002a3a] transition-colors duration-300 transform"
           >
             Dive Deeper →
           </Link>
