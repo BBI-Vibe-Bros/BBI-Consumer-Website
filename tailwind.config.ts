@@ -24,15 +24,15 @@ export default {
 		extend: {
 			fontFamily: {
 				heading: [
-					'Montserrat',
+					'proxima-nova',
 					'Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'
 				],
 				body: [
-					'DM Sans',
+					'proxima-nova',
 					'Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'
 				],
 				sans: [
-					'DM Sans',
+					'proxima-nova',
 					'Helvetica Neue', 'Helvetica', 'Arial', 'system-ui', 'sans-serif'
 				],
 				mono: ['monospace', 'SFMono-Regular'],
