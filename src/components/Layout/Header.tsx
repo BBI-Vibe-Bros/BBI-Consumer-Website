@@ -10,7 +10,7 @@ import {
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
-import { ChevronDown, BookOpen, FileText, Users, HelpCircle, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star } from 'lucide-react';
+import { ChevronDown, GraduationCap, ClipboardList, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star, Users, BookOpen, Video, FileText, Heart, MessageCircle, Building2, ChevronRight } from 'lucide-react';
 import DropdownCallout from './DropdownCallout';
 
 const Header = () => {
@@ -21,8 +21,8 @@ const Header = () => {
       title: 'Understand Medicare',
       href: '/medicare/basics',
       submenu: [
-        { title: 'What is Medicare?', href: '/medicare/what-is-medicare', icon: BookOpen, description: 'Learn about Medicare, its different parts, and how it works.' },
-        { title: 'The 4 Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: FileText, description: 'Learn about the four parts of Medicare and what they cover.' },
+        { title: 'What is Medicare?', href: '/medicare/what-is-medicare', icon: GraduationCap, description: 'Learn about Medicare, its different parts, and how it works.' },
+        { title: 'The 4 Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: ClipboardList, description: 'Learn about the four parts of Medicare and what they cover.' },
         { title: 'Enrollment Periods', href: '/medicare/enrollment-periods', icon: Calendar, description: 'Discover the different enrollment periods for Medicare.' },
         { title: 'Medicare Costs', href: '/medicare/medicare-costs', icon: DollarSign, description: 'Understand the costs associated with Medicare.' },
         { title: 'Medicare Eligibility', href: '/medicare/eligibility', icon: Shield, description: 'Learn what makes you eligible for Medicare based on age, disability, and residency status.' }
@@ -32,18 +32,18 @@ const Header = () => {
       title: 'Medicare Plans',
       href: '/plans',
       submenu: [
-        { title: 'Medicare Advantage', href: '/plans/medicare-advantage', icon: Shield, description: 'Explore Medicare Advantage plans, which combine medical and drug coverage.' },
+        { title: 'Medicare Advantage', href: '/plans/medicare-advantage', icon: Heart, description: 'Explore Medicare Advantage plans, which combine medical and drug coverage.' },
         { title: 'Medicare Supplements', href: '/plans/medicare-supplement', icon: PlusCircle, description: 'Learn about Medicare Supplements, which cover the gaps in Original Medicare.' },
-        { title: 'Prescription Drug Plans', href: '/plans/medicare-part-d', icon: Pill, description: 'Discover Medicare Part D, which cover prescription medications.' },
-        { title: 'Additional Coverage', href: '/plans/additional-coverage', icon: PlusCircle, description: 'Explore additional coverage options for Medicare like dental, vision, and hearing.' }
+        { title: 'Prescription Drug Plans', href: '/plans/medicarepartd', icon: Pill, description: 'Discover Medicare Part D, which cover prescription medications.' },
+        { title: 'Additional Coverage', href: '/plans/additional-coverage', icon: Shield, description: 'Explore additional coverage options for Medicare like dental, vision, and hearing.' }
       ]
     },
     {
       title: 'Resources',
       href: '/resources',
       submenu: [
-        { title: 'Blogs & Insights', href: '/blog', icon: FileText, description: 'Read our latest articles and updates on Medicare.' },
-        { title: 'Video Center', href: '/videos', icon: FileText, description: 'Watch educational videos about Medicare.' },
+        { title: 'Blogs & Insights', href: '/blog', icon: BookOpen, description: 'Read our latest insights on Medicare.' },
+        { title: 'Video Center', href: '/videos', icon: Video, description: 'Watch educational videos about Medicare.' },
         { title: 'Medicare Breakdown', href: '/medicare-breakdown', icon: FileText, description: 'Explore a detailed breakdown of Medicare.' }
       ]
     },
@@ -51,10 +51,10 @@ const Header = () => {
       title: 'The BBI Difference',
       href: '/about-us',
       submenu: [
-        { title: 'About Us', href: '/about-us', icon: Users, description: 'Learn about our company and our mission.' },
-        { title: 'Client Testimonials', href: '/client-reviews', icon: Star, description: 'Read what our clients have to say about us.' },
+        { title: 'About Us', href: '/about-us', icon: Building2, description: 'Learn about our company and our mission.' },
+        { title: 'Client Testimonials', href: '/client-reviews', icon: MessageCircle, description: 'Read what our clients have to say about us.' },
         { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
-        { title: 'Get in Touch', href: '/contact', icon: BookOpen, description: 'Contact us to get started on your Medicare journey.' }
+        { title: 'Get in Touch', href: '/contact', icon: MessageCircle, description: 'Contact us to get started on your journey.' }
       ]
     }
   ];
@@ -129,12 +129,13 @@ const Header = () => {
                               <div className="flex flex-col gap-2">
                                 {item.submenu.slice(0, Math.ceil(item.submenu.length / 2)).map((subItem) => (
                                   <NavigationMenuLink asChild key={subItem.title}>
-                                    <Link to={subItem.href} className="flex items-start gap-3 group bg-white rounded-lg p-3 hover:bg-blue-50 transition-all duration-200 hover:shadow-md border border-transparent hover:border-gray-100">
-                                      {subItem.icon && <subItem.icon className="w-5 h-5 text-blue-400 mt-0.5" />}
-                                      <div>
+                                    <Link to={subItem.href} className="flex items-center gap-3 group bg-white rounded-lg p-3 hover:bg-blue-50 transition-all duration-200 hover:shadow-md border border-transparent hover:border-gray-100">
+                                      {subItem.icon && <subItem.icon className="w-6 h-6 text-blue-500 flex-shrink-0" />}
+                                      <div className="flex-1">
                                         <div className="font-semibold text-[16px] text-gray-900 group-hover:text-bb-blue transition-colors leading-tight">{subItem.title}</div>
                                         <div className="text-gray-400 text-[14px] mt-0.5 leading-snug">{subItem.description || 'Description here'}</div>
                                       </div>
+                                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 flex-shrink-0 transition-colors" />
                                     </Link>
                                   </NavigationMenuLink>
                                 ))}
@@ -142,15 +143,16 @@ const Header = () => {
                             </div>
                             {/* Middle: RESOURCES */}
                             <div>
-                              <div className="flex flex-col gap-4">
+                              <div className="flex flex-col gap-2">
                                 {item.submenu.slice(Math.ceil(item.submenu.length / 2)).map((subItem) => (
                                   <NavigationMenuLink asChild key={subItem.title}>
-                                    <Link to={subItem.href} className="flex items-start gap-3 group bg-white border border-gray-100 border-solid rounded-lg p-3 hover:bg-blue-50 transition-all duration-200 hover:shadow-md border border-transparent hover:border-gray-100">
-                                      {subItem.icon && <subItem.icon className="w-5 h-5 text-blue-400 mt-0.5" />}
-                                      <div>
+                                    <Link to={subItem.href} className="flex items-center gap-3 group bg-white border border-gray-100 border-solid rounded-lg p-3 hover:bg-blue-50 transition-all duration-200 hover:shadow-md border border-transparent hover:border-gray-100">
+                                      {subItem.icon && <subItem.icon className="w-6 h-6 text-blue-500 flex-shrink-0" />}
+                                      <div className="flex-1">
                                         <div className="font-semibold text-[16px] text-gray-900 group-hover:text-bb-blue transition-colors leading-tight">{subItem.title}</div>
                                         <div className="text-gray-400 text-[14px] mt-0.5 leading-snug">{subItem.description || 'Description here'}</div>
                                       </div>
+                                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 flex-shrink-0 transition-colors" />
                                     </Link>
                                   </NavigationMenuLink>
                                 ))}
