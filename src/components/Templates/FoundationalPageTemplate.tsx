@@ -108,9 +108,10 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       // Add all basic pages
       const basicItems = [
         { label: 'What is Medicare?', path: '/medicare/what-is-medicare' },
-        { label: 'The 4 Parts of Medicare', path: '/medicare/the-4-parts-of-medicare' },
+        { label: 'The 4 Parts of Medicare', path: '/medicare/four-parts-of-medicare' },
         { label: 'Enrollment Periods', path: '/medicare/enrollment-periods' },
-        { label: 'Medicare Costs', path: '/medicare/medicare-costs' }
+        { label: 'Medicare Costs', path: '/medicare/medicare-costs' },
+        { label: 'Medicare Eligibility', path: '/medicare/medicare-eligibility' }
       ];
 
       // Add all items, marking the current one as last

@@ -4,7 +4,6 @@ import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
-import CTASection from '@/components/Home/CTASection';
 
 const MedicareBasics = () => {
   const [loading, setLoading] = useState(true);
@@ -99,7 +98,6 @@ const MedicareBasics = () => {
       ) : (
         <>
           {pageData && <FoundationalPageTemplate page={pageData} />}
-          <CTASection />
         </>
       )}
     </Layout>
