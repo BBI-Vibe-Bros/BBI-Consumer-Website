@@ -1,4 +1,4 @@
-# BBI Insurance Medicare Website
+# Bobby Brock Insurance Medicare Website
 
 A modern, secure, and accessible Medicare insurance website built with React, TypeScript, and Contentful CMS.
 
@@ -51,22 +51,31 @@ src/
 The application uses the following routes:
 
 - `/` - Homepage
-- `/medicare/basics/*` - Medicare basics pages
-- `/medicare/eligibility` - Medicare eligibility
-- `/medicare/four-parts-of-medicare` - Medicare parts overview
+- `/medicare/*` - Medicare information pages
+  - `/medicare/what-is-medicare`
+  - `/medicare/enrollment-periods`
+  - `/medicare/eligibility`
+  - `/medicare/four-parts-of-medicare`
+  - `/medicare/medicare-costs`
 - `/medicare-breakdown` - 'Medicare Breakdown: The Alphabet Soup of Medicare' Book Landing Page
 - `/plans/*` - Medicare plan pages
-- `/resources/*` - Resource pages
+  - `/plans/medicare-advantage`
+  - `/plans/medicare-supplement`
+  - `/plans/medicarepartd`
+  - `/plans/additional-coverage`
+- `/resources` - Resource pages
 - `/blog` - Blog listing
 - `/videos` - Video content
 - `/about-us` - About page
+- `/about-us/team` - Team page
 - `/contact` - Contact page
 - `/privacy-policy` - Privacy policy
+- `/client-reviews` - Client testimonials
 
 Example URLs:
 - https://www.bobbybrockinsurance.com/medicare-breakdown
-- https://www.bobbybrockinsurance.com/plans/advantage
-- https://www.bobbybrockinsurance.com/resources/guides
+- https://www.bobbybrockinsurance.com/plans/medicare-advantage
+- https://www.bobbybrockinsurance.com/medicare/what-is-medicare
 
 ## 🔒 Security Features
 
@@ -182,13 +191,13 @@ This project is proprietary and confidential. All rights reserved.
 ## 🌐 Sitemap & Dynamic URL Structure
 
 - The sitemap.xml in /public includes all major static and dynamic routes.
-- Foundational pages (Contentful type: foundationalPage) now use a `parentSlug` field to determine their URL structure, e.g. `/basics/{pageSlug}` or `/plans/{pageSlug}`.
-- When adding or updating foundational pages, ensure the `parentSlug` is set in Contentful for correct routing and SEO.
-- The sitemap should be updated to reflect any new or changed foundationalPage URLs.
+- Foundational pages (Contentful type: foundationalPage) use their direct paths under the appropriate section (e.g., `/medicare/{pageSlug}` or `/plans/{pageSlug}`).
+- When adding or updating foundational pages, ensure the correct path structure is maintained for proper routing and SEO.
+- The sitemap should be updated to reflect any new or changed page URLs.
 
-### Example FoundationalPage URLs
-- `/basics/what-is-medicare`
-- `/plans/advantage`
+### Example Page URLs
+- `/medicare/what-is-medicare`
+- `/plans/medicare-advantage`
 - `/resources/enrollment-guide`
 
 ## 🤖 robots.txt

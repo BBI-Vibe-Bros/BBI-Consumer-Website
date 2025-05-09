@@ -12,7 +12,7 @@ export const metaConfig = {
     site_name: 'Bobby Brock Insurance',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/bbi-featured-image.png',
         width: 1200,
         height: 630,
         alt: 'Bobby Brock Insurance'

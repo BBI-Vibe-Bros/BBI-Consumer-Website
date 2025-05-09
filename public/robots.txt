@@ -1,23 +1,19 @@
-# BBI Insurance Medicare Website Robots.txt
+# Bobby Brock Insurance Medicare Website Robots.txt
 
 # Global rules
 User-agent: *
 Allow: /
 Allow: /medicare-breakdown
-Allow: /medicare/basics
-Allow: /medicare/basics/what-is-medicare
-Allow: /medicare/basics/enrollment-periods
+Allow: /medicare/what-is-medicare
+Allow: /medicare/enrollment-periods
 Allow: /medicare/eligibility
 Allow: /medicare/four-parts-of-medicare
-Allow: /medicare/basics/medicare-costs
-Allow: /plans/advantage
-Allow: /plans/supplement
-Allow: /plans/prescription
+Allow: /medicare/medicare-costs
+Allow: /plans/medicare-advantage
+Allow: /plans/medicare-supplement
+Allow: /plans/medicarepartd
 Allow: /plans/additional-coverage
 Allow: /resources
-Allow: /resources/guides
-Allow: /resources/calculators
-Allow: /resources/glossary
 Allow: /blog
 Allow: /videos
 Allow: /about-us
@@ -78,8 +74,6 @@ Disallow: /*.md$
 
 # Sitemaps
 Sitemap: https://www.bobbybrockinsurance.com/sitemap.xml
-Sitemap: https://www.bobbybrockinsurance.com/sitemap-news.xml
-Sitemap: https://www.bobbybrockinsurance.com/sitemap-image.xml
 
 # Host
 Host: https://www.bobbybrockinsurance.com
