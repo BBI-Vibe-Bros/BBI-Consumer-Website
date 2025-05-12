@@ -15,7 +15,7 @@ const PlanOptions = () => {
     title: 'Medicare Supplements',
     description: 'Medicare Supplements (Medigap) help fill the "gaps" in Original Medicare coverage and provide more flexibility.',
     image: '/services/MedicareSupplement_FeaturedImg.png',
-    link: '/plans/medicare-supplements'
+    link: '/plans/medicare-supplement'
   }, {
     id: 'prescription',
     title: 'Prescription Drug Plans',
