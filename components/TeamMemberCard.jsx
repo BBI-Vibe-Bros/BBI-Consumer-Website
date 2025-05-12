@@ -6,7 +6,7 @@ export default function TeamMemberCard({ name, title, image, email }) {
   const altText = `${name} - ${title}`;
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 flex flex-col overflow-hidden hover:shadow-2xl transition-shadow group">
+    <div className="bg-white rounded-xl border border-gray-100 flex flex-col overflow-hidden shadow hover:shadow-2xl transition-shadow group">
       <img
         src={imgSrc}
         alt={altText}

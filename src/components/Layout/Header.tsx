@@ -190,7 +190,7 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button className="bg-bb-yellow hover:bg-bb-yellow/90 text-bb-dark font-bold">
+              <Button>
                 Schedule an Appointment
               </Button>
             </div>
