@@ -57,6 +57,8 @@ The application uses the following routes:
   - `/medicare/eligibility`
   - `/medicare/four-parts-of-medicare`
   - `/medicare/medicare-costs`
+  - `/medicare/by-state` - Medicare by State listing page
+  - `/medicare/by-state/:state` - State-specific Medicare pages (e.g., `/medicare/by-state/florida`)
 - `/medicare-breakdown` - 'Medicare Breakdown: The Alphabet Soup of Medicare' Book Landing Page
 - `/plans/*` - Medicare plan pages
   - `/plans/medicare-advantage`
@@ -76,6 +78,7 @@ Example URLs:
 - https://www.bobbybrockinsurance.com/medicare-breakdown
 - https://www.bobbybrockinsurance.com/plans/medicare-advantage
 - https://www.bobbybrockinsurance.com/medicare/what-is-medicare
+- https://www.bobbybrockinsurance.com/medicare/by-state/florida
 
 ## 🔒 Security Features
 

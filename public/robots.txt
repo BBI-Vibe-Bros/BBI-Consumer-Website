@@ -9,6 +9,8 @@ Allow: /medicare/enrollment-periods
 Allow: /medicare/eligibility
 Allow: /medicare/four-parts-of-medicare
 Allow: /medicare/medicare-costs
+Allow: /medicare/by-state
+Allow: /medicare/by-state/*
 Allow: /plans/medicare-advantage
 Allow: /plans/medicare-supplements
 Allow: /plans/medicarepartd

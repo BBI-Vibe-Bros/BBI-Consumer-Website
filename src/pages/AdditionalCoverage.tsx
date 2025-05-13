@@ -19,7 +19,7 @@ const AdditionalCoverage = () => {
         const response = await contentfulService.getFoundationalPageBySlug('additional-coverage');
         if (response) {
           setPageData({
-            title: response.pageName || 'Additional Coverage Options',
+            title: response.pageName || 'Add-On Medicare Coverage',
             subtitle: response.metadata?.title,
             heroImage: response.metadata?.heroImage,
             fBodyContent: response.fBodyContent || {},
@@ -33,7 +33,7 @@ const AdditionalCoverage = () => {
           setError('Failed to load page content');
         }
       } catch (err) {
-        console.error('Error fetching Additional Coverage data:', err);
+        console.error('Error fetching Add-On Medicare Coverage data:', err);
         setError('Failed to load page content');
       } finally {
         setLoading(false);
@@ -45,14 +45,14 @@ const AdditionalCoverage = () => {
   return (
     <Layout>
       <Helmet>
-        <title>Additional Coverage Options | Bobby Brock Insurance</title>
+        <title>Add-On Medicare Coverage | Bobby Brock Insurance</title>
         <meta 
           name="description" 
-          content="Explore supplemental insurance options including cancer, heart attack and stroke, and hospital indemnity plans to enhance your Medicare coverage." 
+          content="Discover what Medicare add-on coverage includes, how it supports gaps in your plan, and which policies fit specific health scenarios. Learn from Bobby Brock Insurance." 
         />
         <meta 
           name="keywords" 
-          content="supplemental insurance, cancer insurance, heart attack insurance, stroke insurance, hospital indemnity, Medicare, Tupelo MS" 
+          content="medicare supplemental insurance, hospital indemnity plan, cancer heart stroke coverage, dental vision hearing insurance, final expense life insurance, Tupelo MS Medicare, Mississippi Medicare plans" 
         />
       </Helmet>
       {loading ? (

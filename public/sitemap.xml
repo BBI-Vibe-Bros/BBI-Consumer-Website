@@ -60,6 +60,27 @@
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/medicare-costs"/>
   </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/by-state</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/by-state"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/by-state/florida</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/by-state/florida"/>
+  </url>
+  <url>
+    <loc>https://www.bobbybrockinsurance.com/medicare/by-state/mississippi</loc>
+    <lastmod>2024-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/medicare/by-state/mississippi"/>
+  </url>
 
   <!-- Plan Pages -->
   <url>

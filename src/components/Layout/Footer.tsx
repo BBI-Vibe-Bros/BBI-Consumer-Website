@@ -46,6 +46,9 @@ const Footer = () => {
               <li>
                 <Link to="/medicare/medicare-costs" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Costs</Link>
               </li>
+              <li>
+                <Link to="/medicare/by-state" className="text-[16px] hover:text-bb-blue transition-colors">Medicare by State</Link>
+              </li>
             </ul>
           </div>
 

@@ -10,7 +10,7 @@ import {
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
 import { cn } from '@/lib/utils';
-import { ChevronDown, GraduationCap, ClipboardList, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star, Users, BookOpen, Video, FileText, Heart, MessageCircle, Building2, ChevronRight } from 'lucide-react';
+import { ChevronDown, GraduationCap, ClipboardList, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star, Users, BookOpen, Video, FileText, Heart, MessageCircle, Building2, ChevronRight, MapPin } from 'lucide-react';
 import DropdownCallout from './DropdownCallout';
 import StickyFooter from './StickyFooter';
 
@@ -26,8 +26,9 @@ const Header = () => {
         { title: 'What is Medicare?', href: '/medicare/what-is-medicare', icon: GraduationCap, description: 'Learn about Medicare, its different parts, and how it works.' },
         { title: 'The 4 Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: ClipboardList, description: 'Learn about the four parts of Medicare and what they cover.' },
         { title: 'Enrollment Periods', href: '/medicare/enrollment-periods', icon: Calendar, description: 'Discover the different enrollment periods for Medicare.' },
-        { title: 'Medicare Costs', href: '/medicare/medicare-costs', icon: DollarSign, description: 'Understand the costs associated with Medicare.' },
-        { title: 'Medicare Eligibility', href: '/medicare/eligibility', icon: Shield, description: 'Learn what makes you eligible for Medicare based on age, disability, and residency status.' }
+        { title: 'Medicare Costs', href: '/medicare/medicare-costs', icon: DollarSign, description: 'Learn about premiums, deductibles, and other out-of-pocket costs associated with Medicare.' },
+        { title: 'Medicare Eligibility', href: '/medicare/eligibility', icon: Shield, description: 'Learn what makes you eligible for Medicare based on age, disability, and residency status.' },
+        { title: 'Medicare by State', href: '/medicare/by-state', icon: MapPin, description: 'Find state-specific Medicare information, rules, and available plans in your area.' }
       ]
     },
     {

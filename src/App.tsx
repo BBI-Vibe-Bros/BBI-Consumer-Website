@@ -30,6 +30,8 @@ import TeamPage from "./pages/TeamPage";
 import MedicareCosts from './pages/MedicareCosts';
 import MedicareBreakdown from './pages/MedicareBreakdown';
 import ClientTestimonials from './pages/ClientTestimonials';
+import MedicareByState from './pages/MedicareByState';
+import MedicareByStateListing from './pages/MedicareByStateListing';
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -55,6 +57,8 @@ const App = () => (
                   <Route path="eligibility" element={<MedicareEligibility />} />
                   <Route path="four-parts-of-medicare" element={<MedicareParts />} />
                   <Route path="medicare-costs" element={<MedicareCosts />} />
+                  <Route path="by-state" element={<MedicareByStateListing />} />
+                  <Route path="by-state/:state" element={<MedicareByState />} />
                 </Route>
                 
                 {/* Plan routes */}
