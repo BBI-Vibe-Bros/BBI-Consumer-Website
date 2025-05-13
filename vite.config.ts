@@ -49,7 +49,7 @@ export default defineConfig(({ mode }) => ({
         '/',
         '/about-us',
         '/about-us/team',
-        '/contact',
+        '/contact-us',
         '/privacy-policy',
         '/client-reviews',
         '/medicare-breakdown',
@@ -63,14 +63,12 @@ export default defineConfig(({ mode }) => ({
         
         // Plan routes
         '/plans/medicare-advantage',
-        '/plans/medicare-supplement',
+        '/plans/medicare-supplements',
         '/plans/medicarepartd',
-        '/plans/additional-coverage',
+        '/plans/medicare-add-on-coverage-options',
         
         // Resources
         '/resources',
-        '/resources/calculators',
-        '/resources/glossary',
         
         // Content sections
         '/blog',
@@ -78,7 +76,7 @@ export default defineConfig(({ mode }) => ({
         
         // Legacy routes (for SEO)
         '/medicarepartd',
-        '/medicare-supplement',
+        '/medicare-supplements',
         '/what-is-medicare',
         '/enrollment-periods',
         '/eligibility',
