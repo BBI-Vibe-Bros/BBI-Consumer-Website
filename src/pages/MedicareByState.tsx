@@ -2,14 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
-import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
+import StatePageTemplate from '@/components/Templates/StatePageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
+import Breadcrumb from '@/components/Navigation/Breadcrumb';
+import SEO from '@/components/SEO';
 
 const MedicareByState = () => {
   const { state } = useParams<{ state: string }>();
   const [loading, setLoading] = useState(true);
   const [pageData, setPageData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Build breadcrumb items for state pages
+  const breadcrumbItems = [
+    { label: 'Home', path: '/' },
+    { label: 'Medicare by State', path: '/medicare/by-state' },
+    { label: pageData?.title || `Medicare in ${state}`, path: `/medicare/by-state/${state}`, isLast: true }
+  ];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,12 +32,15 @@ const MedicareByState = () => {
         if (response) {
           setPageData({
             title: response.pageName || `Medicare in ${state}`,
+            pageName: response.pageName || `Medicare in ${state}`,
+            pageSlug: response.pageSlug,
             subtitle: response.metadata?.title,
             fBodyContent: response.fBodyContent || {},
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
             relatedBlogs: response.relatedBlogs || [],
+            metadata: response.metadata
           });
         } else {
           setError('Failed to load page content');
@@ -77,7 +89,17 @@ const MedicareByState = () => {
 
   return (
     <Layout>
-      {pageData && <FoundationalPageTemplate page={pageData} />}
+      <SEO
+        title={pageData?.title}
+        description={pageData?.metadata?.description}
+        schemaType="statepage"
+        schemaData={{
+          title: pageData?.title,
+          description: pageData?.metadata?.description,
+          url: `https://www.bobbybrockinsurance.com/medicare/by-state/${state}`
+        }}
+      />
+      {pageData && <StatePageTemplate page={pageData} breadcrumbItems={breadcrumbItems} />}
     </Layout>
   );
 };

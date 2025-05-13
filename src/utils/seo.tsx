@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import * as SchemaGenerator from './schemaGenerator';
@@ -28,7 +27,7 @@ interface SEOProps {
   ogType?: string;
   noIndex?: boolean;
   schema?: Record<string, any>;
-  schemaType?: 'webpage' | 'blogpost' | 'video' | 'insurance';
+  schemaType?: 'webpage' | 'blogpost' | 'video' | 'insurance' | 'statepage';
   schemaData?: Record<string, any>;
 }
 
@@ -63,6 +62,14 @@ const SEO: React.FC<SEOProps> = ({
           schemaData?.dateModified,
           ogImage
         );
+        break;
+      case 'statepage':
+        finalSchema = SchemaGenerator.generateStatePageSchema({
+          title: metaTitle,
+          description: metaDescription,
+          url: url,
+          ...schemaData
+        });
         break;
       case 'blogpost':
         finalSchema = SchemaGenerator.generateBlogPostSchema(

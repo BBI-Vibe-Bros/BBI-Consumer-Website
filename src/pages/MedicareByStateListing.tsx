@@ -51,7 +51,6 @@ const MedicareByStateListing = () => {
 
   const breadcrumbItems = [
     { label: 'Home', path: '/' },
-    { label: 'Medicare', path: '/medicare' },
     { label: 'Medicare by State', path: '/medicare/by-state', isLast: true }
   ];
 
@@ -118,8 +117,8 @@ const MedicareByStateListing = () => {
         />
       </Helmet>
 
-      <div className="bg-gray-50 border-b border-gray-200">
-        <div className="container mx-auto">
+      <div className="bg-0">
+        <div className="container mx-auto px-0 pb-5">
           <Breadcrumb items={breadcrumbItems} />
         </div>
       </div>

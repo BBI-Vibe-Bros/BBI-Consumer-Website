@@ -230,6 +230,42 @@ export class SchemaGenerator {
     };
   }
 
+  private static generateStatePageSchema(data: Record<string, any>) {
+    const stateName = data.title?.replace('Medicare in ', '') || '';
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: data.title,
+      description: data.description,
+      url: data.url,
+      publisher: {
+        '@type': 'Organization',
+        name: 'Bobby Brock Insurance',
+        logo: {
+          '@type': 'ImageObject',
+          url: '/images/logo.png'
+        }
+      },
+      about: {
+        '@type': 'InsuranceAgency',
+        name: `Medicare Insurance in ${stateName}`,
+        description: `Medicare insurance plans and coverage options in ${stateName}. Learn about Medicare Advantage, Supplement, and Part D plans available in ${stateName}.`,
+        areaServed: {
+          '@type': 'State',
+          name: stateName
+        },
+        offers: {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'InsurancePlan',
+            name: `Medicare Plans in ${stateName}`,
+            description: `Medicare insurance plans available in ${stateName}. Compare Medicare Advantage, Supplement, and Part D plans.`
+          }
+        }
+      }
+    };
+  }
+
   private static generateFAQSchema(data: Record<string, any>) {
     return {
       '@context': 'https://schema.org',

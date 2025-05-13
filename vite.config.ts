@@ -60,7 +60,13 @@ export default defineConfig(({ mode }) => ({
         '/medicare/enrollment-periods',
         '/medicare/medicare-costs',
         '/medicare/eligibility',
+        '/medicare/by-state',
         '/medicare/by-state/florida',
+        '/medicare/by-state/mississippi',
+        '/medicare/by-state/alabama',
+        '/medicare/by-state/tennessee',
+        '/medicare/by-state/arkansas',
+        '/medicare/by-state/louisiana',
         
         // Plan routes
         '/plans/medicare-advantage',
@@ -90,8 +96,7 @@ export default defineConfig(({ mode }) => ({
         '/api/**',
         '/resources/guides/**', // These are dynamic and will be handled by the CMS
         '/blog/**', // These are dynamic and will be handled by the CMS
-        '/videos/watch/**', // These are dynamic and will be handled by the CMS
-        '/medicare/by-state/**' // State pages are dynamic and will be handled by the CMS
+        '/videos/watch/**' // These are dynamic and will be handled by the CMS
       ],
       changefreq: 'weekly',
       priority: 0.7,
