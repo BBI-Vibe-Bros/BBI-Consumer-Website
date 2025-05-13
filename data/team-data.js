@@ -181,16 +181,28 @@ export const team = [
         email: "hsparks@bobbybrockinsurance.com",
       },
       {
-        name: "Jourdon Ivy",
-        title: "Administrative Team",
-        image: "male-placeholder.png",
-        email: "jivy@bobbybrockinsurance.com",
-      },
-      {
         name: "Madison Martin",
         title: "Administrative Team",
         image: "Madison Martin.jpg",
         email: "mmartin@bobbybrockinsurance.com",
+      },
+      {
+        name: "Jourdon Ivy",
+        title: "Administrative Team",
+        image: "female-placeholder.png",
+        email: "jivy@bobbybrockinsurance.com",
+      },
+      {
+        name: "Angie Young",
+        title: "Administrative Team",
+        image: "female-placeholder.png",
+        email: "ayoung@bobbybrockinsurance.com",
+      },
+      {
+        name: "Kelli Moore",
+        title: "Contracting Team",
+        image: "Kelli Moore.jpg",
+        email: "kelli@bobbybrockinsurance.com",
       },
       {
         name: "Kenzie Williams",
@@ -209,6 +221,18 @@ export const team = [
         title: "Contracting Team",
         image: "Sam Langford.jpg",
         email: "sam@bobbybrockinsurance.com",
+      },
+      {
+        name: "Mike Pendley",
+        title: "Compliance Team",
+        image: "Michael Pendley.jpg",
+        email: "mike@bobbybrockinsurance.com",
+      },
+      {
+        name: "Hannah Smith",
+        title: "Compliance Team",
+        image: "Hannah Smith.jpg",
+        email: "hsmith@bobbybrockinsurance.com",
       },
     ],
   },

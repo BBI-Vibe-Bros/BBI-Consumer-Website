@@ -57,13 +57,13 @@ const Footer = () => {
                 <Link to="/plans/medicare-advantage" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Advantage</Link>
               </li>
               <li>
-                <Link to="/plans/medicare-supplement" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Supplement</Link>
+                <Link to="/plans/medicare-supplements" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Supplements</Link>
               </li>
               <li>
-                <Link to="/plans/medicare-part-d" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Part D</Link>
+                <Link to="/plans/medicarepartd" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Part D</Link>
               </li>
               <li>
-                <Link to="/plans/additional-coverage" className="text-[16px] hover:text-bb-blue transition-colors">Additional Coverage</Link>
+                <Link to="/plans/medicare-add-on-coverage-options" className="text-[16px] hover:text-bb-blue transition-colors">Medicare Add-Ons</Link>
               </li>
             </ul>
           </div>
@@ -85,7 +85,7 @@ const Footer = () => {
                 <span className="text-[16px]"><Link to="mailto:info@bobbybrockinsurance.com">info@bobbybrockinsurance.com</Link></span>
               </p>
             </div>
-            <Link to="/contact" className="inline-block text-bb-blue hover:underline mt-4">Contact Us →</Link>
+            <Link to="/contact-us" className="inline-block text-bb-blue hover:underline mt-4">Contact Us →</Link>
           </div>
         </div>
 

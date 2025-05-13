@@ -90,9 +90,9 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       // Add all plan types
       const planItems = [
         { label: 'Medicare Advantage', path: '/plans/medicare-advantage' },
-        { label: 'Medicare Supplements', path: '/plans/medicare-supplement' },
+        { label: 'Medicare Supplements', path: '/plans/medicare-supplements' },
         { label: 'Prescription Drug Plans', path: '/plans/medicarepartd' },
-        { label: 'Additional Coverage', path: '/plans/additional-coverage' }
+        { label: 'Medicare Add-Ons', path: '/plans/medicare-add-on-coverage-options' }
       ];
 
       // Add all items, marking the current one as last

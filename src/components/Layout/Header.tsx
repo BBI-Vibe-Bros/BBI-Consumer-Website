@@ -35,9 +35,9 @@ const Header = () => {
       href: '/plans',
       submenu: [
         { title: 'Medicare Advantage', href: '/plans/medicare-advantage', icon: Heart, description: 'Explore Medicare Advantage plans, which combine medical and drug coverage.' },
-        { title: 'Medicare Supplements', href: '/plans/medicare-supplement', icon: PlusCircle, description: 'Learn about Medicare Supplements, which cover the gaps in Original Medicare.' },
+        { title: 'Medicare Supplements', href: '/plans/medicare-supplements', icon: PlusCircle, description: 'Learn about Medicare Supplements, which cover the gaps in Original Medicare.' },
         { title: 'Prescription Drug Plans', href: '/plans/medicarepartd', icon: Pill, description: 'Discover Medicare Part D, which cover prescription medications.' },
-        { title: 'Additional Coverage', href: '/plans/additional-coverage', icon: Shield, description: 'Explore additional coverage options for Medicare like dental, vision, and hearing.' }
+        { title: 'Medicare Add-Ons', href: '/plans/medicare-add-on-coverage-options', icon: Shield, description: 'Explore additional coverage options for Medicare like dental, vision, and hearing.' }
       ]
     },
     {
@@ -56,7 +56,7 @@ const Header = () => {
         { title: 'About Us', href: '/about-us', icon: Building2, description: 'Learn about our company and our mission.' },
         { title: 'Client Testimonials', href: '/client-reviews', icon: MessageCircle, description: 'Read what our clients have to say about us.' },
         { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
-        { title: 'Get in Touch', href: '/contact', icon: MessageCircle, description: 'Contact us to get started on your journey.' }
+        { title: 'Get in Touch', href: '/contact-us', icon: MessageCircle, description: 'Contact us to get started on your journey.' }
       ]
     }
   ];
@@ -190,9 +190,9 @@ const Header = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Button>
+              <Link to="https://go.bobbybrockinsurance.com/appointment/"><Button>
                 Schedule an Appointment
-              </Button>
+                </Button> </Link>
             </div>
 
             {/* Mobile menu button */}

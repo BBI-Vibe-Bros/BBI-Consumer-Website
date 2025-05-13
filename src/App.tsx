@@ -60,9 +60,9 @@ const App = () => (
                 {/* Plan routes */}
                 <Route path="/plans">
                   <Route path="medicare-advantage" element={<MedicareAdvantage />} />
-                  <Route path="medicare-supplement" element={<MedicareSupplement />} />
+                  <Route path="medicare-supplements" element={<MedicareSupplement />} />
                   <Route path="medicarepartd" element={<PrescriptionDrugPlans />} />
-                  <Route path="additional-coverage" element={<AdditionalCoverage />} />
+                  <Route path="medicare-add-on-coverage-options" element={<AdditionalCoverage />} />
                 </Route>
                 
                 {/* Resources routes */}
@@ -79,7 +79,7 @@ const App = () => (
                 
                 {/* Static routes */}
                 <Route path="/medicarepartd" element={<PrescriptionDrugPlans />} />
-                <Route path="/medicare-supplement" element={<MedicareSupplement />} />
+                <Route path="/medicare-supplements" element={<MedicareSupplement />} />
                 <Route path="/what-is-medicare" element={<MedicareBasics />} />
                 <Route path="/enrollment-periods" element={<EnrollmentPeriods />} />
                 <Route path="/eligibility" element={<MedicareEligibility />} />
@@ -87,7 +87,7 @@ const App = () => (
                 <Route path="/medicare-costs" element={<MedicareCosts />} />
                 <Route path="/about-us" element={<AboutPage />} />
                 <Route path="/about-us/team" element={<TeamPage />} />
-                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/contact-us" element={<ContactPage />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/client-reviews" element={<ClientTestimonials />} />
                 
