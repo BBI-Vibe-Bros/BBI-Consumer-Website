@@ -211,7 +211,7 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       <div className="container mx-auto px-4 py-8">
         <div className="lg:flex lg:flex-row lg:space-x-8">
           {/* Main Content */}
-          <div className="lg:w-2/3">
+          <div className="w-full">
             <article className="prose max-w-none lg:prose-lg mb-8">
               <RichTextRenderer content={page.fBodyContent} />
             </article>
@@ -271,11 +271,6 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
             )}
       
           </div>
-
-          {/* Sidebar */}
-          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
-            <Sidebar content={page.fBodyContent} />
-          </aside>
         </div>
       </div>
     </>

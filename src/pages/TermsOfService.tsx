@@ -4,7 +4,7 @@ import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTem
 import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const PrivacyPolicy = () => {
+const TermsOfService = () => {
   const [loading, setLoading] = useState(true);
   const [pageData, setPageData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
@@ -14,7 +14,7 @@ const PrivacyPolicy = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('privacy-policy');
+        const response = await contentfulService.getFoundationalPageBySlug('terms-of-service');
         if (response) {
           setPageData(response);
         } else {
@@ -56,4 +56,4 @@ const PrivacyPolicy = () => {
   );
 };
 
-export default PrivacyPolicy;
+export default TermsOfService; 
