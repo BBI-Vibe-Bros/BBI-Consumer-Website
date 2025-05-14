@@ -4,9 +4,9 @@ import Layout from '@/components/Layout/Layout';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
-import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import ContentfulService from '@/services/contentfulService';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Button } from '@/components/ui/button';
 
 const MedicareByStateListing = () => {
   const [loading, setLoading] = useState(true);
@@ -25,7 +25,6 @@ const MedicareByStateListing = () => {
         });
         
         if (response && response.items) {
-          // Transform the response to extract state names and slugs
           const pages = response.items.map(item => ({
             name: item.fields.pageName?.replace('Medicare in ', '') || 'Unknown State',
             slug: item.fields.pageSlug?.replace('medicare-by-state-', '') || '',
@@ -34,7 +33,8 @@ const MedicareByStateListing = () => {
               ? `https:${item.fields.fShareImage.fields.file.url}` 
               : '/static/state-placeholder.png'
           }));
-          setStatePages(pages);
+          const sortedPages = pages.sort((a, b) => a.name.localeCompare(b.name));
+          setStatePages(sortedPages);
         } else {
           setError('Failed to load state pages');
         }
@@ -49,19 +49,9 @@ const MedicareByStateListing = () => {
     fetchStatePages();
   }, []);
 
-  const breadcrumbItems = [
-    { label: 'Home', path: '/' },
-    { label: 'Medicare by State', path: '/medicare/by-state', isLast: true }
-  ];
-
   if (loading) {
     return (
       <Layout>
-        <div className="bg-gray-50 border-b border-gray-200">
-          <div className="container mx-auto">
-            <Breadcrumb items={breadcrumbItems} />
-          </div>
-        </div>
         <div className="container mx-auto px-6 py-12">
           <div className="text-center mb-12">
             <Skeleton className="h-12 w-64 mx-auto mb-4" />
@@ -92,11 +82,6 @@ const MedicareByStateListing = () => {
   if (error) {
     return (
       <Layout>
-        <div className="bg-gray-50 border-b border-gray-200">
-          <div className="container mx-auto">
-            <Breadcrumb items={breadcrumbItems} />
-          </div>
-        </div>
         <div className="container mx-auto px-6 py-12">
           <div className="text-center">
             <h1 className="text-2xl font-bold text-red-600 mb-4">Error</h1>
@@ -117,12 +102,6 @@ const MedicareByStateListing = () => {
         />
       </Helmet>
 
-      <div className="bg-0">
-        <div className="container mx-auto px-0 pb-5">
-          <Breadcrumb items={breadcrumbItems} />
-        </div>
-      </div>
-
       <div className="container mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-bb-dark">Medicare by State</h1>
@@ -138,7 +117,12 @@ const MedicareByStateListing = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {statePages.map((state) => (
-              <Card key={state.slug} className="hover:shadow-lg transition-shadow">
+              <Link 
+                key={state.slug}
+                to={`/medicare/by-state/${state.slug}`}
+                className="block"
+              >
+                <Card className="border border-gray-200 shadow-card hover:shadow-lg transition-shadow h-full">
                 <div className="relative h-48 w-full overflow-hidden">
                   <img
                     src={state.image}
@@ -149,24 +133,24 @@ const MedicareByStateListing = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-5 h-5 text-bb-blue" />
-                    <CardTitle className="text-xl">{state.name}</CardTitle>
+                      <CardTitle className="text-xl font-bold hover:text-bb-blue transition-colors">
+                        {state.name}
+                      </CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="leading-snug text-base">
+                    <CardDescription className="leading-snug text-base text-gray-700">
                     {state.description}
                   </CardDescription>
                 </CardContent>
                 <CardFooter>
-                  <Link 
-                    to={`/medicare/by-state/${state.slug}`}
-                    className="text-bb-blue hover:text-bb-light-blue font-semibold text-base flex items-center gap-2"
-                  >
-                    View Medicare in {state.name}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
-                  </Link>
+                    <Button className="whitespace-nowrap">
+                      Learn More
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right ml-2 inline-block"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                    </Button>
                 </CardFooter>
               </Card>
+              </Link>
             ))}
           </div>
         )}
