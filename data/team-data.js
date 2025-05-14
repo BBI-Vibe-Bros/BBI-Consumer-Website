@@ -62,6 +62,12 @@ export const team = [
         email: "matt@bobbybrockinsurance.com",
       },
       {
+        name: "Holt Rushing",
+        title: "Licensed Sales Agent",
+        image: "Holt Rushing.jpg",
+        email: "holt@bobbybrockinsurance.com",
+      },
+      {
         name: "Jared Sparks",
         title: "Licensed Sales Agent",
         image: "Jared Sparks.jpg",
