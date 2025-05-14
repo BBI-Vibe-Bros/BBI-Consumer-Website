@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Layout from '@/components/Layout/Layout';
 import HeroSection from '@/components/Home/HeroSection';
@@ -23,8 +22,8 @@ const Index = () => {
               "@context": "https://schema.org",
               "@type": "InsuranceAgency",
               "name": "Bobby Brock Insurance",
-              "url": "https://bobbybrock.com",
-              "logo": "https://bobbybrock.com/logo.png",
+              "url": "https://www.bobbybrockinsurance.com",
+              "logo": "https://www.bobbybrockinsurance.com/logo.png",
               "description": "A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States. We provide personalized guidance on Medicare Advantage, Medicare Supplements, and Part D plans from multiple carriers.",
               "foundingDate": "1992",
               "address": {

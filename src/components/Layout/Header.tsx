@@ -118,7 +118,7 @@ const Header = () => {
                 <img 
                   alt="Bobby Brock Insurance" 
                   className="h-8 md:h-12 w-auto" 
-                  src="/lovable-uploads/bobby-brock-insurance-logo.png" 
+                  src="https://www.bobbybrockinsurance.com/lovable-uploads/bobby-brock-insurance-logo.png" 
                 />
               </Link>
             </div>

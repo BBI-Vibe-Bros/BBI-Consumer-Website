@@ -9,7 +9,7 @@ const Footer = () => {
           {/* Company Info */}
           <div>
           <Link to="/" className="flex items-center">
-              <img alt="Bobby Brock Insurance" className="h-16 mb-4" src="/lovable-uploads/bobby-brock-insurance-logo.png" />
+              <img alt="Bobby Brock Insurance" className="h-16 mb-4" src="https://www.bobbybrockinsurance.com/lovable-uploads/bobby-brock-insurance-logo.png" />
             </Link>
             <p className="text-[16px] leading-snug">
               A nationally recognized Medicare insurance brokerage serving over 50,000 beneficiaries across the United States since 1992.

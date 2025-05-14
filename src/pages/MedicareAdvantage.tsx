@@ -62,7 +62,7 @@ const MedicareAdvantage = () => {
               "@context": "https://schema.org",
               "@type": "Service",
               "name": "Medicare Advantage Plan Comparison",
-              "url": "https://bobbybrock.com/plans/advantage",
+              "url": "https://www.bobbybrockinsurance.com/plans/advantage",
               "description": "Independent comparison and guidance for Medicare Advantage (Part C) plans from multiple insurance carriers by a nationally recognized Medicare brokerage.",
               "provider": {
                 "@type": "InsuranceAgency",

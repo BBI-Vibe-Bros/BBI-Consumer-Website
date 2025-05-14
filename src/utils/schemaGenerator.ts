@@ -6,10 +6,10 @@
 const baseOrganizationSchema = {
   "@type": "Organization",
   "name": "Bobby Brock Insurance",
-  "url": "https://bobbybrock.com",
+  "url": "https://www.bobbybrockinsurance.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://bobbybrock.com/logo.png"
+    "url": "https://www.bobbybrockinsurance.com/logo.png"
   },
   "address": {
     "@type": "PostalAddress",

@@ -16,7 +16,7 @@ const AboutPage = () => {
           name="description" 
           content="Learn about Bobby Brock Insurance's 20+ year journey helping seniors navigate Medicare. Discover our commitment to personalized service, local expertise, and ongoing support."
         />
-        <link rel="canonical" href="https://bobbybrockinsurance.com/about-us" />
+        <link rel="canonical" href="https://www.bobbybrockinsurance.com/about-us" />
       </Helmet>
 
       <Header />

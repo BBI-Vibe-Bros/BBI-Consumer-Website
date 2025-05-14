@@ -62,7 +62,7 @@ const PrescriptionDrugPlans = () => {
               "@context": "https://schema.org",
               "@type": "InsurancePlan",
               "name": "Medicare Part D Prescription Drug Plans",
-              "url": "https://bobbybrock.com/plans/prescription",
+              "url": "https://www.bobbybrockinsurance.com/plans/prescription",
               "description": "Medicare Part D prescription drug plans help cover the cost of prescription medications including many recommended shots or vaccines.",
               "insurancePlanProvider": {
                 "@type": "InsuranceAgency",
