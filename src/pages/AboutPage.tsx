@@ -6,18 +6,16 @@ import TimelineSection from '@/components/About/TimelineSection';
 import FeatureGrid from '@/components/About/FeatureGrid';
 import CallToAction from '@/components/About/CallToAction';
 import Footer from '@/components/Layout/Footer';
+import SEO from '@/utils/seo';
 
 const AboutPage = () => {
   return (
     <>
-      <Helmet>
-        <title>About Bobby Brock Insurance | Your Trusted Medicare Partner</title>
-        <meta 
-          name="description" 
-          content="Learn about Bobby Brock Insurance's 20+ year journey helping seniors navigate Medicare. Discover our commitment to personalized service, local expertise, and ongoing support."
-        />
-        <link rel="canonical" href="https://www.bobbybrockinsurance.com/about-us" />
-      </Helmet>
+      <SEO 
+        title="About Bobby Brock Insurance | Your Trusted Medicare Partner"
+        description="Learn about Bobby Brock Insurance's 20+ year journey helping seniors navigate Medicare. Discover our commitment to personalized service, local expertise, and ongoing support."
+        url="https://www.bobbybrockinsurance.com/about-us"
+      />
 
       <Header />
       

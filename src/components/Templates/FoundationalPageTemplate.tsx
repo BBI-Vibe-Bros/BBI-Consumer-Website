@@ -211,11 +211,10 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
       <div className="container mx-auto px-4 py-8">
         <div className="lg:flex lg:flex-row lg:space-x-8">
           {/* Main Content */}
-          <div className="w-full">
+          <div className="w-full lg:w-2/3">
             <article className="prose max-w-none lg:prose-lg mb-8">
               <RichTextRenderer content={page.fBodyContent} />
             </article>
-
             {/* YouTube Video */}
             {page.youTubeVideo && (
               <div className="mb-8">
@@ -231,7 +230,6 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                 </div>
               </div>
             )}
-
             {/* Related Blog Posts */}
             {relatedBlogs.length > 0 && (
               <section className="mt-12 w-full">
@@ -269,8 +267,11 @@ const FoundationalPageTemplate = ({ page }: FoundationalPageTemplateProps) => {
                 </div>
               </section>
             )}
-      
           </div>
+          {/* Sidebar */}
+          <aside className="hidden lg:block lg:w-1/3">
+            <Sidebar content={page.fBodyContent} />
+          </aside>
         </div>
       </div>
     </>

@@ -33,7 +33,12 @@ const GoogleReviews = () => {
         const placesService = GooglePlacesService.getInstance();
         const data = await placesService.getPlaceReviews();
         
-        setReviews(data.reviews);
+        // Filter for 5-star reviews with text content
+        const filteredReviews = data.reviews
+          .filter(review => review.rating === 5 && review.text.trim().length > 0)
+          .sort((a, b) => b.time - a.time); // Sort by most recent first
+        
+        setReviews(filteredReviews);
         setOverallRating(data.rating);
         setTotalReviews(data.user_ratings_total);
       } catch (err) {
@@ -141,7 +146,7 @@ const GoogleReviews = () => {
 
       {/* Reviews Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-        {reviews.map((review) => (
+        {reviews.slice(0, 6).map((review) => (
           <div
             key={review.time}
             className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow duration-200 flex flex-col"

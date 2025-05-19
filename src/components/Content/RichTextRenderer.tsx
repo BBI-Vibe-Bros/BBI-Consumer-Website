@@ -261,24 +261,67 @@ const RichTextRenderer = ({ content, className, planType }: RichTextRendererProp
           {children}
         </p>
       ),
-      [BLOCKS.HEADING_1]: (_node: any, children: React.ReactNode) => (
-        <h1 className="mb-6 tracking-normal text-bbi-blue">{children}</h1>
-      ),
-      [BLOCKS.HEADING_2]: (_node: any, children: React.ReactNode) => (
-        <h2 className="mb-5 text-bbi-blue">{children}</h2>
-      ),
-      [BLOCKS.HEADING_3]: (_node: any, children: React.ReactNode) => (
-        <h3 className="mb-4 text-bbi-blue">{children}</h3>
-      ),
-      [BLOCKS.HEADING_4]: (_node: any, children: React.ReactNode) => (
-        <h4 className="mb-3 text-bbi-blue">{children}</h4>
-      ),
-      [BLOCKS.HEADING_5]: (_node: any, children: React.ReactNode) => (
-        <h5 className="mb-2 text-bbi-blue">{children}</h5>
-      ),
-      [BLOCKS.HEADING_6]: (_node: any, children: React.ReactNode) => (
-        <h6 className="mb-2 text-bbi-blue">{children}</h6>
-      ),
+      [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => {
+        // Extract text for id
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h1 id={id} className="mb-6 tracking-normal text-bbi-blue">{children}</h1>
+        );
+      },
+      [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => {
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h2 id={id} className="mb-5 text-bbi-blue">{children}</h2>
+        );
+      },
+      [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => {
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h3 id={id} className="mb-4 text-bbi-blue">{children}</h3>
+        );
+      },
+      [BLOCKS.HEADING_4]: (node: any, children: React.ReactNode) => {
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h4 id={id} className="mb-3 text-bbi-blue">{children}</h4>
+        );
+      },
+      [BLOCKS.HEADING_5]: (node: any, children: React.ReactNode) => {
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h5 id={id} className="mb-2 text-bbi-blue">{children}</h5>
+        );
+      },
+      [BLOCKS.HEADING_6]: (node: any, children: React.ReactNode) => {
+        const text = node.content
+          .map((content: any) => content.value)
+          .join('')
+          .trim();
+        const id = text ? text.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+        return (
+          <h6 id={id} className="mb-2 text-bbi-blue">{children}</h6>
+        );
+      },
       [BLOCKS.UL_LIST]: (_node: any, children: React.ReactNode) => (
         <ul className="mb-4">{children}</ul>
       ),

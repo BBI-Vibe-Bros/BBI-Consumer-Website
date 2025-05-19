@@ -4,6 +4,7 @@ import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
+import SEO from '@/utils/seo';
 
 const MedicareBasics = () => {
   const [loading, setLoading] = useState(true);
@@ -43,39 +44,11 @@ const MedicareBasics = () => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Medicare Basics | Bobby Brock Insurance</title>
-        <meta 
-          name="description" 
-          content="Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance."
-        />
-        <meta 
-          name="keywords" 
-          content="Medicare basics, Medicare education, Medicare coverage, Medicare enrollment, Medicare parts, Tupelo MS" 
-        />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Article",
-              "headline": "Medicare Basics",
-              "description": "Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance.",
-              "publisher": {
-                "@type": "InsuranceAgency",
-                "name": "Bobby Brock Insurance",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "499 Air Park Rd",
-                  "addressLocality": "Tupelo",
-                  "addressRegion": "MS",
-                  "postalCode": "38801",
-                  "addressCountry": "US"
-                }
-              }
-            }
-          `}
-        </script>
-      </Helmet>
+      <SEO 
+        title="Medicare Basics | Bobby Brock Insurance"
+        description="Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance."
+        url="https://www.bobbybrockinsurance.com/medicare/what-is-medicare"
+      />
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

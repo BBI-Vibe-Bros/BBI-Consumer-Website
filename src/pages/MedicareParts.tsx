@@ -4,6 +4,7 @@ import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
+import SEO from '@/utils/seo';
 
 const MedicareParts = () => {
   const [loading, setLoading] = useState(true);
@@ -72,13 +73,11 @@ const MedicareParts = () => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>The Four Parts of Medicare | Bobby Brock Insurance</title>
-        <meta 
-          name="description" 
-          content="Learn about Medicare Parts A, B, C, and D - what they cover, how they work together, and how to choose the right combination for your healthcare needs."
-        />
-      </Helmet>
+      <SEO 
+        title="The Four Parts of Medicare | Bobby Brock Insurance"
+        description="Learn about Medicare Parts A, B, C, and D - what they cover, how they work together, and how to choose the right combination for your healthcare needs."
+        url="https://www.bobbybrockinsurance.com/medicare/four-parts-of-medicare"
+      />
       <FoundationalPageTemplate page={pageData} />
     </Layout>
   );

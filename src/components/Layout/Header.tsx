@@ -21,7 +21,6 @@ const Header = () => {
   const navigation = [
     {
       title: 'Understand Medicare',
-      href: '/medicare/basics',
       submenu: [
         { title: 'What is Medicare?', href: '/medicare/what-is-medicare', icon: GraduationCap, description: 'Learn about Medicare, its different parts, and how it works.' },
         { title: 'The 4 Parts of Medicare', href: '/medicare/four-parts-of-medicare', icon: ClipboardList, description: 'Learn about the four parts of Medicare and what they cover.' },

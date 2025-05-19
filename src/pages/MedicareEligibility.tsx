@@ -4,6 +4,7 @@ import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
+import SEO from '@/utils/seo';
 
 const MedicareEligibility = () => {
   const [loading, setLoading] = useState(true);
@@ -43,39 +44,11 @@ const MedicareEligibility = () => {
 
   return (
     <Layout>
-      <Helmet>
-        <title>Medicare Eligibility | Bobby Brock Insurance</title>
-        <meta 
-          name="description" 
-          content="Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS."
-        />
-        <meta 
-          name="keywords" 
-          content="Medicare eligibility, Medicare enrollment, Medicare requirements, Medicare age requirements, Medicare disability, Medicare ESRD, Tupelo MS" 
-        />
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Article",
-              "headline": "Medicare Eligibility",
-              "description": "Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.",
-              "publisher": {
-                "@type": "InsuranceAgency",
-                "name": "Bobby Brock Insurance",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "499 Air Park Rd",
-                  "addressLocality": "Tupelo",
-                  "addressRegion": "MS",
-                  "postalCode": "38801",
-                  "addressCountry": "US"
-                }
-              }
-            }
-          `}
-        </script>
-      </Helmet>
+      <SEO 
+        title="Medicare Eligibility | Bobby Brock Insurance"
+        description="Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS."
+        url="https://www.bobbybrockinsurance.com/medicare/eligibility"
+      />
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

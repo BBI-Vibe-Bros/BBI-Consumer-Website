@@ -99,6 +99,8 @@ Example URLs:
 - Content management via Contentful
 - Automatic scroll-to-top on navigation
 - React Router for client-side routing
+- Interactive Table of Contents with smooth anchor link navigation
+- Dynamic heading IDs for improved navigation and SEO
 
 ## 📝 Content Management
 
@@ -111,6 +113,28 @@ Content is managed through Contentful CMS. Key content types:
 - Testimonials
 - Blog Posts
 - Videos
+
+### Table of Contents Implementation
+
+The site includes an interactive Table of Contents feature that:
+
+- Automatically generates anchor links for all headings (H2-H6)
+- Provides smooth scrolling navigation
+- Updates active section based on scroll position
+- Maintains proper heading hierarchy
+- Improves content accessibility and navigation
+- Enhances SEO through proper heading structure
+
+Example usage in page components:
+```tsx
+<TableOfContents
+  headings={[
+    { id: 'section-1', text: 'Section 1', level: 2 },
+    { id: 'subsection-1-1', text: 'Subsection 1.1', level: 3 },
+    // ... more headings
+  ]}
+/>
+```
 
 ## 🧪 Testing
 
