@@ -21,11 +21,17 @@ npm run preview
 ## 🛠 Tech Stack
 
 - **Frontend**: React 18, TypeScript, TailwindCSS
+- **State Management**: React Query (TanStack Query)
+- **Routing**: React Router v6
 - **Build Tool**: Vite
 - **CMS**: Contentful
 - **Testing**: Jest, React Testing Library
 - **Linting**: ESLint, Prettier
 - **Security**: CSP, Rate Limiting, Security Headers
+- **SEO**: React Helmet Async, Schema.org markup
+- **UI Components**: Custom components with Tailwind CSS
+- **Error Handling**: Custom Error Boundary
+- **Performance**: Lazy loading, code splitting
 
 ## 📁 Project Structure
 
@@ -40,7 +46,9 @@ src/
 │   ├── Plans/          # Medicare plan components
 │   ├── Templates/      # Page templates
 │   └── ui/             # UI components
+├── contexts/           # React Context providers
 ├── pages/              # Page components and routing
+├── services/           # API and service integrations
 ├── styles/             # Global styles and Tailwind config
 ├── types/              # TypeScript type definitions
 └── utils/              # Utility functions and helpers
@@ -50,7 +58,11 @@ src/
 
 The application uses the following routes:
 
+### Main Routes
 - `/` - Homepage
+- `/medicare-breakdown` - Medicare Breakdown Book Landing Page
+
+### Medicare Information
 - `/medicare/*` - Medicare information pages
   - `/medicare/what-is-medicare`
   - `/medicare/enrollment-periods`
@@ -58,49 +70,69 @@ The application uses the following routes:
   - `/medicare/four-parts-of-medicare`
   - `/medicare/medicare-costs`
   - `/medicare/by-state` - Medicare by State listing page
-  - `/medicare/by-state/:state` - State-specific Medicare pages (e.g., `/medicare/by-state/florida`)
-- `/medicare-breakdown` - 'Medicare Breakdown: The Alphabet Soup of Medicare' Book Landing Page
-- `/plans/*` - Medicare plan pages
+  - `/medicare/by-state/:state` - State-specific Medicare pages
+
+### Plan Routes
+- `/plans/*`
   - `/plans/medicare-advantage`
-  - `/plans/medicare-supplement`
+  - `/plans/medicare-supplements`
   - `/plans/medicarepartd`
-  - `/plans/additional-coverage`
-- `/resources` - Resource pages
-- `/blog` - Blog listing
-- `/videos` - Video content
+  - `/plans/medicare-add-on-coverage-options`
+
+### Resources
+- `/resources` - Resource listing page
+- `/resources/guides/:slug` - Individual resource guides
+- `/resources/calculators` - Medicare calculators
+- `/resources/glossary` - Medicare terminology glossary
+
+### Content Sections
+- `/blog` - Blog listing page
+- `/blog/:slug` - Individual blog posts
+- `/videos` - Video library
+- `/videos/watch/:slug` - Individual video pages
+
+### Static Pages
 - `/about-us` - About page
-- `/about-us/team` - Team page
-- `/contact` - Contact page
+- `/team` - Team page
+- `/contact-us` - Contact page
 - `/privacy-policy` - Privacy policy
+- `/terms-of-service` - Terms of service
 - `/client-reviews` - Client testimonials
 
-Example URLs:
-- https://www.bobbybrockinsurance.com/medicare-breakdown
-- https://www.bobbybrockinsurance.com/plans/medicare-advantage
-- https://www.bobbybrockinsurance.com/medicare/what-is-medicare
-- https://www.bobbybrockinsurance.com/medicare/by-state/florida
+### Legacy Routes (for SEO)
+- `/medicarepartd`
+- `/medicare-supplements`
+- `/what-is-medicare`
+- `/enrollment-periods`
+- `/eligibility`
+- `/four-parts-of-medicare`
+- `/medicare-costs`
 
 ## 🔒 Security Features
 
-- Content Security Policy (CSP)
-- Rate Limiting
-- Security Headers
-- XSS Protection
-- CSRF Protection
-- HTTPS Enforcement
+- Content Security Policy (CSP) headers
+- Rate limiting for API endpoints
+- Secure headers configuration
+- XSS protection
+- CSRF protection
 
-## 🎯 Key Features
+## 🎯 SEO Features
 
-- Responsive design for all devices
-- Accessibility compliance (WCAG 2.1)
-- SEO optimization
-- Fast page loads
-- Secure form handling
-- Content management via Contentful
-- Automatic scroll-to-top on navigation
-- React Router for client-side routing
-- Interactive Table of Contents with smooth anchor link navigation
-- Dynamic heading IDs for improved navigation and SEO
+- Dynamic meta tags with React Helmet
+- Structured data with Schema.org
+- XML sitemap generation
+- Robots.txt configuration
+- Canonical URLs
+- Open Graph and Twitter card meta tags
+
+## 🚀 Performance Optimizations
+
+- Code splitting with React.lazy
+- Image optimization
+- Lazy loading of components
+- Efficient routing with React Router
+- Caching with React Query
+- Minified production builds
 
 ## 📝 Content Management
 
