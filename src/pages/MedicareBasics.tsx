@@ -44,12 +44,12 @@ const MedicareBasics = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('medicare-basics') as FoundationalPageResponse;
+        const response = await contentfulService.getFoundationalPageBySlug('what-is-medicare') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
             pageName: response.pageName || 'Medicare Basics',
-            pageSlug: 'medicare-basics',
+            pageSlug: 'what-is-medicare',
             title: response.title,
             metadata: response.metadata,
             fBodyContent: response.fBodyContent,

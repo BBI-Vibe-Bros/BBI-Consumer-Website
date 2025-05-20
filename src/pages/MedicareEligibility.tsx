@@ -49,7 +49,7 @@ const MedicareEligibility = () => {
     type: 'FoundationalPage',
     data: {
       title: 'Medicare Eligibility',
-      description: 'Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.',
+      description: "Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.",
       url: 'https://www.bobbybrockinsurance.com/medicare/eligibility',
       datePublished: new Date().toISOString().split('T')[0],
       dateModified: new Date().toISOString().split('T')[0]
