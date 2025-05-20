@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 interface VideoTemplateProps {
@@ -18,18 +17,80 @@ interface VideoTemplateProps {
 }
 
 const VideoTemplate = ({ video }: VideoTemplateProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Process video URL to handle different platforms
+  const getEmbedUrl = (url: string) => {
+    try {
+      // YouTube
+      if (url.includes('youtube.com') || url.includes('youtu.be')) {
+        const videoId = url.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/)?.[1];
+        return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+      }
+      // Vimeo
+      if (url.includes('vimeo.com')) {
+        const videoId = url.match(/vimeo.com\/(\d+)/)?.[1];
+        return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+      }
+      // Default to original URL
+      return url;
+    } catch (err) {
+      console.error('Error processing video URL:', err);
+      return url;
+    }
+  };
+
+  useEffect(() => {
+    setIsLoading(true);
+    setError(null);
+  }, [video.videoUrl]);
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleIframeError = () => {
+    setIsLoading(false);
+    setError('Failed to load video. Please try again later.');
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-0 py-2">
       {/* Video Player Section */}
       <section className="mb-8">
-        <div className="aspect-w-16 aspect-h-9 bg-gray-100 rounded-lg overflow-hidden">
-          <iframe
-            src={video.videoUrl}
-            title={video.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-          />
+        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden">
+            {isLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bb-blue"></div>
+              </div>
+            )}
+            {error ? (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                <div className="text-center p-4">
+                  <p className="text-red-600 mb-2">{error}</p>
+                  <button 
+                    onClick={() => window.location.reload()}
+                    className="text-bb-blue hover:text-bb-blue/80 underline"
+                  >
+                    Try Again
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <iframe
+                src={getEmbedUrl(video.videoUrl)}
+                title={video.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute inset-0 w-full h-full"
+                onLoad={handleIframeLoad}
+                onError={handleIframeError}
+                loading="lazy"
+              />
+            )}
+          </div>
         </div>
       </section>
 
@@ -65,6 +126,7 @@ const VideoTemplate = ({ video }: VideoTemplateProps) => {
                     src={related.thumbnailUrl}
                     alt={related.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform"
+                    loading="lazy"
                   />
                 </div>
                 <h3 className="text-lg font-medium group-hover:text-bb-blue">

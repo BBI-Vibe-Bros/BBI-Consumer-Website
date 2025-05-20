@@ -36,7 +36,36 @@ const VideoListing = () => {
       <SEO 
         title="Medicare Video Library"
         description="Watch our educational videos explaining Medicare Advantage, Medicare Supplements, and Part D plans."
-        schemaType="webpage"
+        schemaType="collectionpage"
+        schemaData={{
+          mainEntity: videos.map((video: any) => ({
+            '@type': 'VideoObject',
+            name: video.fields.title,
+            description: video.fields.description || '',
+            thumbnailUrl: video.fields.thumbnailImage?.fields?.file?.url 
+              ? `https:${video.fields.thumbnailImage.fields.file.url}`
+              : '',
+            uploadDate: video.sys.createdAt,
+            duration: video.fields.duration || 'PT0M0S',
+            contentUrl: video.fields.videoUrl || '',
+            embedUrl: video.fields.videoUrl || '',
+            transcript: video.fields.transcript || '',
+            author: video.fields.author?.fields?.name || 'Bobby Brock Insurance',
+            keywords: video.fields.keywords || ['Medicare', 'Insurance', 'Education'],
+            inLanguage: 'en-US',
+            isFamilyFriendly: true,
+            genre: 'Educational'
+          })),
+          about: {
+            '@type': 'Thing',
+            name: 'Medicare Education Videos',
+            description: 'A collection of educational videos about Medicare insurance plans and coverage options.'
+          },
+          audience: {
+            '@type': 'Audience',
+            audienceType: 'Medicare Beneficiaries and Caregivers'
+          }
+        }}
       />
 
       <div>
@@ -84,41 +113,50 @@ const VideoListing = () => {
                   : 'Unknown date';
 
                 return (
-                  <Link 
+                  <div 
                     key={sys.id}
-                    to={`/videos/watch/${fields.slug}`} 
                     className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden flex flex-col h-full border border-gray-100"
                   >
-                    <div className="relative">
-                      {fields.thumbnailImage?.fields?.file?.url ? (
-                        <img 
-                          src={`https:${fields.thumbnailImage.fields.file.url}`}
-                          alt={fields.title}
-                          className="w-full object-cover transition-transform hover:scale-105"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="w-full h-48 bg-gray-200"></div>
-                      )}
-                      <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                        <div className="bg-white bg-opacity-80 rounded-full p-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-bb-blue">
-                            <polygon points="5 3 19 12 5 21 5 3" />
-                          </svg>
+                    <Link 
+                      to={`/videos/watch/${fields.slug}`} 
+                      className="flex flex-col flex-1"
+                    >
+                      <div className="relative">
+                        {fields.thumbnailImage?.fields?.file?.url ? (
+                          <img 
+                            src={`https:${fields.thumbnailImage.fields.file.url}`}
+                            alt={fields.title}
+                            className="w-full object-cover transition-transform hover:scale-105"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-48 bg-gray-200"></div>
+                        )}
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                          <div className="bg-white bg-opacity-80 rounded-full p-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-bb-blue">
+                              <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="p-5 flex flex-col flex-1">
-                      <p className="text-gray-500 text-sm mb-1">{publishDate}</p>
-                      <h2 className="text-lg font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
-                        {fields.title}
-                      </h2>
-                      <p className="text-gray-700 text-[16px] leading-normal line-clamp-3 flex-1">{fields.description}</p>
-                      <Button as={Link} to={`/videos/watch/${fields.slug}`} className="mt-4" onClick={e => e.stopPropagation()}>
+                      <div className="p-5 flex flex-col flex-1">
+                        <p className="text-gray-500 text-sm mb-1">{publishDate}</p>
+                        <h2 className="text-lg font-bold text-bb-dark mb-2 hover:text-bb-blue transition-colors">
+                          {fields.title}
+                        </h2>
+                        <p className="text-gray-700 text-[16px] leading-normal line-clamp-3 flex-1">{fields.description}</p>
+                      </div>
+                    </Link>
+                    <div className="p-5 pt-0">
+                      <Link 
+                        to={`/videos/watch/${fields.slug}`} 
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-bb-blue text-white hover:bg-bb-blue/90 h-10 px-4 py-2 w-full"
+                      >
                         Watch Now »
-                      </Button>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 );
               })}
             </div>

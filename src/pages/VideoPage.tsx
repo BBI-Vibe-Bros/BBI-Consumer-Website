@@ -90,7 +90,10 @@ const VideoPage = () => {
           thumbnailUrl: videoData.thumbnail?.fields?.file?.url ? `https:${videoData.thumbnail.fields.file.url}` : '',
           uploadDate: video.sys.createdAt,
           duration: videoData.duration || 'PT0M0S',
-          embedUrl: videoData.videoUrl || ''
+          embedUrl: videoData.videoUrl || '',
+          transcript: videoData.transcript || '',
+          author: videoData.author?.fields?.name || 'Bobby Brock Insurance',
+          keywords: videoData.keywords || ['Medicare', 'Insurance', 'Education']
         }}
       />
 

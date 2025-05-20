@@ -21,7 +21,7 @@ What started as a small family business has grown into a trusted Medicare resour
 <br/><br/>Today, our team of Medicare specialists continues this tradition, combining extensive knowledge with genuine care to ensure every client finds the perfect coverage solution.
  
             </p>
-            <Link to="/about-us/team">
+            <Link to="/team">
               <Button 
                 className="bg-[#00a3e0] hover:bg-[#00a3e0]/90 text-white px-8 py-6 text-lg font-semibold rounded-lg"
                 aria-label="Learn more about our team"

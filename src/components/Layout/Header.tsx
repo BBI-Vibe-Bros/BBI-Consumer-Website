@@ -55,7 +55,7 @@ const Header = () => {
       submenu: [
         { title: 'About Us', href: '/about-us', icon: Building2, description: 'Learn about our company and our mission.' },
         { title: 'Client Testimonials', href: '/client-reviews', icon: MessageCircle, description: 'Read what our clients have to say about us.' },
-        { title: 'Our Team', href: '/about-us/team', icon: Users, description: 'Meet the team behind our company.' },
+        { title: 'Our Team', href: '/team', icon: Users, description: 'Meet the team behind our company.' },
         { title: 'Get in Touch', href: '/contact-us', icon: MessageCircle, description: 'Contact us to get started on your journey.' }
       ]
     }

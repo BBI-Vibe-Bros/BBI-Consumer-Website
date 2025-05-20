@@ -93,7 +93,10 @@ export const generateVideoSchema = (
   uploadDate: string,
   duration?: string,
   contentUrl?: string,
-  embedUrl?: string
+  embedUrl?: string,
+  transcript?: string,
+  author?: string,
+  keywords?: string[]
 ) => {
   return {
     "@context": "https://schema.org",
@@ -105,7 +108,18 @@ export const generateVideoSchema = (
     "duration": duration || "PT0M0S",
     "contentUrl": contentUrl,
     "embedUrl": embedUrl,
-    "publisher": baseOrganizationSchema
+    "transcript": transcript,
+    "keywords": keywords?.join(', '),
+    "author": author ? { "@type": "Person", "name": author } : baseOrganizationSchema,
+    "publisher": baseOrganizationSchema,
+    "inLanguage": "en-US",
+    "isFamilyFriendly": true,
+    "genre": "Educational",
+    "interactionStatistic": {
+      "@type": "InteractionCounter",
+      "interactionType": "https://schema.org/WatchAction",
+      "userInteractionCount": 0
+    }
   };
 };
 
@@ -137,6 +151,26 @@ export const generateInsurancePlanSchema = (
 };
 
 /**
+ * Generate schema for collection pages (e.g., video listings)
+ */
+export const generateCollectionPageSchema = (
+  title: string,
+  description: string,
+  url: string,
+  mainEntity: Array<any>
+) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": title,
+    "description": description,
+    "url": url,
+    "mainEntity": mainEntity,
+    "publisher": baseOrganizationSchema
+  };
+};
+
+/**
  * Validate schema structure before injection
  */
 export const validateSchema = (schema: Record<string, any>): boolean => {
@@ -146,7 +180,7 @@ export const validateSchema = (schema: Record<string, any>): boolean => {
 };
 
 interface SchemaGeneratorOptions {
-  type: 'Video' | 'BlogPost' | 'FoundationalPage' | 'FAQ';
+  type: 'Video' | 'BlogPost' | 'FoundationalPage' | 'FAQ' | 'CollectionPage';
   data: Record<string, any>;
 }
 
@@ -161,6 +195,13 @@ export class SchemaGenerator {
         return this.generateFoundationalPageSchema(options.data);
       case 'FAQ':
         return this.generateFAQSchema(options.data);
+      case 'CollectionPage':
+        return this.generateCollectionPageSchema(
+          options.data.title,
+          options.data.description,
+          options.data.url,
+          options.data.mainEntity
+        );
       default:
         return null;
     }

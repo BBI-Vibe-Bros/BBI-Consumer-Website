@@ -27,7 +27,7 @@ interface SEOProps {
   ogType?: string;
   noIndex?: boolean;
   schema?: Record<string, any>;
-  schemaType?: 'webpage' | 'blogpost' | 'video' | 'insurance' | 'statepage';
+  schemaType?: 'webpage' | 'blogpost' | 'video' | 'insurance' | 'statepage' | 'collectionpage';
   schemaData?: Record<string, any>;
 }
 
@@ -92,6 +92,16 @@ const SEO: React.FC<SEOProps> = ({
             schemaData.duration,
             schemaData.contentUrl,
             schemaData.embedUrl
+          );
+        }
+        break;
+      case 'collectionpage':
+        if (schemaData) {
+          finalSchema = SchemaGenerator.generateCollectionPageSchema(
+            metaTitle,
+            metaDescription,
+            url,
+            schemaData.mainEntity
           );
         }
         break;
