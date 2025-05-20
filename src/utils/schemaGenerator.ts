@@ -119,6 +119,20 @@ export const generateVideoSchema = (
       "@type": "InteractionCounter",
       "interactionType": "https://schema.org/WatchAction",
       "userInteractionCount": 0
+    },
+    "potentialAction": {
+      "@type": "WatchAction",
+      "target": contentUrl || embedUrl
+    },
+    "video": {
+      "@type": "VideoObject",
+      "name": title,
+      "description": description,
+      "thumbnailUrl": thumbnailUrl,
+      "uploadDate": uploadDate,
+      "duration": duration || "PT0M0S",
+      "contentUrl": contentUrl,
+      "embedUrl": embedUrl
     }
   };
 };

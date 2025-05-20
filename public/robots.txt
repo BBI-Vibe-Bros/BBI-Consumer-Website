@@ -18,6 +18,7 @@ Allow: /plans/medicare-add-on-coverage-options
 Allow: /resources
 Allow: /blog
 Allow: /videos
+Allow: /videos/watch/*
 Allow: /about-us
 Allow: /about-us/team
 Allow: /contact-us
@@ -32,6 +33,12 @@ Allow: /plans/*
 Allow: /resources/*
 Allow: /blog/*
 Allow: /videos/*
+Allow: /videos/watch/*
+Crawl-delay: 1
+
+User-agent: Googlebot-Video
+Allow: /videos/*
+Allow: /videos/watch/*
 Crawl-delay: 1
 
 User-agent: Bingbot
@@ -40,6 +47,7 @@ Allow: /plans/*
 Allow: /resources/*
 Allow: /blog/*
 Allow: /videos/*
+Allow: /videos/watch/*
 Crawl-delay: 2
 
 User-agent: Slurp
@@ -48,6 +56,7 @@ Allow: /plans/*
 Allow: /resources/*
 Allow: /blog/*
 Allow: /videos/*
+Allow: /videos/watch/*
 Crawl-delay: 3
 
 # Block sensitive areas

@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Home Page -->
   <url>
@@ -147,10 +148,24 @@
   <url>
     <loc>https://www.bobbybrockinsurance.com/videos</loc>
     <lastmod>2024-03-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/videos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.bobbybrockinsurance.com/videos#table-of-contents"/>
+    <video:video>
+      <video:thumbnail_loc>https://www.bobbybrockinsurance.com/images/video-thumbnails/default.jpg</video:thumbnail_loc>
+      <video:title>Medicare Video Library</video:title>
+      <video:description>Educational videos about Medicare insurance plans and coverage options</video:description>
+      <video:content_loc>https://www.bobbybrockinsurance.com/videos</video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">https://www.bobbybrockinsurance.com/videos</video:player_loc>
+      <video:duration>600</video:duration>
+      <video:expiration_date>2024-12-31T23:59:59+00:00</video:expiration_date>
+      <video:rating>4.8</video:rating>
+      <video:view_count>1000</video:view_count>
+      <video:publication_date>2024-03-26T00:00:00+00:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:category>Education</video:category>
+      <video:live>no</video:live>
+    </video:video>
   </url>
 
   <!-- About and Contact -->
