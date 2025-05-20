@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
-import CTASection from '@/components/Home/CTASection';
+import SEO from '@/components/SEO';
+import { SchemaGenerator } from '@/utils/schemaGenerator';
+import { FoundationalPageResponse } from '@/types/foundationalPage';
 
 const PrescriptionDrugPlans = () => {
   const [loading, setLoading] = useState(true);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<FoundationalPageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,18 +17,18 @@ const PrescriptionDrugPlans = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('medicarepartd');
+        const response = await contentfulService.getFoundationalPageBySlug('medicarepartd') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
-            title: response.pageName || 'Medicare Part D Prescription Drug Plans',
-            subtitle: response.metadata?.title,
-            heroImage: response.metadata?.heroImage,
-            fBodyContent: response.fBodyContent || {},
+            pageName: response.pageName || 'Medicare Part D Prescription Drug Plans',
+            pageSlug: 'medicarepartd',
+            title: response.title,
+            metadata: response.metadata,
+            fBodyContent: response.fBodyContent,
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
-            sections: response.sections || [],
             relatedBlogs: response.relatedBlogs || [],
           });
         } else {
@@ -44,42 +45,29 @@ const PrescriptionDrugPlans = () => {
     fetchData();
   }, []);
 
+  const schemaData = SchemaGenerator.generate({
+    type: 'FoundationalPage',
+    data: {
+      title: 'Medicare Part D Prescription Drug Plans',
+      description: 'Find affordable Medicare Part D prescription drug plans in Tupelo, MS. Compare coverage options and save money on your medications.',
+      url: 'https://www.bobbybrockinsurance.com/plans/prescription',
+      datePublished: new Date().toISOString().split('T')[0],
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  });
+
   return (
     <Layout>
-      <Helmet>
-        <title>Medicare Part D Prescription Drug Plans | Bobby Brock Insurance</title>
-        <meta 
-          name="description" 
-          content="Find affordable Medicare Part D prescription drug plans in Tupelo, MS. Compare coverage options and save money on your medications." 
-        />
-        <meta 
-          name="keywords" 
-          content="Medicare Part D, prescription drug plans, medication coverage, Medicare insurance, Tupelo MS" 
-        />
+      <SEO 
+        title="Medicare Part D Prescription Drug Plans"
+        description="Find affordable Medicare Part D prescription drug plans in Tupelo, MS. Compare coverage options and save money on your medications."
+        type="website"
+      />
+      {schemaData && (
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "InsurancePlan",
-              "name": "Medicare Part D Prescription Drug Plans",
-              "url": "https://www.bobbybrockinsurance.com/plans/prescription",
-              "description": "Medicare Part D prescription drug plans help cover the cost of prescription medications including many recommended shots or vaccines.",
-              "insurancePlanProvider": {
-                "@type": "InsuranceAgency",
-                "name": "Bobby Brock Insurance",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "499 Air Park Rd",
-                  "addressLocality": "Tupelo",
-                  "addressRegion": "MS",
-                  "postalCode": "38801",
-                  "addressCountry": "US"
-                }
-              }
-            }
-          `}
+          {JSON.stringify(schemaData)}
         </script>
-      </Helmet>
+      )}
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

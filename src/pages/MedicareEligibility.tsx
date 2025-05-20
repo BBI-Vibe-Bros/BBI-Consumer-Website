@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
-import SEO from '@/utils/seo';
+import SEO from '@/components/SEO';
+import { SchemaGenerator } from '@/utils/schemaGenerator';
+import { FoundationalPageResponse } from '@/types/foundationalPage';
 
 const MedicareEligibility = () => {
   const [loading, setLoading] = useState(true);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<FoundationalPageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,13 +17,15 @@ const MedicareEligibility = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('medicare-eligibility');
+        const response = await contentfulService.getFoundationalPageBySlug('medicare-eligibility') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
-            title: response.pageName || 'Medicare Eligibility',
-            subtitle: response.metadata?.title,
-            fBodyContent: response.fBodyContent || {},
+            pageName: response.pageName || 'Medicare Eligibility',
+            pageSlug: 'medicare-eligibility',
+            title: response.title,
+            metadata: response.metadata,
+            fBodyContent: response.fBodyContent,
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
@@ -42,13 +45,29 @@ const MedicareEligibility = () => {
     fetchData();
   }, []);
 
+  const schemaData = SchemaGenerator.generate({
+    type: 'FoundationalPage',
+    data: {
+      title: 'Medicare Eligibility',
+      description: 'Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS.',
+      url: 'https://www.bobbybrockinsurance.com/medicare/eligibility',
+      datePublished: new Date().toISOString().split('T')[0],
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  });
+
   return (
     <Layout>
       <SEO 
-        title="Medicare Eligibility | Bobby Brock Insurance"
+        title="Medicare Eligibility"
         description="Find out if you're eligible for Medicare, when you can enroll, and how to avoid penalties with helpful guidance from Bobby Brock Insurance of Tupelo, MS."
-        url="https://www.bobbybrockinsurance.com/medicare/eligibility"
+        type="website"
       />
+      {schemaData && (
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      )}
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

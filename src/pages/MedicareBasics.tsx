@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
-import SEO from '@/utils/seo';
+import SEO from '@/components/SEO';
+import { SchemaGenerator } from '@/utils/schemaGenerator';
+import { Document } from '@contentful/rich-text-types';
+
+interface FoundationalPageResponse {
+  pageName: string;
+  pageSlug: string;
+  title?: string;
+  metadata?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    heroImage?: string;
+  };
+  fBodyContent: Document;
+  callToAction?: {
+    title?: string;
+    text?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
+  author?: string;
+  youTubeVideo?: string;
+  relatedBlogs?: Array<{
+    title: string;
+    slug: string;
+    featuredImage?: string;
+    excerpt?: string;
+  }>;
+}
 
 const MedicareBasics = () => {
   const [loading, setLoading] = useState(true);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<FoundationalPageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,13 +44,15 @@ const MedicareBasics = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('what-is-medicare');
+        const response = await contentfulService.getFoundationalPageBySlug('medicare-basics') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
-            title: response.pageName || 'Medicare Basics',
-            subtitle: response.metadata?.title,
-            fBodyContent: response.fBodyContent || {},
+            pageName: response.pageName || 'Medicare Basics',
+            pageSlug: 'medicare-basics',
+            title: response.title,
+            metadata: response.metadata,
+            fBodyContent: response.fBodyContent,
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
@@ -42,13 +72,29 @@ const MedicareBasics = () => {
     fetchData();
   }, []);
 
+  const schemaData = SchemaGenerator.generate({
+    type: 'FoundationalPage',
+    data: {
+      title: 'Medicare Basics',
+      description: 'Learn the fundamentals of Medicare coverage, eligibility, and enrollment. Get expert guidance on Medicare basics from our national brokerage serving over 50,000 beneficiaries.',
+      url: 'https://www.bobbybrockinsurance.com/medicare-basics',
+      datePublished: new Date().toISOString().split('T')[0],
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  });
+
   return (
     <Layout>
       <SEO 
-        title="Medicare Basics | Bobby Brock Insurance"
-        description="Learn Medicare basics including enrollment periods, coverage options, and how to choose the right plan for your needs with expert guidance from Bobby Brock Insurance."
-        url="https://www.bobbybrockinsurance.com/medicare/what-is-medicare"
+        title="Medicare Basics"
+        description="Learn the fundamentals of Medicare coverage, eligibility, and enrollment. Get expert guidance on Medicare basics from our national brokerage serving over 50,000 beneficiaries."
+        type="website"
       />
+      {schemaData && (
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      )}
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

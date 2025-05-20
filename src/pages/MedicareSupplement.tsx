@@ -1,14 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
 import CTASection from '@/components/Home/CTASection';
+import SEO from '@/components/SEO';
+import { SchemaGenerator } from '@/utils/schemaGenerator';
+import { Document } from '@contentful/rich-text-types';
+
+interface FoundationalPageResponse {
+  pageName: string;
+  pageSlug: string;
+  title?: string;
+  metadata?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+    heroImage?: string;
+  };
+  fBodyContent: Document;
+  callToAction?: {
+    title?: string;
+    text?: string;
+    buttonText?: string;
+    buttonLink?: string;
+  };
+  author?: string;
+  youTubeVideo?: string;
+  relatedBlogs?: Array<{
+    title: string;
+    slug: string;
+    featuredImage?: string;
+    excerpt?: string;
+  }>;
+}
 
 const MedicareSupplement = () => {
   const [loading, setLoading] = useState(true);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<FoundationalPageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,18 +45,18 @@ const MedicareSupplement = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('medicare-supplement');
+        const response = await contentfulService.getFoundationalPageBySlug('medicare-supplement') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
-            title: response.pageName || 'Medicare Supplement Plans',
-            subtitle: response.metadata?.title,
-            heroImage: response.metadata?.heroImage,
-            fBodyContent: response.fBodyContent || {},
+            pageName: response.pageName || 'Medicare Supplement Plans',
+            pageSlug: 'medicare-supplement',
+            title: response.title,
+            metadata: response.metadata,
+            fBodyContent: response.fBodyContent,
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
-            sections: response.sections || [],
             relatedBlogs: response.relatedBlogs || [],
           });
         } else {
@@ -44,42 +73,29 @@ const MedicareSupplement = () => {
     fetchData();
   }, []);
 
+  const schemaData = SchemaGenerator.generate({
+    type: 'FoundationalPage',
+    data: {
+      title: 'Medicare Supplement Plans',
+      description: 'Compare Medicare Supplement (Medigap) plans in Tupelo, MS. Get extra coverage that fills the gaps in Original Medicare with our expert guidance.',
+      url: 'https://bobbybrock.com/plans/supplement',
+      datePublished: new Date().toISOString().split('T')[0],
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  });
+
   return (
     <Layout>
-      <Helmet>
-        <title>Medicare Supplement Plans | Bobby Brock Insurance</title>
-        <meta 
-          name="description" 
-          content="Compare Medicare Supplement (Medigap) plans in Tupelo, MS. Get extra coverage that fills the gaps in Original Medicare with our expert guidance." 
-        />
-        <meta 
-          name="keywords" 
-          content="Medicare Supplement, Medigap, Plan F, Plan G, Plan N, Medicare insurance, Tupelo MS" 
-        />
+      <SEO 
+        title="Medicare Supplement Plans"
+        description="Compare Medicare Supplement (Medigap) plans in Tupelo, MS. Get extra coverage that fills the gaps in Original Medicare with our expert guidance."
+        type="website"
+      />
+      {schemaData && (
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "InsurancePlan",
-              "name": "Medicare Supplement Plans",
-              "url": "https://bobbybrock.com/plans/supplement",
-              "description": "Medicare Supplement (Medigap) plans help fill the gaps in Original Medicare coverage such as copayments, coinsurance, and deductibles.",
-              "insurancePlanProvider": {
-                "@type": "InsuranceAgency",
-                "name": "Bobby Brock Insurance",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "499 Air Park Rd",
-                  "addressLocality": "Tupelo",
-                  "addressRegion": "MS",
-                  "postalCode": "38801",
-                  "addressCountry": "US"
-                }
-              }
-            }
-          `}
+          {JSON.stringify(schemaData)}
         </script>
-      </Helmet>
+      )}
       
       {loading ? (
         <div className="container mx-auto px-4 py-16">

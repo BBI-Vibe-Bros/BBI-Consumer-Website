@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/Layout/Layout';
 import ContentfulService from '@/services/contentfulService';
 import FoundationalPageTemplate from '@/components/Templates/FoundationalPageTemplate';
 import { Skeleton } from '@/components/ui/skeleton';
-import SEO from '@/utils/seo';
+import SEO from '@/components/SEO';
+import { SchemaGenerator } from '@/utils/schemaGenerator';
+import { FoundationalPageResponse } from '@/types/foundationalPage';
 
 const MedicareParts = () => {
   const [loading, setLoading] = useState(true);
-  const [pageData, setPageData] = useState<any>(null);
+  const [pageData, setPageData] = useState<FoundationalPageResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -16,13 +17,15 @@ const MedicareParts = () => {
       try {
         setLoading(true);
         const contentfulService = ContentfulService.getInstance();
-        const response = await contentfulService.getFoundationalPageBySlug('four-parts-of-medicare');
+        const response = await contentfulService.getFoundationalPageBySlug('four-parts-of-medicare') as FoundationalPageResponse;
         
         if (response) {
           setPageData({
-            title: response.pageName || 'The Four Parts of Medicare',
-            subtitle: response.metadata?.title,
-            fBodyContent: response.fBodyContent || {},
+            pageName: response.pageName || 'The Four Parts of Medicare',
+            pageSlug: 'four-parts-of-medicare',
+            title: response.title,
+            metadata: response.metadata,
+            fBodyContent: response.fBodyContent,
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
@@ -41,6 +44,17 @@ const MedicareParts = () => {
 
     fetchData();
   }, []);
+
+  const schemaData = SchemaGenerator.generate({
+    type: 'FoundationalPage',
+    data: {
+      title: 'The Four Parts of Medicare',
+      description: 'Learn about Medicare Parts A, B, C, and D - what they cover, how they work together, and how to choose the right combination for your healthcare needs.',
+      url: 'https://www.bobbybrockinsurance.com/medicare/four-parts-of-medicare',
+      datePublished: new Date().toISOString().split('T')[0],
+      dateModified: new Date().toISOString().split('T')[0]
+    }
+  });
 
   if (loading) {
     return (
@@ -74,10 +88,15 @@ const MedicareParts = () => {
   return (
     <Layout>
       <SEO 
-        title="The Four Parts of Medicare | Bobby Brock Insurance"
+        title="The Four Parts of Medicare"
         description="Learn about Medicare Parts A, B, C, and D - what they cover, how they work together, and how to choose the right combination for your healthcare needs."
-        url="https://www.bobbybrockinsurance.com/medicare/four-parts-of-medicare"
+        type="website"
       />
+      {schemaData && (
+        <script type="application/ld+json">
+          {JSON.stringify(schemaData)}
+        </script>
+      )}
       <FoundationalPageTemplate page={pageData} />
     </Layout>
   );
