@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const HeroSection = () => {
   return (
@@ -33,11 +34,13 @@ What started as a small family business has grown into a trusted Medicare resour
 
           {/* Image */}
           <div className="flex-1">
-            <img
+            <OptimizedImage
               src="/lovable-uploads/bbi-meet-the-team.png"
               alt="Bobby Brock Insurance team members working together to help clients"
+              width={800}
+              height={600}
               className="w-full h-auto max-w-lg mx-auto rounded-lg shadow-lg"
-              loading="eager"
+              priority
             />
           </div>
         </div>

@@ -19,6 +19,7 @@ interface VideoTemplateProps {
 const VideoTemplate = ({ video }: VideoTemplateProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isPlayerVisible, setIsPlayerVisible] = useState(false);
 
   // Process video URL to handle different platforms
   const getEmbedUrl = (url: string) => {
@@ -26,12 +27,12 @@ const VideoTemplate = ({ video }: VideoTemplateProps) => {
       // YouTube
       if (url.includes('youtube.com') || url.includes('youtu.be')) {
         const videoId = url.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})/)?.[1];
-        return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+        return videoId ? `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&modestbranding=1&loading=lazy` : url;
       }
       // Vimeo
       if (url.includes('vimeo.com')) {
         const videoId = url.match(/vimeo.com\/(\d+)/)?.[1];
-        return videoId ? `https://player.vimeo.com/video/${videoId}` : url;
+        return videoId ? `https://player.vimeo.com/video/${videoId}?autoplay=0&title=0&byline=0&portrait=0&dnt=1` : url;
       }
       // Default to original URL
       return url;
@@ -42,9 +43,32 @@ const VideoTemplate = ({ video }: VideoTemplateProps) => {
   };
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
-  }, [video.videoUrl]);
+    // Preload the thumbnail
+    if (video.thumbnailUrl) {
+      const img = new Image();
+      img.src = video.thumbnailUrl;
+    }
+
+    // Set up intersection observer for lazy loading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsPlayerVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const videoContainer = document.getElementById('video-container');
+    if (videoContainer) {
+      observer.observe(videoContainer);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [video.thumbnailUrl]);
 
   const handleIframeLoad = () => {
     setIsLoading(false);
@@ -59,11 +83,18 @@ const VideoTemplate = ({ video }: VideoTemplateProps) => {
     <div className="container mx-auto px-0 py-2">
       {/* Video Player Section */}
       <section className="mb-8">
-        <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+        <div id="video-container" className="relative w-full" style={{ paddingBottom: '56.25%' }}>
           <div className="absolute inset-0 bg-gray-100 rounded-lg overflow-hidden">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bb-blue"></div>
+                {video.thumbnailUrl && (
+                  <img
+                    src={video.thumbnailUrl}
+                    alt={video.title}
+                    className="absolute inset-0 w-full h-full object-cover opacity-50"
+                  />
+                )}
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-bb-blue z-10"></div>
               </div>
             )}
             {error ? (
@@ -78,7 +109,7 @@ const VideoTemplate = ({ video }: VideoTemplateProps) => {
                   </button>
                 </div>
               </div>
-            ) : (
+            ) : isPlayerVisible && (
               <iframe
                 src={getEmbedUrl(video.videoUrl)}
                 title={video.title}

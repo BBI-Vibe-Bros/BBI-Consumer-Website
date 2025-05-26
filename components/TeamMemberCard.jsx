@@ -13,7 +13,7 @@ export default function TeamMemberCard({ name, title, image, email }) {
         className="w-full h-75 object-cover object-top"
         loading="lazy"
       />
-      <div className="flex flex-col items-;left p-6 text-left">
+      <div className="flex flex-col items-start p-6 text-left">
         <div className="font-bold text-lg tracking-wide mb-1">{name}</div>
         <div className="text-gray-500 text-sm mb-4">{title}</div>
         <a

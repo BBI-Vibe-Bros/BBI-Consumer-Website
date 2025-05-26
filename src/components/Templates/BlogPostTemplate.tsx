@@ -4,6 +4,7 @@ import { Document } from '@contentful/rich-text-types';
 import RichTextRenderer from '@/components/Content/RichTextRenderer';
 import BlogCTA from '@/components/Home/BlogCTA';
 import Breadcrumb from '@/components/Navigation/Breadcrumb';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface BlogPostTemplateProps {
   post: {
@@ -67,9 +68,11 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
           {post.author && (
             <div className="flex items-center">
               {typeof post.author !== 'string' && post.author.photo && (
-                <img
+                <OptimizedImage
                   src={post.author.photo}
                   alt={getAuthorName()}
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full mr-2"
                 />
               )}
@@ -89,10 +92,13 @@ const BlogPostTemplate = ({ post }: BlogPostTemplateProps) => {
       {/* Featured Image */}
       {post.featuredImage && (
         <div className="mb-8 w-1920">
-          <img 
+          <OptimizedImage 
             src={post.featuredImage}
             alt={post.title}
+            width={1920}
+            height={605}
             className="w-1920 h-auto rounded-lg object-cover max-h-[605px]"
+            priority
           />
         </div>
       )}

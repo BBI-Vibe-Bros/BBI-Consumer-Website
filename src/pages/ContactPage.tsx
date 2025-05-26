@@ -5,6 +5,7 @@ import SEO from '@/utils/seo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 import { FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -16,7 +17,10 @@ const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),
   phone: z.string().optional(),
-  message: z.string().min(10, { message: 'Message must be at least 10 characters' })
+  message: z.string().min(10, { message: 'Message must be at least 10 characters' }),
+  marketingConsent: z.boolean().refine(val => val === true, {
+    message: 'You must consent to receive marketing communications to submit this form'
+  })
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -29,7 +33,8 @@ const ContactPage = () => {
       name: '',
       email: '',
       phone: '',
-      message: ''
+      message: '',
+      marketingConsent: false
     }
   });
 
@@ -46,6 +51,7 @@ const ContactPage = () => {
           email: data.email,
           phone: data.phone || 'Not provided',
           message: data.message,
+          marketingConsent: data.marketingConsent,
           source: 'Website Contact Form',
           timestamp: new Date().toISOString()
         })
@@ -109,8 +115,8 @@ const ContactPage = () => {
                   <h3 className="text-lg font-semibold mb-2">Contact Information</h3>
                   <p className="text-gray-700 mb-2">
                     <span className="font-medium">Phone:</span>{' '}
-                    <a href="tel:6626421512" className="text-bb-blue hover:underline">
-                      (662) 642-1512
+                    <a href="tel:6628443300" className="text-bb-blue hover:underline">
+                      (662) 844-3300
                     </a>
                   </p>
                   <p className="text-gray-700">
@@ -191,6 +197,30 @@ const ContactPage = () => {
                             />
                           </FormControl>
                           <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    
+                    <FormField
+                      control={form.control}
+                      name="marketingConsent"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                          <FormControl>
+                            <div className="w-4 h-4 mt-1 flex items-start justify-start">
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                                className="scale-75 origin-top-left"
+                              />
+                            </div>
+                          </FormControl>
+                          <div className="space-y-1 leading-none flex-1">
+                            <FormLabel className="text-sm font-normal cursor-pointer leading-relaxed">
+                              By checking this box, I consent to receive marketing and promotional messages, including special offers, discounts, new product updates among others. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out.
+                            </FormLabel>
+                            <FormMessage />
+                          </div>
                         </FormItem>
                       )}
                     />

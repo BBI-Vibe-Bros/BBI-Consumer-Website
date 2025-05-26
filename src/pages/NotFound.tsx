@@ -39,8 +39,8 @@ const NotFound = () => {
             </Link>
             <p className="text-lg mt-6">
               Need assistance with Medicare? Call us at{" "}
-              <a href="tel:6626421512" className="text-bb-blue font-medium hover:underline">
-                (662) 642-1512
+              <a href="tel:6628443300" className="text-bb-blue font-medium hover:underline">
+                (662) 844-3300
               </a>
             </p>
           </div>

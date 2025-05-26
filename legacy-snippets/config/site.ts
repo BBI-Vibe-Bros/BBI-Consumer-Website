@@ -9,7 +9,7 @@ export const SITE_CONFIG = {
     linkedin: 'https://linkedin.com/company/bobbybrockinsurance',
   },
   contact: {
-    phone: '(662) 642-1512',
+    phone: '(662) 844-3300',
     email: 'info@bobbybrockinsurance.com',
     address: {
       street: '499 Air Park Rd',

@@ -3,7 +3,7 @@
 ## Technology Stack
 
 ### Frontend
-- Next.js 13+ with App Router
+- Vite + React
 - TypeScript
 - Tailwind CSS
 - React Query for data fetching
@@ -98,7 +98,7 @@
 
 ### Optimization Strategies
 1. **Image Optimization**
-   - Next.js Image component
+   - Vite's asset handling
    - WebP format with fallbacks
    - Lazy loading
    - Responsive sizes
@@ -109,9 +109,9 @@
    - Dynamic imports
 
 3. **Caching**
-   - Static page generation
-   - Incremental Static Regeneration
+   - Static asset optimization
    - Service Worker implementation
+   - CDN caching
 
 ## SEO Implementation
 

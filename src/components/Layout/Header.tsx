@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 import { ChevronDown, GraduationCap, ClipboardList, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star, Users, BookOpen, Video, FileText, Heart, MessageCircle, Building2, ChevronRight, MapPin } from 'lucide-react';
 import DropdownCallout from './DropdownCallout';
 import StickyFooter from './StickyFooter';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -61,47 +62,6 @@ const Header = () => {
     }
   ];
 
-  const getCalloutForBranch = (title: string) => {
-    switch (title) {
-      case 'Understand Medicare':
-        return (
-          <DropdownCallout
-            title="Medicare Myth Buster"
-            description="No fluff, no jargon—just clear, helpful answers to your most important Medicare questions. Download your free copy now and take the guesswork out of getting the right coverage."
-            ctaText="Download Free Guide"
-            ctaLink="/medicare/medicare-breakdown"
-            icon={Download}
-          />
-        );
-      case 'Medicare Plans':
-        return (
-          <DropdownCallout
-            title="Get Personalized Medicare Plan Guidance"
-            description="Our licensed agents can help you compare plans and find the right coverage for your needs. Schedule a free consultation today."
-            ctaText="Schedule Appointment"
-            ctaLink="/contact"
-            icon={Calendar}
-            bgColor="bg-blue-50"
-          />
-        );
-      case 'Why Choose Us':
-        return (
-          <DropdownCallout
-            title="Join Our Growing Family of Satisfied Clients"
-            description="See why thousands of Medicare beneficiaries trust us with their healthcare coverage. Read real stories from our clients."
-            ctaText="Read Testimonials"
-            ctaLink="/client-reviews"
-            icon={Star}
-            bgColor="bg-green-50"
-          />
-        );
-      case 'Resources':
-        return null;
-      default:
-        return null;
-    }
-  };
-
   const toggleSubmenu = (title: string) => {
     setOpenSubmenu(openSubmenu === title ? null : title);
   };
@@ -114,11 +74,15 @@ const Header = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
-                <img 
-                  alt="Bobby Brock Insurance" 
-                  className="h-8 md:h-12 w-auto" 
-                  src="https://www.bobbybrockinsurance.com/lovable-uploads/bobby-brock-insurance-logo.png" 
-                />
+                <div style={{ maxWidth: '200px', maxHeight: '48px', width: '200px', height: '48px' }}>
+                  <OptimizedImage 
+                    alt="Bobby Brock Insurance" 
+                    className=""
+                    src="https://www.bobbybrockinsurance.com/lovable-uploads/bobby-brock-insurance-logo.png"
+                    objectFit="contain"
+                    priority
+                  />
+                </div>
               </Link>
             </div>
 

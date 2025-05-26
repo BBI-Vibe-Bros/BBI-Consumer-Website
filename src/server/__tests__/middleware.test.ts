@@ -48,7 +48,19 @@ describe('Security Headers Middleware', () => {
     );
     expect(mockResponse.setHeader).toHaveBeenCalledWith(
       'Strict-Transport-Security',
-      'max-age=31536000; includeSubDomains'
+      'max-age=31536000; includeSubDomains; preload'
+    );
+    expect(mockResponse.setHeader).toHaveBeenCalledWith(
+      'Cross-Origin-Opener-Policy',
+      'same-origin'
+    );
+    expect(mockResponse.setHeader).toHaveBeenCalledWith(
+      'Cross-Origin-Embedder-Policy',
+      'require-corp'
+    );
+    expect(mockResponse.setHeader).toHaveBeenCalledWith(
+      'Cross-Origin-Resource-Policy',
+      'same-origin'
     );
 
     // Check if next() was called
