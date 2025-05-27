@@ -40,18 +40,18 @@ const Sidebar = ({ content }: SidebarProps) => {
   }, []);
 
   return (
-    <div className="space-y-6">
+    <div className="sticky top-20 md:top-24 self-start space-y-4">
       {/* Table of Contents */}
       {content && <TableOfContents content={content} />}
 
       {/* Blog Section */}
-      <div className="bg-gray-50 rounded-2xl p-5">
-        <h3 className="font-bold text-xl mb-4">Read Our Blog</h3>
-        <div className="space-y-3">
+      <div className="bg-gray-50 rounded-xl p-4">
+        <h3 className="font-bold text-lg mb-3">Read Our Blog</h3>
+        <div className="space-y-2">
           {loading ? (
             <div className="space-y-2">
               {[1,2,3].map(i => (
-                <div key={i} className="h-16 bg-gray-100 rounded-lg animate-pulse" />
+                <div key={i} className="h-14 bg-gray-100 rounded-lg animate-pulse" />
               ))}
             </div>
           ) : error ? (
@@ -68,12 +68,12 @@ const Sidebar = ({ content }: SidebarProps) => {
                 <img
                   src={blog.featuredImage || '/static/blog-placeholder.png'}
                   alt={blog.title}
-                  className="w-14 h-14 rounded-md object-cover mr-3 flex-shrink-0"
+                  className="w-12 h-12 rounded-md object-cover mr-3 flex-shrink-0"
                 />
-                <span className="flex-1 text-base font-semibold text-gray-900 leading-snug group-hover:text-bb-blue">
+                <span className="flex-1 text-sm font-semibold text-gray-900 leading-snug group-hover:text-bb-blue">
                   {blog.title}
                 </span>
-                <ArrowRight className="ml-2 text-bb-blue group-hover:translate-x-1 transition-transform" size={20} />
+                <ArrowRight className="ml-2 text-bb-blue group-hover:translate-x-1 transition-transform" size={18} />
               </Link>
             ))
           )}
@@ -81,10 +81,10 @@ const Sidebar = ({ content }: SidebarProps) => {
       </div>
 
       {/* Appointment Button */}
-      <div className="bg-gray-50 rounded-2xl p-4">
+      <div className="bg-gray-50 rounded-xl p-4">
         <Link
           to="/contact"
-          className="block w-full bg-bb-blue text-white text-center rounded-lg py-3 text-lg font-semibold hover:bg-bb-dark-blue transition"
+          className="block w-full bg-bb-blue text-white text-center rounded-lg py-2.5 text-sm font-semibold hover:bg-bb-dark-blue transition"
         >
           Schedule an Appointment
         </Link>

@@ -47,7 +47,8 @@ const Header = () => {
       submenu: [
         { title: 'Blogs & Insights', href: '/blog', icon: BookOpen, description: 'Read our latest insights on Medicare.' },
         { title: 'Video Center', href: '/videos', icon: Video, description: 'Watch educational videos about Medicare.' },
-        { title: 'Medicare Breakdown', href: '/medicare-breakdown', icon: FileText, description: 'Explore a detailed breakdown of Medicare.' }
+        { title: 'Medicare Breakdown', href: '/medicare-breakdown', icon: FileText, description: 'Download Our Free Guide to Medicare' },
+        { title: 'Avoid Mistakes with Medicare', href: '/avoid-mistakes-with-medicare', icon: Shield, description: 'Download Our Guide to Avoid Common Mistakes' }
       ]
     },
     {

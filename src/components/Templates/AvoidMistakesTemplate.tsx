@@ -9,7 +9,7 @@ import Sidebar from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 
-interface LeadMagnetTemplateProps {
+interface AvoidMistakesTemplateProps {
   page: {
     pageName: string;
     author?: string;
@@ -37,7 +37,7 @@ interface LeadMagnetTemplateProps {
   onLeadCaptureClick?: (e: React.MouseEvent) => void;
 }
 
-const LeadMagnetTemplate = ({ page, onLeadCaptureClick }: LeadMagnetTemplateProps) => {
+const AvoidMistakesTemplate = ({ page, onLeadCaptureClick }: AvoidMistakesTemplateProps) => {
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [loadingBlogs, setLoadingBlogs] = useState(true);
   const [blogError, setBlogError] = useState<string | null>(null);
@@ -155,16 +155,16 @@ const LeadMagnetTemplate = ({ page, onLeadCaptureClick }: LeadMagnetTemplateProp
           {/* Sidebar */}
           <aside className="sticky top-20 md:top-24 self-start mt-8 lg:mt-0 lg:w-[340px] xl:w-[380px]">
             <div className="space-y-6">
-              {/* Lead Magnet Section */}
-              <div className="bg-blue-50 rounded-2xl p-6">
-                <h3 className="leading-snug text-2xl mb-2">Medicare Made <i>Really</i> Simple</h3>
-                <h4 className="text-base leading-normal text-bb-dark mb-2">Your Free Guide to the ABCs</h4>
+              {/* Lead Magnet Section - Customized for Avoid Mistakes */}
+              <div className="bg-red-50 rounded-2xl p-6 border border-red-100">
+                <h3 className="leading-snug text-2xl mb-2">Avoid Costly Medicare <i>Mistakes</i></h3>
+                <h4 className="text-base leading-normal text-bb-dark mb-2">Your Free Guide to Smart Decisions</h4>
                 <p className="leading-normal text-gray-700 mb-4">
-                  Confused by Parts A, B, C, and D? This free guide breaks it all down in plain English to help you make sense of Medicare and choose the right coverage with confidence.
+                  Don't let Medicare mistakes cost you thousands. This free guide reveals the most common pitfalls and how to avoid them, so you can make confident decisions about your coverage.
                 </p>
                 <Button 
                   onClick={onLeadCaptureClick}
-                  className="w-full flex items-center justify-center gap-2"
+                  className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700"
                 >
                   Download Free Guide
                   <Download className="inline-block" size={20} />
@@ -181,4 +181,4 @@ const LeadMagnetTemplate = ({ page, onLeadCaptureClick }: LeadMagnetTemplateProp
   );
 };
 
-export default LeadMagnetTemplate; 
+export default AvoidMistakesTemplate; 

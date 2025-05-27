@@ -1,0 +1,210 @@
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import AvoidMistakesTemplate from '@/components/Templates/AvoidMistakesTemplate';
+import ContentfulService from '@/services/contentfulService';
+import { Skeleton } from '@/components/ui/skeleton';
+import Layout from '@/components/Layout/Layout';
+import SEO from '@/utils/seo';
+import { useLeadCapture } from '@/contexts/LeadCaptureContext';
+
+const AvoidMistakesMedicare = () => {
+  const [page, setPage] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const { slug } = useParams();
+  const { openLeadCapture } = useLeadCapture();
+
+  useEffect(() => {
+    const fetchPage = async () => {
+      try {
+        setLoading(true);
+        const contentfulService = ContentfulService.getInstance();
+        const response = await contentfulService.getFoundationalPageBySlug('avoid-mistakes-with-medicare');
+        
+        if (response) {
+          // Transform the response to match the expected format
+          setPage({
+            pageName: response.pageName || 'Avoid Mistakes with Medicare',
+            metadata: response.metadata || {},
+            fBodyContent: {
+              ...response.fBodyContent,
+              content: response.fBodyContent?.content?.map((node: any) => {
+                if (node.nodeType === 'embedded-entry-block') {
+                  const entry = node.data.target;
+                  const contentType = entry.sys?.contentType?.sys?.id;
+                  const fields = entry.fields || {};
+
+                  // Transform the entry based on its content type
+                  switch (contentType) {
+                    case 'resourceGuide':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              slug: fields.slug || '',
+                            }
+                          }
+                        }
+                      };
+                    case 'video':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              videoUrl: fields.videoUrl || '',
+                              isSelfHosted: fields.isSelfHosted || false,
+                              thumbnailImage: fields.thumbnailImage || null,
+                            }
+                          }
+                        }
+                      };
+                    case 'blogPost':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              slug: fields.slug || '',
+                              excerpt: fields.excerpt || '',
+                              featuredImage: fields.featuredImage?.fields?.file?.url 
+                                ? `https:${fields.featuredImage.fields.file.url}` 
+                                : '',
+                            }
+                          }
+                        }
+                      };
+                    case 'foundationalPage':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              pageName: fields.pageName || '',
+                              pageSlug: fields.pageSlug || '',
+                              metadata: fields.metadata || {},
+                            }
+                          }
+                        }
+                      };
+                    default:
+                      console.warn(`Unhandled embedded entry type: ${contentType}`);
+                      return node;
+                  }
+                } else if (node.nodeType === 'embedded-asset-block') {
+                  // Handle embedded assets (images)
+                  const asset = node.data.target;
+                  const fields = asset.fields || {};
+                  
+                  return {
+                    ...node,
+                    data: {
+                      ...node.data,
+                      target: {
+                        title: fields.title || '',
+                        description: fields.description || '',
+                        url: fields.file?.url ? `https:${fields.file.url}` : '',
+                        contentType: fields.file?.contentType || '',
+                        fileName: fields.file?.fileName || '',
+                        details: fields.file?.details || {},
+                      }
+                    }
+                  };
+                }
+                return node;
+              }).filter(Boolean) || []
+            },
+            callToAction: response.callToAction,
+            author: response.author,
+            youTubeVideo: response.youTubeVideo,
+            relatedBlogs: response.relatedBlogs || [],
+          });
+        } else {
+          setError('Failed to load page content');
+        }
+      } catch (err) {
+        console.error('Error fetching Avoid Mistakes with Medicare data:', err);
+        setError('Failed to load page content');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPage();
+  }, []);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <Skeleton className="h-12 w-3/4 mb-6" />
+          <Skeleton className="h-6 w-1/2 mb-10" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-4">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+            <Skeleton className="h-72 rounded-lg" />
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-red-600 mb-4">Error</h1>
+            <p className="text-gray-600">{error}</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!page) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-8">
+          <h1 className="text-2xl font-bold">Page not found</h1>
+        </div>
+      </Layout>
+    );
+  }
+
+  // Add click handler to open lead capture modal
+  const handleLeadCaptureClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    openLeadCapture('Avoid Mistakes with Medicare Page');
+  };
+
+  return (
+    <Layout>
+      <SEO 
+        title={page.metadata?.title || page.pageName || "Avoid Mistakes with Medicare"}
+        description={page.metadata?.description || "Learn how to avoid common Medicare mistakes and make informed decisions about your healthcare coverage."}
+      />
+      <AvoidMistakesTemplate 
+        page={page} 
+        onLeadCaptureClick={handleLeadCaptureClick}
+      />
+    </Layout>
+  );
+};
+
+export default AvoidMistakesMedicare; 

@@ -33,6 +33,7 @@ import ClientTestimonials from './pages/ClientTestimonials';
 import MedicareByState from './pages/MedicareByState';
 import MedicareByStateListing from './pages/MedicareByStateListing';
 import TermsOfService from './pages/TermsOfService';
+import AvoidMistakesMedicare from './pages/AvoidMistakesMedicare';
 
 // Initialize QueryClient for data fetching
 const queryClient = new QueryClient();
@@ -51,6 +52,7 @@ const App = () => (
                 {/* Home page */}
                 <Route path="/" element={<Index />} />
                 <Route path="/medicare-breakdown" element={<MedicareBreakdown />} />
+                <Route path="/avoid-mistakes-with-medicare" element={<AvoidMistakesMedicare />} />
                 {/* Medicare basics and information routes */}
                 <Route path="/medicare">
                   <Route path="what-is-medicare" element={<MedicareBasics />} />

@@ -180,7 +180,7 @@ const StatePageTemplate = ({ page, breadcrumbItems }: StatePageTemplateProps) =>
           </div>
 
           {/* Sidebar */}
-          <aside className="sticky top-0 self-start mt-8 lg:mt-0 lg:w-1/3">
+          <aside className="sticky top-20 md:top-24 self-start mt-8 lg:mt-0 lg:w-1/3">
             <Sidebar content={page.fBodyContent} />
           </aside>
         </div>
