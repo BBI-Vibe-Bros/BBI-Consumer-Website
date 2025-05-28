@@ -195,7 +195,7 @@ export const team = [
       {
         name: "Jourdon Ivy",
         title: "Administrative Team",
-        image: "female-placeholder.png",
+        image: "Jourdan Ivy.jpg",
         email: "jivy@bobbybrockinsurance.com",
       },
       {
