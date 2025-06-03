@@ -136,13 +136,13 @@ export const team = [
       {
         name: "Brian Smith",
         title: "Licensed Sales Agent",
-        image: "male-placeholder.png",
+        image: "Brian Smith.jpg",
         email: "bsmith@bobbybrockinsurance.com",
       },
       {
         name: "Jason Bickerstaff",
         title: "Licensed Sales Agent",
-        image: "male-placeholder.png",
+        image: "Jason Bickerstaff.jpg",
         email: "jbickerstaff@bobbybrockinsurance.com",
       },
       {
@@ -201,7 +201,7 @@ export const team = [
       {
         name: "Angie Young",
         title: "Administrative Team",
-        image: "female-placeholder.png",
+        image: "Angie Young.jpg",
         email: "ayoung@bobbybrockinsurance.com",
       },
       {
