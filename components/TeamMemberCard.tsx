@@ -18,20 +18,18 @@ export default function TeamMemberCard({ name, title, image, email }: TeamMember
   const imgSrc = isContentfulImage ? image : `/team/${image}`;
   const altText = `${name} - ${title}`;
 
-
-
   return (
-    <div className="bg-white rounded-lg border border-gray-100 flex flex-col overflow-hidden shadow hover:shadow-lg transition-shadow group">
-      {/* Top: Square Image */}
-      <div className="w-full aspect-square overflow-hidden">
+    <div className="group text-center">
+      {/* Square Image */}
+      <div className="w-48 h-48 mx-auto mb-4 overflow-hidden rounded-sm transition-all duration-300 group-hover:shadow-lg">
         {isContentfulImage ? (
           // Use regular img tag for Contentful images (already optimized by Contentful CDN)
           <img
             src={imgSrc}
             alt={altText}
             className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-            width={200}
-            height={200}
+            width={192}
+            height={192}
             loading="lazy"
             onError={(e) => {
               // Fallback to placeholder if Contentful image fails
@@ -45,21 +43,21 @@ export default function TeamMemberCard({ name, title, image, email }: TeamMember
             src={imgSrc}
             alt={altText}
             className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-            width={200}
-            height={200}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            width={192}
+            height={192}
+            sizes="192px"
             placeholder="blur"
           />
         )}
       </div>
       
-      {/* Bottom: Info */}
-      <div className="p-4 text-center">
-        <div className="font-semibold text-gray-900 mb-1">{name}</div>
-        <div className="text-sm text-gray-600 mb-2">{title}</div>
+      {/* Info */}
+      <div className="space-y-1">
+        <h3 className="font-semibold text-gray-900 text-lg">{name}</h3>
+        <p className="text-gray-600 text-sm">{title}</p>
         <a
           href={`mailto:${email}`}
-          className="text-xs text-blue-600 hover:text-blue-800 transition-colors"
+          className="inline-block text-xs text-blue-600 hover:text-blue-800 transition-colors mt-1 hover:underline"
           tabIndex={0}
         >
           {email}

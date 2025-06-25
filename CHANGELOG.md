@@ -25,6 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Team member images now use Contentful asset URLs with fallback to local placeholders
 - **Team member card layout redesigned**: Switched from horizontal to vertical layout with square images
 - **Grid spacing optimized**: Reduced gaps between cards from 8 to 4 for better space utilization
+- **Team page UI redesign**: Replaced card-based design with clean, minimal styling:
+  - **Larger square images**: Increased from 128px to 192px (50% larger) for better visual impact
+  - **Removed card borders and shadows**: Eliminated heavy styling for cleaner, modern appearance
+  - **Subtle rounded corners**: Changed from `rounded-lg` to `rounded-sm` on images
+  - **Improved grid layout**: Optimized for up to 5 columns on extra-large screens
+  - **Enhanced hover effects**: Simple shadow and scale effects without border changes
 - **Enhanced team member sorting**: 
   - Leadership department follows custom order: Justin Brock → Steven Martinez → Jeff Senter → Jackson Taylor → Will Chapman → Jeremiah Lozano
   - Other departments use hierarchical sorting: Directors → Team Leads → Managers → Supervisors → Coordinators → Regular positions
