@@ -1,2 +1,2 @@
-import TeamPage from '../../components/TeamPage';
+import TeamPage from '../../components/TeamPage.tsx';
 export default TeamPage; 

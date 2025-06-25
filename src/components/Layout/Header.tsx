@@ -13,7 +13,6 @@ import { cn } from '@/lib/utils';
 import { ChevronDown, GraduationCap, ClipboardList, Calendar, DollarSign, Shield, Pill, PlusCircle, Download, Star, Users, BookOpen, Video, FileText, Heart, MessageCircle, Building2, ChevronRight, MapPin } from 'lucide-react';
 import DropdownCallout from './DropdownCallout';
 import StickyFooter from './StickyFooter';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -76,12 +75,10 @@ const Header = () => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
                 <div style={{ maxWidth: '200px', maxHeight: '48px', width: '200px', height: '48px' }}>
-                  <OptimizedImage 
+                  <img 
                     alt="Bobby Brock Insurance" 
-                    className=""
-                    src="https://www.bobbybrockinsurance.com/lovable-uploads/bobby-brock-insurance-logo.png"
-                    objectFit="contain"
-                    priority
+                    className="w-full h-full object-contain"
+                    src="/lovable-uploads/bobby-brock-insurance-logo.png"
                   />
                 </div>
               </Link>

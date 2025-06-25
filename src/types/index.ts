@@ -1,4 +1,3 @@
-
 // Medicare Types
 export interface MedicarePlan {
   id: string;
@@ -43,4 +42,32 @@ export interface MedicareFAQ {
   question: string;
   answer: string;
   category: string;
+}
+
+// Team Member Types
+export interface TeamMember {
+  name: string;
+  title: string;
+  image: string;
+  email: string;
+  department: string;
+}
+
+export interface TeamSection {
+  section: string;
+  members: TeamMember[];
+}
+
+export interface TeamMemberContentful {
+  employeeName: string;
+  employeeTitle: string;
+  employeeDept: string;
+  employeeEmail: string;
+  headshot?: {
+    fields: {
+      file: {
+        url: string;
+      };
+    };
+  };
 }

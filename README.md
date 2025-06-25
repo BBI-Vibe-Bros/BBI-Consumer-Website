@@ -146,6 +146,39 @@ Content is managed through Contentful CMS. Key content types:
 - Blog Posts
 - Videos
 
+### Team Management via Contentful
+
+Team member information is now managed dynamically through Contentful using the `teamMemberCards` content type. This allows non-technical staff to easily add, update, or remove team members without code deployments.
+
+**Content Type: `teamMemberCards`**
+- **employeeName** (Text): Full name of the team member
+- **employeeTitle** (Text): Job title or position
+- **employeeDept** (Text): Department (Leadership, Sales, Administrative, Marketing)
+- **employeeEmail** (Text): Business email address
+- **headshot** (Media): Professional headshot photo
+
+**How to manage team members:**
+1. Log into Contentful CMS
+2. Navigate to Content → Team Member Cards
+3. To add a new member: Click "Add entry" and fill in all fields
+4. To edit existing member: Click on their entry and update fields
+5. To remove a member: Archive or delete their entry
+6. Publish changes when ready
+
+**Department Organization:**
+Team members are automatically grouped by department and displayed in this order:
+1. Leadership
+2. Sales  
+3. Administrative
+4. Marketing
+
+**Image Management:**
+- Upload new headshots directly to Contentful as assets
+- Recommended image size: 300x300px minimum
+- Supported formats: JPG, PNG, WebP
+- Images are automatically optimized for web delivery
+- Fallback to placeholder images if no headshot is provided
+
 ### Table of Contents Implementation
 
 The site includes an interactive Table of Contents feature that:

@@ -6,7 +6,6 @@ import Breadcrumb from '@/components/Navigation/Breadcrumb';
 import SEO from '@/utils/seo';
 import ContentfulService from '@/services/contentfulService';
 import BlogSidebar from '@/components/BlogSidebar';
-import OptimizedImage from '@/components/ui/optimized-image';
 
 const BlogListing = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -154,7 +153,7 @@ const BlogListing = () => {
                     >
                       {post.featuredImage && (
                         <div className="h-48 overflow-hidden">
-                          <OptimizedImage 
+                          <img 
                             src={post.featuredImage}
                             alt={post.title}
                             width={800}

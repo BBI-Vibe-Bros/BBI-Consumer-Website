@@ -1,6 +1,7 @@
 import { createClient } from 'contentful';
 import { ContentfulClientApi } from 'contentful';
 import { Document } from '@contentful/rich-text-types';
+import { TeamMember, TeamSection, TeamMemberContentful } from '../types/index';
 
 interface ContentfulConfig {
   space: string;
@@ -63,18 +64,26 @@ interface BlogPostFields {
 
 /**
  * ContentfulService class for fetching content from Contentful CMS
- * Based on the build guide specifications
+ * Now uses secure server-side proxy instead of exposing tokens in client
  */
 class ContentfulService {
   private static instance: ContentfulService;
-  private client: ContentfulClientApi;
+  private client: ContentfulClientApi | null = null;
+  private isProxyMode: boolean = false;
 
-  private constructor(config: ContentfulConfig) {
-    this.client = createClient({
-      space: config.space,
-      accessToken: config.accessToken,
-      environment: config.environment,
-    });
+  private constructor(config?: ContentfulConfig) {
+    // Check if we're in development mode and have proxy available
+    if (import.meta.env.DEV && !config?.accessToken) {
+      this.isProxyMode = true;
+      console.log('ContentfulService: Using secure proxy mode');
+    } else if (config) {
+      this.client = createClient({
+        space: config.space,
+        accessToken: config.accessToken,
+        environment: config.environment,
+      });
+      console.log('ContentfulService: Using direct client mode');
+    }
   }
 
   /**
@@ -82,16 +91,65 @@ class ContentfulService {
    */
   public static getInstance(): ContentfulService {
     if (!ContentfulService.instance) {
-      ContentfulService.instance = new ContentfulService({
+      const config = {
         space: import.meta.env.VITE_CONTENTFUL_SPACE_ID || '',
         accessToken: import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || '',
         environment: import.meta.env.VITE_CONTENTFUL_ENVIRONMENT || 'master',
-      });
+      };
+      
+      ContentfulService.instance = new ContentfulService(
+        config.accessToken ? config : undefined
+      );
     }
     return ContentfulService.instance;
   }
 
-  private logContentfulResponse(contentType: string, slug: string, response: any) {
+  /**
+   * Secure proxy request method
+   */
+  private async proxyRequest(endpoint: string, params: Record<string, any> = {}): Promise<any> {
+    try {
+      const queryParams = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          queryParams.append(key, String(value));
+        }
+      });
+
+      const url = `/contentful-api/spaces/${import.meta.env.VITE_CONTENTFUL_SPACE_ID}/environments/${import.meta.env.VITE_CONTENTFUL_ENVIRONMENT}/${endpoint}?${queryParams}`;
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Proxy request failed: ${response.status} ${response.statusText}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Proxy request error:', error);
+      throw error;
+    }
+  }
+
+  /**
+   * Unified method to get entries using either proxy or direct client
+   */
+  private async getEntries(params: any): Promise<any> {
+    if (this.isProxyMode) {
+      return this.proxyRequest('entries', params);
+    } else if (this.client) {
+      return this.client.getEntries(params);
+    } else {
+      throw new Error('ContentfulService not properly initialized');
+    }
+  }
+
+  private logContentfulResponse(contentType: string, slug: string, response: any): void {
     console.log(`Contentful Response for ${contentType} (${slug}):`, {
       total: response.total,
       items: response.items.length,
@@ -99,7 +157,7 @@ class ContentfulService {
     });
   }
 
-  private transformAsset(asset: any) {
+  private transformAsset(asset: any): { title: string; description: string; url: string } | null {
     if (!asset) return null;
     return {
       title: asset.fields?.title || '',
@@ -108,7 +166,7 @@ class ContentfulService {
     };
   }
 
-  private transformAuthor(author: any) {
+  private transformAuthor(author: any): { name: string; photo: string } | null {
     if (!author) return null;
     return {
       name: author.fields?.name || '',
@@ -116,7 +174,7 @@ class ContentfulService {
     };
   }
 
-  private transformEntry(entry: any) {
+  private transformEntry(entry: any): any {
     if (!entry) return null;
     return {
       title: entry.fields?.title || '',
@@ -177,7 +235,7 @@ class ContentfulService {
         text: entry.fields.callToAction.fields.text || '',
         buttonText: entry.fields.callToAction.fields.buttonText || '',
         buttonLink: entry.fields.callToAction.fields.buttonLink || '',
-      } : null,
+      } : undefined,
     };
 
     console.log('Transformed blog post:', JSON.stringify(transformed, null, 2));
@@ -217,7 +275,7 @@ class ContentfulService {
         text: entry.fields.callToAction.fields.text || '',
         buttonText: entry.fields.callToAction.fields.buttonText || '',
         buttonLink: entry.fields.callToAction.fields.buttonLink || '',
-      } : null,
+      } : undefined,
     };
 
     console.log('Transformed foundational page:', transformed);
@@ -233,10 +291,11 @@ class ContentfulService {
       console.log('Contentful config:', {
         space: import.meta.env.VITE_CONTENTFUL_SPACE_ID,
         environment: import.meta.env.VITE_CONTENTFUL_ENVIRONMENT,
-        hasToken: !!import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN
+        hasToken: !!import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+        proxyMode: this.isProxyMode
       });
 
-      const response = await this.client.getEntries({
+      const response = await this.getEntries({
         content_type: 'foundationalPage',
         'fields.pageSlug': slug,
         include: 3,
@@ -263,7 +322,7 @@ class ContentfulService {
   /**
    * Fetch blog posts
    */
-  public async getBlogPosts(page: number = 1, limit: number = 10, category?: string) {
+  public async getBlogPosts(page: number = 1, limit: number = 10, category?: string): Promise<{ items: BlogPostFields[]; total: number }> {
     try {
       console.log('Fetching blog posts with params:', { page, limit, category });
 
@@ -277,7 +336,7 @@ class ContentfulService {
 
       if (category && category !== 'all') {
         // First get the category ID from the slug
-        const categoryEntries = await this.client.getEntries({
+        const categoryEntries = await this.getEntries({
           content_type: 'category',
           'fields.slug': category,
           limit: 1
@@ -291,11 +350,11 @@ class ContentfulService {
 
       console.log('Contentful query:', query);
 
-      const response = await this.client.getEntries(query);
+      const response = await this.getEntries(query);
       
       this.logContentfulResponse('pageBlogPost', `page-${page}`, response);
 
-      const transformedItems = response.items.map((item) => this.transformBlogPost(item)).filter(Boolean);
+      const transformedItems = response.items.map((item: any) => this.transformBlogPost(item)).filter(Boolean) as BlogPostFields[];
 
       console.log('Transformed blog posts:', transformedItems);
 
@@ -316,7 +375,7 @@ class ContentfulService {
     try {
       console.log('Fetching blog post with slug:', slug);
       
-      const response = await this.client.getEntries({
+      const response = await this.getEntries({
         content_type: 'pageBlogPost',
         'fields.slug': slug,
         include: 10, // Increase include depth to ensure we get all embedded entries
@@ -342,9 +401,9 @@ class ContentfulService {
   /**
    * Fetch videos
    */
-  public async getVideos(limit = 10, skip = 0) {
+  public async getVideos(limit = 10, skip = 0): Promise<any> {
     try {
-      const entries = await this.client.getEntries({
+      const entries = await this.getEntries({
         content_type: 'video',
         order: '-sys.createdAt',
         limit,
@@ -362,9 +421,9 @@ class ContentfulService {
   /**
    * Fetch a video by slug
    */
-  public async getVideoBySlug(slug: string) {
+  public async getVideoBySlug(slug: string): Promise<any> {
     try {
-      const entries = await this.client.getEntries({
+      const entries = await this.getEntries({
         content_type: 'video',
         'fields.slug': slug,
         include: 2,
@@ -380,9 +439,9 @@ class ContentfulService {
   /**
    * Fetch resource guides
    */
-  public async getResourceGuides(limit = 10, skip = 0) {
+  public async getResourceGuides(limit = 10, skip = 0): Promise<any> {
     try {
-      const entries = await this.client.getEntries({
+      const entries = await this.getEntries({
         content_type: 'resourceGuide',
         order: '-sys.createdAt',
         limit,
@@ -400,9 +459,9 @@ class ContentfulService {
   /**
    * Fetch a resource guide by slug
    */
-  public async getResourceGuideBySlug(slug: string) {
+  public async getResourceGuideBySlug(slug: string): Promise<any> {
     try {
-      const entries = await this.client.getEntries({
+      const entries = await this.getEntries({
         content_type: 'resourceGuide',
         'fields.slug': slug,
         include: 2,
@@ -418,9 +477,9 @@ class ContentfulService {
   /**
    * Fetch all categories
    */
-  public async getCategories() {
+  public async getCategories(): Promise<Array<{ name: string; slug: string; id: string }>> {
     try {
-      const entries = await this.client.getEntries({
+      const entries = await this.getEntries({
         content_type: 'category',
         order: 'fields.name',
         select: 'fields.name,fields.slug,sys.id',
@@ -437,9 +496,9 @@ class ContentfulService {
     }
   }
 
-  public async getResourceBySlug(slug: string) {
+  public async getResourceBySlug(slug: string): Promise<any> {
     try {
-      const response = await this.client.getEntries({
+      const response = await this.getEntries({
         content_type: 'resourceGuide',
         'fields.slug': slug,
         include: 2,
@@ -467,6 +526,169 @@ class ContentfulService {
     } catch (error) {
       console.error('Error fetching resource:', error);
       return null;
+    }
+  }
+
+  /**
+   * Transform team member from Contentful format to app format
+   */
+  private transformTeamMember(entry: any): TeamMember | null {
+    if (!entry?.fields) {
+      console.warn('No entry fields provided to transformTeamMember');
+      return null;
+    }
+
+    const fields = entry.fields as TeamMemberContentful;
+    
+    // Get the full Contentful image URL or use placeholder
+    let imageUrl = 'female-placeholder.png'; // Default placeholder
+    
+    if (fields.headshot?.fields?.file?.url) {
+      // Use the full Contentful URL with https:// prefix (simplified optimization)
+      const baseUrl = `https:${fields.headshot.fields.file.url}`;
+      imageUrl = `${baseUrl}?w=300&h=300&fit=fill`;
+    }
+
+    return {
+      name: fields.employeeName || '',
+      title: fields.employeeTitle || '',
+      email: fields.employeeEmail || '',
+      department: fields.employeeDept || '',
+      image: imageUrl,
+    };
+  }
+
+  /**
+   * Fetch all team members from Contentful
+   */
+  public async getTeamMembers(): Promise<TeamSection[]> {
+    try {
+      console.log('Fetching team members from Contentful');
+
+      const response = await this.getEntries({
+        content_type: 'teamMemberCards',
+        order: 'fields.employeeName', // Default alphabetical sort
+        limit: 100,
+        include: 2, // Increase to include linked assets (images)
+      });
+
+      console.log('Team members response:', {
+        total: response.total,
+        items: response.items.length,
+        firstItem: response.items[0]?.fields,
+      });
+
+
+
+      if (response.items.length === 0) {
+        console.warn('No team members found in Contentful');
+        return [];
+      }
+
+      // Transform all team members
+      const teamMembers = response.items
+        .map((item: any) => this.transformTeamMember(item))
+        .filter(Boolean) as TeamMember[];
+
+      console.log('Transformed team members:', teamMembers);
+
+      // Group by department
+      const departmentGroups: { [key: string]: TeamMember[] } = {};
+      
+      teamMembers.forEach(member => {
+        const dept = member.department || 'Other';
+        if (!departmentGroups[dept]) {
+          departmentGroups[dept] = [];
+        }
+        departmentGroups[dept].push(member);
+      });
+
+      // Custom sorting function for specific departments
+      const customSortMembers = (department: string, members: TeamMember[]): TeamMember[] => {
+        if (department === 'Leadership') {
+          // Specific order for Leadership team
+          const leadershipOrder = [
+            'Justin Brock',
+            'Steven Martinez', 
+            'Jeff Senter',
+            'Jackson Taylor',
+            'Will Chapman',
+            'Jeremiah Lozano'
+          ];
+          
+          return members.sort((a, b) => {
+            const aIndex = leadershipOrder.indexOf(a.name);
+            const bIndex = leadershipOrder.indexOf(b.name);
+            
+            // If both are in the custom order, sort by index
+            if (aIndex !== -1 && bIndex !== -1) {
+              return aIndex - bIndex;
+            }
+            
+            // If only one is in the custom order, prioritize it
+            if (aIndex !== -1) return -1;
+            if (bIndex !== -1) return 1;
+            
+            // If neither is in the custom order, sort alphabetically
+            return a.name.localeCompare(b.name);
+          });
+        }
+        
+        // For all other departments: prioritize leadership titles first, then alphabetical
+        const getLeadershipPriority = (title: string): number => {
+          const lowerTitle = title.toLowerCase();
+          if (lowerTitle.includes('director')) return 1;
+          if (lowerTitle.includes('team lead') || lowerTitle.includes('team leader')) return 2;
+          if (lowerTitle.includes('manager')) return 3;
+          if (lowerTitle.includes('supervisor')) return 4;
+          if (lowerTitle.includes('coordinator')) return 5;
+          return 10; // Regular positions (agents, etc.)
+        };
+        
+        return members.sort((a, b) => {
+          const aPriority = getLeadershipPriority(a.title);
+          const bPriority = getLeadershipPriority(b.title);
+          
+          // First sort by leadership priority
+          if (aPriority !== bPriority) {
+            return aPriority - bPriority;
+          }
+          
+          // If same priority level, sort alphabetically by name
+          return a.name.localeCompare(b.name);
+        });
+      };
+
+      // Convert to TeamSection format with custom sorting
+      const teamSections: TeamSection[] = Object.entries(departmentGroups).map(([department, members]) => ({
+        section: department,
+        members: customSortMembers(department, members),
+      }));
+
+      // Sort sections by predefined order
+      const sectionOrder = ['Leadership', 'Sales', 'Administrative', 'Marketing'];
+      teamSections.sort((a, b) => {
+        const aIndex = sectionOrder.indexOf(a.section);
+        const bIndex = sectionOrder.indexOf(b.section);
+        
+        // If both are in the predefined order, sort by index
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
+        }
+        
+        // If only one is in the predefined order, prioritize it
+        if (aIndex !== -1) return -1;
+        if (bIndex !== -1) return 1;
+        
+        // If neither is in the predefined order, sort alphabetically
+        return a.section.localeCompare(b.section);
+      });
+
+      console.log('Final team sections:', teamSections);
+      return teamSections;
+    } catch (error) {
+      console.error('Error fetching team members:', error);
+      return [];
     }
   }
 }
