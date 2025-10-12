@@ -37,6 +37,7 @@ import MedicareByState from './pages/MedicareByState';
 import MedicareByStateListing from './pages/MedicareByStateListing';
 import TermsOfService from './pages/TermsOfService';
 import AvoidMistakesMedicare from './pages/AvoidMistakesMedicare';
+import GaryAlfordInsurance from './pages/GaryAlfordInsurance';
 
 // Initialize QueryClient for data fetching with error handling
 const queryClient = new QueryClient({
@@ -305,6 +306,11 @@ const App = () => (
                   <Route path="/client-reviews" element={
                     <PageErrorBoundary>
                       <ClientTestimonials />
+                    </PageErrorBoundary>
+                  } />
+                  <Route path="/gary-alford-insurance" element={
+                    <PageErrorBoundary>
+                      <GaryAlfordInsurance />
                     </PageErrorBoundary>
                   } />
                   
