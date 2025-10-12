@@ -47,12 +47,147 @@ const GaryAlfordInsurance = () => {
         const response = await contentfulService.getFoundationalPageBySlug('gary-alford-insurance') as FoundationalPageResponse;
         
         if (response) {
+          // Transform the response to match the expected format
           setPageData({
             pageName: response.pageName || 'Gary Alford Insurance',
             pageSlug: 'gary-alford-insurance',
             title: response.title,
             metadata: response.metadata,
-            fBodyContent: response.fBodyContent,
+            fBodyContent: {
+              ...response.fBodyContent,
+              content: response.fBodyContent?.content?.map((node: any) => {
+                if (node.nodeType === 'embedded-entry-block') {
+                  const entry = node.data.target;
+                  const contentType = entry.sys?.contentType?.sys?.id;
+                  const fields = entry.fields || {};
+
+                  // Transform the entry based on its content type
+                  switch (contentType) {
+                    case 'resourceGuide':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              slug: fields.slug || '',
+                            }
+                          }
+                        }
+                      };
+                    case 'video':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              videoUrl: fields.videoUrl || '',
+                              isSelfHosted: fields.isSelfHosted || false,
+                              thumbnailImage: fields.thumbnailImage || null,
+                            }
+                          }
+                        }
+                      };
+                    case 'youTubeEmbed':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              youTubeLink: fields.youTubeLink || '',
+                            }
+                          }
+                        }
+                      };
+                    case 'websiteCta':
+                      const hasRequiredFields = fields.title || fields.description || fields.buttonText || fields.buttonLink;
+                      if (!hasRequiredFields) {
+                        console.warn('Website CTA missing all required fields:', entry);
+                        return null;
+                      }
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              description: fields.description || '',
+                              buttonText: fields.buttonText || '',
+                              buttonLink: fields.buttonLink || '',
+                            }
+                          }
+                        }
+                      };
+                    case 'blogPost':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              title: fields.title || '',
+                              slug: fields.slug || '',
+                              excerpt: fields.excerpt || '',
+                              featuredImage: fields.featuredImage?.fields?.file?.url 
+                                ? `https:${fields.featuredImage.fields.file.url}` 
+                                : '',
+                            }
+                          }
+                        }
+                      };
+                    case 'foundationalPage':
+                      return {
+                        ...node,
+                        data: {
+                          ...node.data,
+                          target: {
+                            ...entry,
+                            fields: {
+                              pageName: fields.pageName || '',
+                              pageSlug: fields.pageSlug || '',
+                              metadata: fields.metadata || {},
+                            }
+                          }
+                        }
+                      };
+                    default:
+                      console.warn(`Unhandled embedded entry type: ${contentType}`);
+                      return node;
+                  }
+                } else if (node.nodeType === 'embedded-asset-block') {
+                  // Handle embedded assets (images, PDFs, etc.)
+                  const asset = node.data.target;
+                  const fields = asset.fields || {};
+                  
+                  return {
+                    ...node,
+                    data: {
+                      ...node.data,
+                      target: {
+                        title: fields.title || '',
+                        description: fields.description || '',
+                        url: fields.file?.url ? `https:${fields.file.url}` : '',
+                        contentType: fields.file?.contentType || '',
+                        fileName: fields.file?.fileName || '',
+                        details: fields.file?.details || {},
+                      }
+                    }
+                  };
+                }
+                return node;
+              }).filter(Boolean) || []
+            },
             callToAction: response.callToAction,
             author: response.author,
             youTubeVideo: response.youTubeVideo,
