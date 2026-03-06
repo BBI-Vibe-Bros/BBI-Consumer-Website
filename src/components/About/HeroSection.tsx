@@ -16,9 +16,11 @@ const HeroSection = () => {
               Our Story
             </h1>
             <p className="text-lg md:text-lg text-gray-200 mb-8 max-w-2xl">
-            Founded by Bobby Brock, our agency began with a simple vision: to provide honest, straightforward Medicare guidance to the Tupelo community.<br/><br/>
-What started as a small family business has grown into a trusted Medicare resource for seniors across Mississippi. Throughout our growth, we've maintained our commitment to personalized service and putting our clients' needs first.
-<br/><br/>Today, our team of Medicare specialists continues this tradition, combining extensive knowledge with genuine care to ensure every client finds the perfect coverage solution.
+            Founded by Bobby Brock, our agency was built on a simple idea: Americans deserve honest, straightforward guidance when it comes to Medicare.<br/><br/>
+
+What began as a family-driven business has grown into a trusted national resource, helping seniors across America navigate one of the most important healthcare decisions of their lives.<br/><br/>
+
+Today, our team of Medicare specialists serves clients nationwide, delivering expert advice, personalized support, and a commitment to helping every American find the right coverage with confidence.
  
             </p>
             <Link to="/team">

@@ -44,7 +44,7 @@ const BlogPostSidebar = ({ content }: BlogPostSidebarProps) => {
         <p className="leading-snug text-gray-700 mb-3 text-sm">
           Get personalized guidance from a real person—no pressure, just friendly help choosing a Medicare plan that fits your needs.
         </p>
-        <Link to="/contact">
+        <Link to="https://go.bobbybrockinsurance.com/appointment/">
           <Button className="w-full flex items-center justify-center gap-2 py-2.5 text-sm">
             Book Appointment
             <Calendar className="inline-block" size={18}/>

@@ -1,7 +1,4 @@
-import React from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useState } from 'react';
 
 interface TimelineEntry {
   year: string;
@@ -32,16 +29,12 @@ const timelineData: TimelineEntry[] = [
 ];
 
 const TimelineSection = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    align: 'center',
-    loop: true,
-    skipSnaps: false,
-    dragFree: false,
-    containScroll: 'trimSnaps',
-  });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeEntry = timelineData[activeIndex];
 
-  const scrollPrev = () => emblaApi && emblaApi.scrollPrev();
-  const scrollNext = () => emblaApi && emblaApi.scrollNext();
+  if (!activeEntry) {
+    return null;
+  }
 
   return (
     <section className="py-20 bg-[#f8fafc]">
@@ -55,68 +48,74 @@ const TimelineSection = () => {
           </h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Navigation Buttons */}
-          <div className="absolute -left-4 -right-4 top-1/2 -translate-y-1/2 flex justify-between z-10 pointer-events-none">
-            <Button
-              onClick={scrollPrev}
-              className="rounded-full w-12 h-12 bg-white shadow-lg hover:bg-[#d5effc] pointer-events-auto border border-gray-100"
-              aria-label="Previous timeline entry"
-            >
-              <ChevronLeft className="w-6 h-6 text-[#002a3a]" />
-            </Button>
-            <Button
-              onClick={scrollNext}
-              className="rounded-full w-12 h-12 bg-white shadow-lg hover:bg-[#d5effc] pointer-events-auto border border-gray-100"
-              aria-label="Next timeline entry"
-            >
-              <ChevronRight className="w-6 h-6 text-[#002a3a]" />
-            </Button>
-          </div>
-
-          {/* Carousel */}
-          <div className="overflow-hidden px-12" ref={emblaRef}>
-            <div className="flex">
-              {timelineData.map((entry) => (
-                <div
-                  key={entry.year}
-                  className="flex-[0_0_100%] min-w-0 px-4"
-                >
-                  <div className="bg-white rounded-xl h-full border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 hover:border-[#00a3e0]/20 overflow-hidden">
-                    {/* Year Header */}
-                    <div className="bg-[#00a3e0] px-8 py-4">
-                      <h3 className="text-white font-bold text-2xl">
-                        {entry.year}
-                      </h3>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="p-8">
-                      <p className="text-[#002a3a] text-lg leading-relaxed">
-                        {entry.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Year Navigation */}
-          <div className="flex justify-center gap-4 mt-12 flex-wrap">
-            {timelineData.map((entry, index) => (
-              <button
-                key={entry.year}
-                onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  emblaApi?.selectedScrollSnap() === index
-                    ? 'bg-[#00a3e0] text-white shadow-md scale-105'
-                    : 'bg-[#d5effc] text-[#002a3a] hover:bg-[#00a3e0] hover:text-white'
-                }`}
-                aria-label={`View ${entry.year} timeline entry`}
+        <div className="max-w-6xl mx-auto">
+          <div className="lg:grid lg:grid-cols-[240px_1fr] lg:gap-8">
+            {/* Year selector: horizontal on mobile, vertical on desktop */}
+            <div className="mb-6 lg:mb-0">
+              <div
+                className="flex lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0"
+                role="tablist"
+                aria-label="Timeline years"
               >
-                {entry.year}
-              </button>
+                {timelineData.map((entry, index) => {
+                  const isActive = activeIndex === index;
+
+                  return (
+                    <button
+                      key={entry.year}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      aria-controls={`timeline-panel-${entry.year}`}
+                      id={`timeline-tab-${entry.year}`}
+                      onClick={() => setActiveIndex(index)}
+                      className={`shrink-0 rounded-full lg:rounded-xl px-5 py-2.5 text-sm lg:text-base font-semibold transition-all duration-200 border ${
+                        isActive
+                          ? 'bg-[#00a3e0] text-white border-[#00a3e0] shadow-md'
+                          : 'bg-white text-[#002a3a] border-[#d5effc] hover:bg-[#e9f7ff]'
+                      }`}
+                    >
+                      {entry.year}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <article
+              key={activeEntry.year}
+              id={`timeline-panel-${activeEntry.year}`}
+              role="tabpanel"
+              aria-labelledby={`timeline-tab-${activeEntry.year}`}
+              className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300"
+            >
+              <div className="bg-[#00a3e0] px-6 md:px-8 py-4">
+                <h3 className="text-white font-bold text-2xl md:text-3xl">
+                  {activeEntry.year}
+                </h3>
+              </div>
+
+              <div className="p-6 md:p-8">
+                <p className="text-[#002a3a] text-base md:text-lg leading-relaxed md:leading-9 max-w-4xl">
+                  {activeEntry.description}
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <div className="mt-6 flex justify-center lg:hidden">
+            <p className="text-sm text-[#002a3a]/70">
+              {activeIndex + 1} of {timelineData.length}
+            </p>
+          </div>
+          <div className="mt-3 flex justify-center gap-2 lg:hidden" aria-hidden="true">
+            {timelineData.map((entry, index) => (
+              <span
+                key={entry.year}
+                className={`h-2 w-2 rounded-full ${
+                  activeIndex === index ? 'bg-[#00a3e0]' : 'bg-[#d5effc]'
+                }`}
+              />
             ))}
           </div>
         </div>

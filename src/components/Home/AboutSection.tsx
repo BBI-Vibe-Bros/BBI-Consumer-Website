@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const AboutSection = () => {
   const features = [{
     id: 1,
-    title: "Trusted Medicare Experts in Tupelo",
+    title: "Trusted Medicare Experts",
     icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
   }, {
     id: 2,
@@ -32,7 +32,7 @@ const AboutSection = () => {
               <h3 className="font-bold text-xl md:text-3xl text-bb-dark mt-2">Your Local Medicare Insurance Specialists</h3>
             </div>
 
-            <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">At Bobby Brock Insurance, we've been helping Tupelo residents navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
+            <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">At Bobby Brock Insurance, we've been helping Americans navigate the complexities of Medicare for over two decades. We believe everyone deserves personalized guidance to find the right healthcare coverage.</p>
 
             <div className="space-y-4 mb-8">
               {features.map(feature => <div key={feature.id} className="flex gap-3 items-start py-0">

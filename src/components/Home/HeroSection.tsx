@@ -10,7 +10,7 @@ const HeroSection = () => {
             <h1 className="font-extrabold mb-4 text-bb-blue text-4xl md:text-5xl">
               Making Medicare Easy, One Choice at a Time 
             </h1>
-            <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">Personalized Medicare advice from Tupelo's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
+            <p className="text-gray-700 mb-6 leading-relaxed text-base md:text-lg">Personalized Medicare advice from America's most trusted insurance agency. Our well-trained, experienced agents are ready to answer questions.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="https://go.bobbybrockinsurance.com/appointment/">
                 <Button>Schedule an Appointment</Button>

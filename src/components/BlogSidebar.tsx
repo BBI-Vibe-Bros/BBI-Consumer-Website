@@ -88,7 +88,7 @@ const BlogSidebar = ({ selectedCategory, onCategoryChange }: { selectedCategory:
           Get personalized help understanding your Medicare options from our licensed insurance agents.
         </p>
         <Link
-          to="/contact"
+          to="https://go.bobbybrockinsurance.com/appointment/"
           className="flex items-center justify-center bg-green-600 text-white rounded-lg px-4 py-2.5 hover:bg-green-700 transition group text-sm"
         >
           <Calendar className="mr-2" size={18} />
